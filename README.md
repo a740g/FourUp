@@ -1,6 +1,6 @@
 # 4Play
 Classic Connect 4 against computer 
-Notes: I started programming this during 1997 using QuickBASIC 4.5 and my User Interface Library (TxMUI).
+I started programming this during 1997 using QuickBASIC 4.5 and my User Interface Library (TxMUI).
 Due to the limited nature of the QuickBASIC IDE I had to keep the source code slim & trim. Hence you won't
 find a lot of comments. But I believe that understanding this BASIC code should be a snap. Most of the code has
 remained virtually the same. Only the use user interface parts have changed. This source code has come a long way.
