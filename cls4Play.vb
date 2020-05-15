@@ -50,9 +50,9 @@ Public Class Cls4Play
 
 	' Returns true if a move is allowed
 	Public Function IsMoveAllowed(ByVal x As Integer, ByVal y As Integer) As Boolean
-		If (Matrix(x, y) = EmptyCellChip) Then
-			If (y > 0) Then
-				If (Matrix(x, y - 1) = EmptyCellChip) Then
+		If Matrix(x, y) = EmptyCellChip Then
+			If y > 0 Then
+				If Matrix(x, y - 1) = EmptyCellChip Then
 					' There is nothing below!
 					Return False
 				End If
@@ -75,9 +75,9 @@ Public Class Cls4Play
 
 	' Puts the move in the game matrix if allowed
 	Public Function PlayMove(ByVal x As Integer, ByVal y As Integer, Optional ByVal sPlayer As String = "") As Boolean
-		If (sPlayer = "") Then sPlayer = Player
+		If sPlayer = "" Then sPlayer = Player
 
-		If (IsMoveAllowed(x, y)) Then
+		If IsMoveAllowed(x, y) Then
 			Matrix(x, y) = sPlayer
 			Return True
 		End If
@@ -88,7 +88,7 @@ Public Class Cls4Play
 	' Find the opponent player
 	Public Function Opponent(Optional ByVal sPlayer As String = "") As String
 		' Find the opponent player
-		If (sPlayer = "") Then sPlayer = Player
+		If sPlayer = "" Then sPlayer = Player
 		Return CStr(IIf(sPlayer = Player1Chip, Player2Chip, Player1Chip))
 	End Function
 
@@ -105,7 +105,7 @@ Public Class Cls4Play
 
 		For y = 0 To MaxY
 			For x = 0 To MaxX
-				If (Matrix(x, y) <> EmptyCellChip) Then iCount += 1
+				If Matrix(x, y) <> EmptyCellChip Then iCount += 1
 			Next
 		Next
 
@@ -117,7 +117,7 @@ Public Class Cls4Play
 		Dim y, iCount As Integer
 
 		For y = 0 To MaxY
-			If (Matrix(iRow, y) <> EmptyCellChip) Then iCount += 1
+			If Matrix(iRow, y) <> EmptyCellChip Then iCount += 1
 		Next
 
 		Return iCount
@@ -125,12 +125,12 @@ Public Class Cls4Play
 
 	' Is a game in progress?
 	Public Function IsGameStarted() As Boolean
-		Return (GetTotalMoves() > 0)
+		Return GetTotalMoves() > 0
 	End Function
 
 	' Do we have a draw game?
 	Public Function IsGameDraw() As Boolean
-		Return (GetTotalMoves() >= ((MaxX + 1) * (MaxY + 1)))
+		Return GetTotalMoves() >= ((MaxX + 1) * (MaxY + 1))
 	End Function
 
 	' Puts a chip in a particular row if allowed
@@ -138,7 +138,7 @@ Public Class Cls4Play
 		Dim y As Integer
 
 		For y = 0 To MaxY
-			If (PlayMove(iRow, y, sPlayer)) Then
+			If PlayMove(iRow, y, sPlayer) Then
 				Return True
 			End If
 		Next
@@ -163,7 +163,7 @@ Public Class Cls4Play
 		Dim x, y As Integer
 
 		' If no parameter was passed check for previous player
-		If (sChip = "") Then
+		If sChip = "" Then
 			sChip = CStr(IIf(Player = Player1Chip, Player2Chip, Player1Chip))
 		End If
 
@@ -234,7 +234,7 @@ Public Class Cls4Play
 		For x = 0 To MaxX
 			For y = 0 To MaxY - 3
 				If (Matrix(x, y) & Matrix(x, y + 1) & Matrix(x, y + 2) & Matrix(x, y + 3)) = (sChip & sChip & sChip & EmptyCellChip) Then
-					If (IsMoveAllowed(x, y + 3)) Then
+					If IsMoveAllowed(x, y + 3) Then
 						Return x
 					End If
 				End If
@@ -245,22 +245,22 @@ Public Class Cls4Play
 		For y = 0 To MaxY
 			For x = 0 To MaxX - 3
 				If (Matrix(x, y) & Matrix(x + 1, y) & Matrix(x + 2, y) & Matrix(x + 3, y)) = (sChip & sChip & sChip & EmptyCellChip) Then
-					If (IsMoveAllowed(x + 3, y)) Then
+					If IsMoveAllowed(x + 3, y) Then
 						Return x + 3
 					End If
 				End If
 				If (Matrix(x, y) & Matrix(x + 1, y) & Matrix(x + 2, y) & Matrix(x + 3, y)) = (sChip & sChip & EmptyCellChip & sChip) Then
-					If (IsMoveAllowed(x + 2, y)) Then
+					If IsMoveAllowed(x + 2, y) Then
 						Return x + 2
 					End If
 				End If
 				If (Matrix(x, y) & Matrix(x + 1, y) & Matrix(x + 2, y) & Matrix(x + 3, y)) = (sChip & EmptyCellChip & sChip & sChip) Then
-					If (IsMoveAllowed(x + 1, y)) Then
+					If IsMoveAllowed(x + 1, y) Then
 						Return x + 1
 					End If
 				End If
 				If (Matrix(x, y) & Matrix(x + 1, y) & Matrix(x + 2, y) & Matrix(x + 3, y)) = (EmptyCellChip & sChip & sChip & sChip) Then
-					If (IsMoveAllowed(x, y)) Then
+					If IsMoveAllowed(x, y) Then
 						Return x
 					End If
 				End If
@@ -271,22 +271,22 @@ Public Class Cls4Play
 		For y = 0 To MaxY - 3
 			For x = 0 To MaxX - 3
 				If (Matrix(x, y) & Matrix(x + 1, y + 1) & Matrix(x + 2, y + 2) & Matrix(x + 3, y + 3)) = (sChip & sChip & sChip & EmptyCellChip) Then
-					If (IsMoveAllowed(x + 3, y + 3)) Then
+					If IsMoveAllowed(x + 3, y + 3) Then
 						Return x + 3
 					End If
 				End If
 				If (Matrix(x, y) & Matrix(x + 1, y + 1) & Matrix(x + 2, y + 2) & Matrix(x + 3, y + 3)) = (sChip & sChip & EmptyCellChip & sChip) Then
-					If (IsMoveAllowed(x + 2, y + 2)) Then
+					If IsMoveAllowed(x + 2, y + 2) Then
 						Return x + 2
 					End If
 				End If
 				If (Matrix(x, y) & Matrix(x + 1, y + 1) & Matrix(x + 2, y + 2) & Matrix(x + 3, y + 3)) = (sChip & EmptyCellChip & sChip & sChip) Then
-					If (IsMoveAllowed(x + 1, y + 1)) Then
+					If IsMoveAllowed(x + 1, y + 1) Then
 						Return x + 1
 					End If
 				End If
 				If (Matrix(x, y) & Matrix(x + 1, y + 1) & Matrix(x + 2, y + 2) & Matrix(x + 3, y + 3)) = (EmptyCellChip & sChip & sChip & sChip) Then
-					If (IsMoveAllowed(x, y)) Then
+					If IsMoveAllowed(x, y) Then
 						Return x
 					End If
 				End If
@@ -297,22 +297,22 @@ Public Class Cls4Play
 		For y = 0 To MaxY - 3
 			For x = MaxX To 3 Step -1
 				If (Matrix(x, y) & Matrix(x - 1, y + 1) & Matrix(x - 2, y + 2) & Matrix(x - 3, y + 3)) = (sChip & sChip & sChip & EmptyCellChip) Then
-					If (IsMoveAllowed(x - 3, y + 3)) Then
+					If IsMoveAllowed(x - 3, y + 3) Then
 						Return x - 3
 					End If
 				End If
 				If (Matrix(x, y) & Matrix(x - 1, y + 1) & Matrix(x - 2, y + 2) & Matrix(x - 3, y + 3)) = (sChip & sChip & EmptyCellChip & sChip) Then
-					If (IsMoveAllowed(x - 2, y + 3)) Then
+					If IsMoveAllowed(x - 2, y + 3) Then
 						Return x - 2
 					End If
 				End If
 				If (Matrix(x, y) & Matrix(x - 1, y + 1) & Matrix(x - 2, y + 2) & Matrix(x - 3, y + 3)) = (sChip & EmptyCellChip & sChip & sChip) Then
-					If (IsMoveAllowed(x - 1, y + 3)) Then
+					If IsMoveAllowed(x - 1, y + 3) Then
 						Return x - 1
 					End If
 				End If
 				If (Matrix(x, y) & Matrix(x - 1, y + 1) & Matrix(x - 2, y + 2) & Matrix(x - 3, y + 3)) = (EmptyCellChip & sChip & sChip & sChip) Then
-					If (IsMoveAllowed(x, y + 3)) Then
+					If IsMoveAllowed(x, y + 3) Then
 						Return x
 					End If
 				End If
@@ -329,13 +329,13 @@ Public Class Cls4Play
 		Dim itemCount As Integer
 
 		For iY = 0 To MaxY
-			If (Matrix(iX, iY) = EmptyCellChip) Then Exit For
+			If Matrix(iX, iY) = EmptyCellChip Then Exit For
 		Next
 
 		For Y = iY - 1 To iY + 1
 			For X = iX - 1 To iX + 1
-				If (X >= 0 And X <= MaxX And Y >= 0 And Y <= MaxY) Then
-					If (Matrix(X, Y) = sChip) Then
+				If X >= 0 And X <= MaxX And Y >= 0 And Y <= MaxY Then
+					If Matrix(X, Y) = sChip Then
 						itemCount += 1
 					End If
 				End If
@@ -355,12 +355,12 @@ Public Class Cls4Play
 		' Calculate and store the chip density around the given moves
 		For i = 0 To NumMoves - 1
 			Density(i) = ItemsAroundCell(Moves(i), sChip)
-			If (Density(i) > maxDensity) Then maxDensity = Density(i)
+			If Density(i) > maxDensity Then maxDensity = Density(i)
 		Next
 
 		' Select the moves with the highest density
 		For i = 0 To NumMoves - 1
-			If (Density(i) = maxDensity) Then
+			If Density(i) = maxDensity Then
 				BestMoves(moveCount) = Moves(i)
 				moveCount += 1
 			End If
@@ -380,34 +380,34 @@ Public Class Cls4Play
 		RaiseEvent ProcessNote("Thinking...")
 
 		' Leave if there are no more places to think for
-		If (IsGameDraw()) Then Return -MaxX - 1
+		If IsGameDraw() Then Return -MaxX - 1
 
 		' Use default positions if less than 3 moves
-		If (GetTotalMoves() < 3) Then
+		If GetTotalMoves() < 3 Then
 			RaiseEvent ProcessNote("Initial move.")
 
-			If (Matrix((MaxX \ 2), 0) = EmptyCellChip) Then
+			If Matrix(MaxX \ 2, 0) = EmptyCellChip Then
 				Return MaxX \ 2
-			ElseIf (Matrix((MaxX \ 2) + 1, 0) = EmptyCellChip) Then
+			ElseIf Matrix((MaxX \ 2) + 1, 0) = EmptyCellChip Then
 				Return (MaxX \ 2) + 1
-			ElseIf (Matrix((MaxX \ 2) - 1, 0) = EmptyCellChip) Then
+			ElseIf Matrix((MaxX \ 2) - 1, 0) = EmptyCellChip Then
 				Return (MaxX \ 2) - 1
 			End If
 		End If
 
 		' Determine the player
-		If (sPlayer = "") Then sPlayer = Player
+		If sPlayer = "" Then sPlayer = Player
 
 		' Search for winning positions
 		i = ComputerSearch(sPlayer)
-		If (i >= 0) Then
+		If i >= 0 Then
 			RaiseEvent ProcessNote("Winning move " & i + 1 & "!")
 			Return i
 		End If
 
 		' Search for critical loosing positions (negative to indicate we are doing bad :()
 		i = ComputerSearch(Opponent(sPlayer))
-		If (i >= 0) Then
+		If i >= 0 Then
 			RaiseEvent ProcessNote("Defending move " & i + 1 & "!")
 			Return -i
 		End If
@@ -417,8 +417,8 @@ Public Class Cls4Play
 
 		' Play a move for 'myself'
 		For i = 0 To MaxX
-			If (PutChipInRow(i, sPlayer)) Then
-				If (ComputerSearch(sPlayer) >= 0 And ComputerSearch(Opponent(sPlayer)) < 0) Then
+			If PutChipInRow(i, sPlayer) Then
+				If ComputerSearch(sPlayer) >= 0 And ComputerSearch(Opponent(sPlayer)) < 0 Then
 					bMoveFound = True
 					iMove(iMoveCount) = i
 					iMoveCount += 1
@@ -427,7 +427,7 @@ Public Class Cls4Play
 			End If
 		Next
 
-		If (bMoveFound) Then
+		If bMoveFound Then
 			i = ChooseBestMove(iMove, sPlayer, iMoveCount)
 			RaiseEvent ProcessNote("Found " & i + 1 & ".")
 			Return i
@@ -436,8 +436,8 @@ Public Class Cls4Play
 		bMoveFound = False
 		iMoveCount = 0
 		For i = 0 To MaxX
-			If (PutChipInRow(i, sPlayer)) Then
-				If (ComputerSearch(Opponent(sPlayer)) < 0) Then
+			If PutChipInRow(i, sPlayer) Then
+				If ComputerSearch(Opponent(sPlayer)) < 0 Then
 					bMoveFound = True
 					iMove(iMoveCount) = i
 					iMoveCount += 1
@@ -446,7 +446,7 @@ Public Class Cls4Play
 			End If
 		Next
 
-		If (bMoveFound) Then
+		If bMoveFound Then
 			i = ChooseBestMove(iMove, Opponent(sPlayer), iMoveCount)
 			RaiseEvent ProcessNote("Found " & i + 1 & ".")
 			Return i
@@ -457,7 +457,7 @@ Public Class Cls4Play
 			' Play a random move
 			Do
 				i = CInt(Rnd() * MaxX)
-			Loop Until (PutChipInRow(i, sPlayer))
+			Loop Until PutChipInRow(i, sPlayer)
 
 			RaiseEvent ProcessNote("Trying " & i + 1 & ".")
 
@@ -468,11 +468,11 @@ Public Class Cls4Play
 		Array.Copy(sMatrix, Matrix, Matrix.Length)
 
 		' Play a random move if no move were found
-		If (iX < -MaxX) Then
+		If iX < -MaxX Then
 			' Play a random move
 			Do
 				iX = CInt(Rnd() * MaxX)
-			Loop Until (PutChipInRow(iX, sPlayer))
+			Loop Until PutChipInRow(iX, sPlayer)
 
 			RaiseEvent ProcessNote("Random move " & iX + 1 & ".")
 

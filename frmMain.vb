@@ -25,7 +25,7 @@ Public Class FrmMain
 	'Form overrides dispose to clean up the component list.
 	Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
 		If disposing Then
-			If Not (components Is Nothing) Then
+			If Not components Is Nothing Then
 				components.Dispose()
 			End If
 		End If
@@ -38,33 +38,33 @@ Public Class FrmMain
 	'NOTE: The following procedure is required by the Windows Form Designer
 	'It can be modified using the Windows Form Designer.  
 	'Do not modify it using the code editor.
-	Friend WithEvents mnuMain As System.Windows.Forms.MainMenu
-	Friend WithEvents mnuGame As System.Windows.Forms.MenuItem
-	Friend WithEvents mnuGameNew As System.Windows.Forms.MenuItem
-	Friend WithEvents mnuGameSeperator1 As System.Windows.Forms.MenuItem
-	Friend WithEvents mnuGameExit As System.Windows.Forms.MenuItem
-	Friend WithEvents mnuHelp As System.Windows.Forms.MenuItem
-	Friend WithEvents mnuHelpHowTo As System.Windows.Forms.MenuItem
-	Friend WithEvents mnuHelpHint As System.Windows.Forms.MenuItem
-	Friend WithEvents mnuHelpSeperator1 As System.Windows.Forms.MenuItem
-	Friend WithEvents mnuHelpAbout As System.Windows.Forms.MenuItem
-	Friend WithEvents tmrUpdate As System.Windows.Forms.Timer
-	Friend WithEvents pnlPawns As System.Windows.Forms.Panel
-	Friend WithEvents pnlButtons As System.Windows.Forms.Panel
+	Friend WithEvents MnuMain As System.Windows.Forms.MainMenu
+	Friend WithEvents MnuGame As System.Windows.Forms.MenuItem
+	Friend WithEvents MnuGameNew As System.Windows.Forms.MenuItem
+	Friend WithEvents MnuGameSeperator1 As System.Windows.Forms.MenuItem
+	Friend WithEvents MnuGameExit As System.Windows.Forms.MenuItem
+	Friend WithEvents MnuHelp As System.Windows.Forms.MenuItem
+	Friend WithEvents MnuHelpHowTo As System.Windows.Forms.MenuItem
+	Friend WithEvents MnuHelpHint As System.Windows.Forms.MenuItem
+	Friend WithEvents MnuHelpSeperator1 As System.Windows.Forms.MenuItem
+	Friend WithEvents MnuHelpAbout As System.Windows.Forms.MenuItem
+	Friend WithEvents TmrUpdate As System.Windows.Forms.Timer
+	Friend WithEvents PnlPawns As System.Windows.Forms.Panel
+	Friend WithEvents PnlButtons As System.Windows.Forms.Panel
 	Friend WithEvents cmd1 As System.Windows.Forms.Button
-	Friend WithEvents txtStatus As System.Windows.Forms.TextBox
-	Friend WithEvents lblPlayerScoreLbl As System.Windows.Forms.Label
-	Friend WithEvents lblPlayerLastMoveLbl As System.Windows.Forms.Label
-	Friend WithEvents lblPlayerScore As System.Windows.Forms.Label
-	Friend WithEvents lblPlayerLastMove As System.Windows.Forms.Label
-	Friend WithEvents lblPlayerTime As System.Windows.Forms.Label
+	Friend WithEvents TxtStatus As System.Windows.Forms.TextBox
+	Friend WithEvents LblPlayerScoreLbl As System.Windows.Forms.Label
+	Friend WithEvents LblPlayerLastMoveLbl As System.Windows.Forms.Label
+	Friend WithEvents LblPlayerScore As System.Windows.Forms.Label
+	Friend WithEvents LblPlayerLastMove As System.Windows.Forms.Label
+	Friend WithEvents LblPlayerTime As System.Windows.Forms.Label
 	Friend WithEvents cmd2 As System.Windows.Forms.Button
 	Friend WithEvents cmd3 As System.Windows.Forms.Button
 	Friend WithEvents cmd4 As System.Windows.Forms.Button
 	Friend WithEvents cmd5 As System.Windows.Forms.Button
 	Friend WithEvents cmd6 As System.Windows.Forms.Button
 	Friend WithEvents cmd7 As System.Windows.Forms.Button
-	Friend WithEvents pnlStatus As System.Windows.Forms.Panel
+	Friend WithEvents PnlStatus As System.Windows.Forms.Panel
 	Friend WithEvents lbl0_0 As System.Windows.Forms.Label
 	Friend WithEvents lbl0_1 As System.Windows.Forms.Label
 	Friend WithEvents lbl0_2 As System.Windows.Forms.Label
@@ -107,30 +107,30 @@ Public Class FrmMain
 	Friend WithEvents lbl6_2 As System.Windows.Forms.Label
 	Friend WithEvents lbl6_1 As System.Windows.Forms.Label
 	Friend WithEvents lbl6_0 As System.Windows.Forms.Label
-	Friend WithEvents grpPlayer As System.Windows.Forms.GroupBox
-	Friend WithEvents grpComputer As System.Windows.Forms.GroupBox
-	Friend WithEvents lblPlayerTimeLbl As System.Windows.Forms.Label
-	Friend WithEvents lblComputerTime As System.Windows.Forms.Label
-	Friend WithEvents lblComputerLastMove As System.Windows.Forms.Label
-	Friend WithEvents lblComputerScore As System.Windows.Forms.Label
-	Friend WithEvents lblComputerTimeLbl As System.Windows.Forms.Label
-	Friend WithEvents lblComputerLastMoveLbl As System.Windows.Forms.Label
-	Friend WithEvents lblComputerScoreLbl As System.Windows.Forms.Label
+	Friend WithEvents GrpPlayer As System.Windows.Forms.GroupBox
+	Friend WithEvents GrpComputer As System.Windows.Forms.GroupBox
+	Friend WithEvents LblPlayerTimeLbl As System.Windows.Forms.Label
+	Friend WithEvents LblComputerTime As System.Windows.Forms.Label
+	Friend WithEvents LblComputerLastMove As System.Windows.Forms.Label
+	Friend WithEvents LblComputerScore As System.Windows.Forms.Label
+	Friend WithEvents LblComputerTimeLbl As System.Windows.Forms.Label
+	Friend WithEvents LblComputerLastMoveLbl As System.Windows.Forms.Label
+	Friend WithEvents LblComputerScoreLbl As System.Windows.Forms.Label
 	<System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
 		Me.components = New System.ComponentModel.Container()
 		Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(FrmMain))
-		Me.mnuMain = New System.Windows.Forms.MainMenu()
-		Me.mnuGame = New System.Windows.Forms.MenuItem()
-		Me.mnuGameNew = New System.Windows.Forms.MenuItem()
-		Me.mnuGameSeperator1 = New System.Windows.Forms.MenuItem()
-		Me.mnuGameExit = New System.Windows.Forms.MenuItem()
-		Me.mnuHelp = New System.Windows.Forms.MenuItem()
-		Me.mnuHelpHowTo = New System.Windows.Forms.MenuItem()
-		Me.mnuHelpHint = New System.Windows.Forms.MenuItem()
-		Me.mnuHelpSeperator1 = New System.Windows.Forms.MenuItem()
-		Me.mnuHelpAbout = New System.Windows.Forms.MenuItem()
-		Me.tmrUpdate = New System.Windows.Forms.Timer(Me.components)
-		Me.pnlPawns = New System.Windows.Forms.Panel()
+		Me.MnuMain = New System.Windows.Forms.MainMenu()
+		Me.MnuGame = New System.Windows.Forms.MenuItem()
+		Me.MnuGameNew = New System.Windows.Forms.MenuItem()
+		Me.MnuGameSeperator1 = New System.Windows.Forms.MenuItem()
+		Me.MnuGameExit = New System.Windows.Forms.MenuItem()
+		Me.MnuHelp = New System.Windows.Forms.MenuItem()
+		Me.MnuHelpHowTo = New System.Windows.Forms.MenuItem()
+		Me.MnuHelpHint = New System.Windows.Forms.MenuItem()
+		Me.MnuHelpSeperator1 = New System.Windows.Forms.MenuItem()
+		Me.MnuHelpAbout = New System.Windows.Forms.MenuItem()
+		Me.TmrUpdate = New System.Windows.Forms.Timer(Me.components)
+		Me.PnlPawns = New System.Windows.Forms.Panel()
 		Me.lbl6_5 = New System.Windows.Forms.Label()
 		Me.lbl6_4 = New System.Windows.Forms.Label()
 		Me.lbl6_3 = New System.Windows.Forms.Label()
@@ -173,7 +173,7 @@ Public Class FrmMain
 		Me.lbl0_2 = New System.Windows.Forms.Label()
 		Me.lbl0_1 = New System.Windows.Forms.Label()
 		Me.lbl0_0 = New System.Windows.Forms.Label()
-		Me.pnlButtons = New System.Windows.Forms.Panel()
+		Me.PnlButtons = New System.Windows.Forms.Panel()
 		Me.cmd7 = New System.Windows.Forms.Button()
 		Me.cmd6 = New System.Windows.Forms.Button()
 		Me.cmd5 = New System.Windows.Forms.Button()
@@ -181,97 +181,97 @@ Public Class FrmMain
 		Me.cmd3 = New System.Windows.Forms.Button()
 		Me.cmd2 = New System.Windows.Forms.Button()
 		Me.cmd1 = New System.Windows.Forms.Button()
-		Me.pnlStatus = New System.Windows.Forms.Panel()
-		Me.grpComputer = New System.Windows.Forms.GroupBox()
-		Me.lblComputerTime = New System.Windows.Forms.Label()
-		Me.lblComputerLastMove = New System.Windows.Forms.Label()
-		Me.lblComputerScore = New System.Windows.Forms.Label()
-		Me.lblComputerTimeLbl = New System.Windows.Forms.Label()
-		Me.lblComputerLastMoveLbl = New System.Windows.Forms.Label()
-		Me.lblComputerScoreLbl = New System.Windows.Forms.Label()
-		Me.grpPlayer = New System.Windows.Forms.GroupBox()
-		Me.lblPlayerTime = New System.Windows.Forms.Label()
-		Me.lblPlayerLastMove = New System.Windows.Forms.Label()
-		Me.lblPlayerScore = New System.Windows.Forms.Label()
-		Me.lblPlayerTimeLbl = New System.Windows.Forms.Label()
-		Me.lblPlayerLastMoveLbl = New System.Windows.Forms.Label()
-		Me.lblPlayerScoreLbl = New System.Windows.Forms.Label()
-		Me.txtStatus = New System.Windows.Forms.TextBox()
-		Me.pnlPawns.SuspendLayout()
-		Me.pnlButtons.SuspendLayout()
-		Me.pnlStatus.SuspendLayout()
-		Me.grpComputer.SuspendLayout()
-		Me.grpPlayer.SuspendLayout()
+		Me.PnlStatus = New System.Windows.Forms.Panel()
+		Me.GrpComputer = New System.Windows.Forms.GroupBox()
+		Me.LblComputerTime = New System.Windows.Forms.Label()
+		Me.LblComputerLastMove = New System.Windows.Forms.Label()
+		Me.LblComputerScore = New System.Windows.Forms.Label()
+		Me.LblComputerTimeLbl = New System.Windows.Forms.Label()
+		Me.LblComputerLastMoveLbl = New System.Windows.Forms.Label()
+		Me.LblComputerScoreLbl = New System.Windows.Forms.Label()
+		Me.GrpPlayer = New System.Windows.Forms.GroupBox()
+		Me.LblPlayerTime = New System.Windows.Forms.Label()
+		Me.LblPlayerLastMove = New System.Windows.Forms.Label()
+		Me.LblPlayerScore = New System.Windows.Forms.Label()
+		Me.LblPlayerTimeLbl = New System.Windows.Forms.Label()
+		Me.LblPlayerLastMoveLbl = New System.Windows.Forms.Label()
+		Me.LblPlayerScoreLbl = New System.Windows.Forms.Label()
+		Me.TxtStatus = New System.Windows.Forms.TextBox()
+		Me.PnlPawns.SuspendLayout()
+		Me.PnlButtons.SuspendLayout()
+		Me.PnlStatus.SuspendLayout()
+		Me.GrpComputer.SuspendLayout()
+		Me.GrpPlayer.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'mnuMain
 		'
-		Me.mnuMain.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mnuGame, Me.mnuHelp})
+		Me.MnuMain.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MnuGame, Me.MnuHelp})
 		'
 		'mnuGame
 		'
-		Me.mnuGame.Index = 0
-		Me.mnuGame.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mnuGameNew, Me.mnuGameSeperator1, Me.mnuGameExit})
-		Me.mnuGame.Text = "&Game"
+		Me.MnuGame.Index = 0
+		Me.MnuGame.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MnuGameNew, Me.MnuGameSeperator1, Me.MnuGameExit})
+		Me.MnuGame.Text = "&Game"
 		'
 		'mnuGameNew
 		'
-		Me.mnuGameNew.Index = 0
-		Me.mnuGameNew.Shortcut = System.Windows.Forms.Shortcut.F2
-		Me.mnuGameNew.Text = "&New"
+		Me.MnuGameNew.Index = 0
+		Me.MnuGameNew.Shortcut = System.Windows.Forms.Shortcut.F2
+		Me.MnuGameNew.Text = "&New"
 		'
 		'mnuGameSeperator1
 		'
-		Me.mnuGameSeperator1.Index = 1
-		Me.mnuGameSeperator1.Text = "-"
+		Me.MnuGameSeperator1.Index = 1
+		Me.MnuGameSeperator1.Text = "-"
 		'
 		'mnuGameExit
 		'
-		Me.mnuGameExit.Index = 2
-		Me.mnuGameExit.Shortcut = System.Windows.Forms.Shortcut.AltF4
-		Me.mnuGameExit.Text = "E&xit"
+		Me.MnuGameExit.Index = 2
+		Me.MnuGameExit.Shortcut = System.Windows.Forms.Shortcut.AltF4
+		Me.MnuGameExit.Text = "E&xit"
 		'
 		'mnuHelp
 		'
-		Me.mnuHelp.Index = 1
-		Me.mnuHelp.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mnuHelpHowTo, Me.mnuHelpHint, Me.mnuHelpSeperator1, Me.mnuHelpAbout})
-		Me.mnuHelp.Text = "&Help"
+		Me.MnuHelp.Index = 1
+		Me.MnuHelp.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MnuHelpHowTo, Me.MnuHelpHint, Me.MnuHelpSeperator1, Me.MnuHelpAbout})
+		Me.MnuHelp.Text = "&Help"
 		'
 		'mnuHelpHowTo
 		'
-		Me.mnuHelpHowTo.Index = 0
-		Me.mnuHelpHowTo.Shortcut = System.Windows.Forms.Shortcut.F1
-		Me.mnuHelpHowTo.Text = "How &To..."
+		Me.MnuHelpHowTo.Index = 0
+		Me.MnuHelpHowTo.Shortcut = System.Windows.Forms.Shortcut.F1
+		Me.MnuHelpHowTo.Text = "How &To..."
 		'
 		'mnuHelpHint
 		'
-		Me.mnuHelpHint.Index = 1
-		Me.mnuHelpHint.Shortcut = System.Windows.Forms.Shortcut.ShiftF1
-		Me.mnuHelpHint.Text = "Hi&nt..."
+		Me.MnuHelpHint.Index = 1
+		Me.MnuHelpHint.Shortcut = System.Windows.Forms.Shortcut.ShiftF1
+		Me.MnuHelpHint.Text = "Hi&nt..."
 		'
 		'mnuHelpSeperator1
 		'
-		Me.mnuHelpSeperator1.Index = 2
-		Me.mnuHelpSeperator1.Text = "-"
+		Me.MnuHelpSeperator1.Index = 2
+		Me.MnuHelpSeperator1.Text = "-"
 		'
 		'mnuHelpAbout
 		'
-		Me.mnuHelpAbout.Index = 3
-		Me.mnuHelpAbout.Shortcut = System.Windows.Forms.Shortcut.AltF1
-		Me.mnuHelpAbout.Text = "&About 4Play..."
+		Me.MnuHelpAbout.Index = 3
+		Me.MnuHelpAbout.Shortcut = System.Windows.Forms.Shortcut.AltF1
+		Me.MnuHelpAbout.Text = "&About 4Play..."
 		'
 		'tmrUpdate
 		'
-		Me.tmrUpdate.Enabled = True
+		Me.TmrUpdate.Enabled = True
 		'
 		'pnlPawns
 		'
-		Me.pnlPawns.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.pnlPawns.Controls.AddRange(New System.Windows.Forms.Control() {Me.lbl6_5, Me.lbl6_4, Me.lbl6_3, Me.lbl6_2, Me.lbl6_1, Me.lbl6_0, Me.lbl5_5, Me.lbl5_4, Me.lbl5_3, Me.lbl5_2, Me.lbl5_1, Me.lbl5_0, Me.lbl4_5, Me.lbl4_4, Me.lbl4_3, Me.lbl4_2, Me.lbl4_1, Me.lbl4_0, Me.lbl3_5, Me.lbl3_4, Me.lbl3_3, Me.lbl3_2, Me.lbl3_1, Me.lbl3_0, Me.lbl2_5, Me.lbl2_4, Me.lbl2_3, Me.lbl2_2, Me.lbl2_1, Me.lbl2_0, Me.lbl1_5, Me.lbl1_4, Me.lbl1_3, Me.lbl1_2, Me.lbl1_1, Me.lbl1_0, Me.lbl0_5, Me.lbl0_4, Me.lbl0_3, Me.lbl0_2, Me.lbl0_1, Me.lbl0_0})
-		Me.pnlPawns.Location = New System.Drawing.Point(8, 8)
-		Me.pnlPawns.Name = "pnlPawns"
-		Me.pnlPawns.Size = New System.Drawing.Size(292, 252)
-		Me.pnlPawns.TabIndex = 0
+		Me.PnlPawns.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+		Me.PnlPawns.Controls.AddRange(New System.Windows.Forms.Control() {Me.lbl6_5, Me.lbl6_4, Me.lbl6_3, Me.lbl6_2, Me.lbl6_1, Me.lbl6_0, Me.lbl5_5, Me.lbl5_4, Me.lbl5_3, Me.lbl5_2, Me.lbl5_1, Me.lbl5_0, Me.lbl4_5, Me.lbl4_4, Me.lbl4_3, Me.lbl4_2, Me.lbl4_1, Me.lbl4_0, Me.lbl3_5, Me.lbl3_4, Me.lbl3_3, Me.lbl3_2, Me.lbl3_1, Me.lbl3_0, Me.lbl2_5, Me.lbl2_4, Me.lbl2_3, Me.lbl2_2, Me.lbl2_1, Me.lbl2_0, Me.lbl1_5, Me.lbl1_4, Me.lbl1_3, Me.lbl1_2, Me.lbl1_1, Me.lbl1_0, Me.lbl0_5, Me.lbl0_4, Me.lbl0_3, Me.lbl0_2, Me.lbl0_1, Me.lbl0_0})
+		Me.PnlPawns.Location = New System.Drawing.Point(8, 8)
+		Me.PnlPawns.Name = "pnlPawns"
+		Me.PnlPawns.Size = New System.Drawing.Size(292, 252)
+		Me.PnlPawns.TabIndex = 0
 		'
 		'lbl6_5
 		'
@@ -779,12 +779,12 @@ Public Class FrmMain
 		'
 		'pnlButtons
 		'
-		Me.pnlButtons.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.pnlButtons.Controls.AddRange(New System.Windows.Forms.Control() {Me.cmd7, Me.cmd6, Me.cmd5, Me.cmd4, Me.cmd3, Me.cmd2, Me.cmd1})
-		Me.pnlButtons.Location = New System.Drawing.Point(8, 268)
-		Me.pnlButtons.Name = "pnlButtons"
-		Me.pnlButtons.Size = New System.Drawing.Size(292, 52)
-		Me.pnlButtons.TabIndex = 1
+		Me.PnlButtons.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+		Me.PnlButtons.Controls.AddRange(New System.Windows.Forms.Control() {Me.cmd7, Me.cmd6, Me.cmd5, Me.cmd4, Me.cmd3, Me.cmd2, Me.cmd1})
+		Me.PnlButtons.Location = New System.Drawing.Point(8, 268)
+		Me.PnlButtons.Name = "pnlButtons"
+		Me.PnlButtons.Size = New System.Drawing.Size(292, 52)
+		Me.PnlButtons.TabIndex = 1
 		'
 		'cmd7
 		'
@@ -865,188 +865,188 @@ Public Class FrmMain
 		'
 		'pnlStatus
 		'
-		Me.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.pnlStatus.Controls.AddRange(New System.Windows.Forms.Control() {Me.grpComputer, Me.grpPlayer})
-		Me.pnlStatus.Location = New System.Drawing.Point(308, 8)
-		Me.pnlStatus.Name = "pnlStatus"
-		Me.pnlStatus.Size = New System.Drawing.Size(188, 228)
-		Me.pnlStatus.TabIndex = 2
+		Me.PnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+		Me.PnlStatus.Controls.AddRange(New System.Windows.Forms.Control() {Me.GrpComputer, Me.GrpPlayer})
+		Me.PnlStatus.Location = New System.Drawing.Point(308, 8)
+		Me.PnlStatus.Name = "pnlStatus"
+		Me.PnlStatus.Size = New System.Drawing.Size(188, 228)
+		Me.PnlStatus.TabIndex = 2
 		'
 		'grpComputer
 		'
-		Me.grpComputer.Controls.AddRange(New System.Windows.Forms.Control() {Me.lblComputerTime, Me.lblComputerLastMove, Me.lblComputerScore, Me.lblComputerTimeLbl, Me.lblComputerLastMoveLbl, Me.lblComputerScoreLbl})
-		Me.grpComputer.FlatStyle = System.Windows.Forms.FlatStyle.System
-		Me.grpComputer.Location = New System.Drawing.Point(8, 116)
-		Me.grpComputer.Name = "grpComputer"
-		Me.grpComputer.Size = New System.Drawing.Size(168, 100)
-		Me.grpComputer.TabIndex = 1
-		Me.grpComputer.TabStop = False
-		Me.grpComputer.Text = "Computer (O):"
+		Me.GrpComputer.Controls.AddRange(New System.Windows.Forms.Control() {Me.LblComputerTime, Me.LblComputerLastMove, Me.LblComputerScore, Me.LblComputerTimeLbl, Me.LblComputerLastMoveLbl, Me.LblComputerScoreLbl})
+		Me.GrpComputer.FlatStyle = System.Windows.Forms.FlatStyle.System
+		Me.GrpComputer.Location = New System.Drawing.Point(8, 116)
+		Me.GrpComputer.Name = "grpComputer"
+		Me.GrpComputer.Size = New System.Drawing.Size(168, 100)
+		Me.GrpComputer.TabIndex = 1
+		Me.GrpComputer.TabStop = False
+		Me.GrpComputer.Text = "Computer (O):"
 		'
 		'lblComputerTime
 		'
-		Me.lblComputerTime.AutoSize = True
-		Me.lblComputerTime.Location = New System.Drawing.Point(104, 72)
-		Me.lblComputerTime.Name = "lblComputerTime"
-		Me.lblComputerTime.Size = New System.Drawing.Size(48, 13)
-		Me.lblComputerTime.TabIndex = 5
-		Me.lblComputerTime.Text = "00:00:00"
-		Me.lblComputerTime.UseMnemonic = False
+		Me.LblComputerTime.AutoSize = True
+		Me.LblComputerTime.Location = New System.Drawing.Point(104, 72)
+		Me.LblComputerTime.Name = "lblComputerTime"
+		Me.LblComputerTime.Size = New System.Drawing.Size(48, 13)
+		Me.LblComputerTime.TabIndex = 5
+		Me.LblComputerTime.Text = "00:00:00"
+		Me.LblComputerTime.UseMnemonic = False
 		'
 		'lblComputerLastMove
 		'
-		Me.lblComputerLastMove.AutoSize = True
-		Me.lblComputerLastMove.Location = New System.Drawing.Point(104, 48)
-		Me.lblComputerLastMove.Name = "lblComputerLastMove"
-		Me.lblComputerLastMove.Size = New System.Drawing.Size(10, 13)
-		Me.lblComputerLastMove.TabIndex = 3
-		Me.lblComputerLastMove.Text = "0"
-		Me.lblComputerLastMove.UseMnemonic = False
+		Me.LblComputerLastMove.AutoSize = True
+		Me.LblComputerLastMove.Location = New System.Drawing.Point(104, 48)
+		Me.LblComputerLastMove.Name = "lblComputerLastMove"
+		Me.LblComputerLastMove.Size = New System.Drawing.Size(10, 13)
+		Me.LblComputerLastMove.TabIndex = 3
+		Me.LblComputerLastMove.Text = "0"
+		Me.LblComputerLastMove.UseMnemonic = False
 		'
 		'lblComputerScore
 		'
-		Me.lblComputerScore.AutoSize = True
-		Me.lblComputerScore.Location = New System.Drawing.Point(104, 24)
-		Me.lblComputerScore.Name = "lblComputerScore"
-		Me.lblComputerScore.Size = New System.Drawing.Size(10, 13)
-		Me.lblComputerScore.TabIndex = 1
-		Me.lblComputerScore.Text = "0"
-		Me.lblComputerScore.UseMnemonic = False
+		Me.LblComputerScore.AutoSize = True
+		Me.LblComputerScore.Location = New System.Drawing.Point(104, 24)
+		Me.LblComputerScore.Name = "lblComputerScore"
+		Me.LblComputerScore.Size = New System.Drawing.Size(10, 13)
+		Me.LblComputerScore.TabIndex = 1
+		Me.LblComputerScore.Text = "0"
+		Me.LblComputerScore.UseMnemonic = False
 		'
 		'lblComputerTimeLbl
 		'
-		Me.lblComputerTimeLbl.AutoSize = True
-		Me.lblComputerTimeLbl.Location = New System.Drawing.Point(36, 72)
-		Me.lblComputerTimeLbl.Name = "lblComputerTimeLbl"
-		Me.lblComputerTimeLbl.Size = New System.Drawing.Size(33, 13)
-		Me.lblComputerTimeLbl.TabIndex = 4
-		Me.lblComputerTimeLbl.Text = "Time:"
-		Me.lblComputerTimeLbl.UseMnemonic = False
+		Me.LblComputerTimeLbl.AutoSize = True
+		Me.LblComputerTimeLbl.Location = New System.Drawing.Point(36, 72)
+		Me.LblComputerTimeLbl.Name = "lblComputerTimeLbl"
+		Me.LblComputerTimeLbl.Size = New System.Drawing.Size(33, 13)
+		Me.LblComputerTimeLbl.TabIndex = 4
+		Me.LblComputerTimeLbl.Text = "Time:"
+		Me.LblComputerTimeLbl.UseMnemonic = False
 		'
 		'lblComputerLastMoveLbl
 		'
-		Me.lblComputerLastMoveLbl.AutoSize = True
-		Me.lblComputerLastMoveLbl.Location = New System.Drawing.Point(12, 48)
-		Me.lblComputerLastMoveLbl.Name = "lblComputerLastMoveLbl"
-		Me.lblComputerLastMoveLbl.Size = New System.Drawing.Size(59, 13)
-		Me.lblComputerLastMoveLbl.TabIndex = 2
-		Me.lblComputerLastMoveLbl.Text = "Last Move:"
-		Me.lblComputerLastMoveLbl.UseMnemonic = False
+		Me.LblComputerLastMoveLbl.AutoSize = True
+		Me.LblComputerLastMoveLbl.Location = New System.Drawing.Point(12, 48)
+		Me.LblComputerLastMoveLbl.Name = "lblComputerLastMoveLbl"
+		Me.LblComputerLastMoveLbl.Size = New System.Drawing.Size(59, 13)
+		Me.LblComputerLastMoveLbl.TabIndex = 2
+		Me.LblComputerLastMoveLbl.Text = "Last Move:"
+		Me.LblComputerLastMoveLbl.UseMnemonic = False
 		'
 		'lblComputerScoreLbl
 		'
-		Me.lblComputerScoreLbl.AutoSize = True
-		Me.lblComputerScoreLbl.Location = New System.Drawing.Point(32, 24)
-		Me.lblComputerScoreLbl.Name = "lblComputerScoreLbl"
-		Me.lblComputerScoreLbl.Size = New System.Drawing.Size(37, 13)
-		Me.lblComputerScoreLbl.TabIndex = 0
-		Me.lblComputerScoreLbl.Text = "Score:"
-		Me.lblComputerScoreLbl.UseMnemonic = False
+		Me.LblComputerScoreLbl.AutoSize = True
+		Me.LblComputerScoreLbl.Location = New System.Drawing.Point(32, 24)
+		Me.LblComputerScoreLbl.Name = "lblComputerScoreLbl"
+		Me.LblComputerScoreLbl.Size = New System.Drawing.Size(37, 13)
+		Me.LblComputerScoreLbl.TabIndex = 0
+		Me.LblComputerScoreLbl.Text = "Score:"
+		Me.LblComputerScoreLbl.UseMnemonic = False
 		'
 		'grpPlayer
 		'
-		Me.grpPlayer.Controls.AddRange(New System.Windows.Forms.Control() {Me.lblPlayerTime, Me.lblPlayerLastMove, Me.lblPlayerScore, Me.lblPlayerTimeLbl, Me.lblPlayerLastMoveLbl, Me.lblPlayerScoreLbl})
-		Me.grpPlayer.FlatStyle = System.Windows.Forms.FlatStyle.System
-		Me.grpPlayer.Location = New System.Drawing.Point(8, 8)
-		Me.grpPlayer.Name = "grpPlayer"
-		Me.grpPlayer.Size = New System.Drawing.Size(168, 100)
-		Me.grpPlayer.TabIndex = 0
-		Me.grpPlayer.TabStop = False
-		Me.grpPlayer.Text = "Player (X):"
+		Me.GrpPlayer.Controls.AddRange(New System.Windows.Forms.Control() {Me.LblPlayerTime, Me.LblPlayerLastMove, Me.LblPlayerScore, Me.LblPlayerTimeLbl, Me.LblPlayerLastMoveLbl, Me.LblPlayerScoreLbl})
+		Me.GrpPlayer.FlatStyle = System.Windows.Forms.FlatStyle.System
+		Me.GrpPlayer.Location = New System.Drawing.Point(8, 8)
+		Me.GrpPlayer.Name = "grpPlayer"
+		Me.GrpPlayer.Size = New System.Drawing.Size(168, 100)
+		Me.GrpPlayer.TabIndex = 0
+		Me.GrpPlayer.TabStop = False
+		Me.GrpPlayer.Text = "Player (X):"
 		'
 		'lblPlayerTime
 		'
-		Me.lblPlayerTime.AutoSize = True
-		Me.lblPlayerTime.Location = New System.Drawing.Point(104, 72)
-		Me.lblPlayerTime.Name = "lblPlayerTime"
-		Me.lblPlayerTime.Size = New System.Drawing.Size(48, 13)
-		Me.lblPlayerTime.TabIndex = 5
-		Me.lblPlayerTime.Text = "00:00:00"
-		Me.lblPlayerTime.UseMnemonic = False
+		Me.LblPlayerTime.AutoSize = True
+		Me.LblPlayerTime.Location = New System.Drawing.Point(104, 72)
+		Me.LblPlayerTime.Name = "lblPlayerTime"
+		Me.LblPlayerTime.Size = New System.Drawing.Size(48, 13)
+		Me.LblPlayerTime.TabIndex = 5
+		Me.LblPlayerTime.Text = "00:00:00"
+		Me.LblPlayerTime.UseMnemonic = False
 		'
 		'lblPlayerLastMove
 		'
-		Me.lblPlayerLastMove.AutoSize = True
-		Me.lblPlayerLastMove.Location = New System.Drawing.Point(104, 48)
-		Me.lblPlayerLastMove.Name = "lblPlayerLastMove"
-		Me.lblPlayerLastMove.Size = New System.Drawing.Size(10, 13)
-		Me.lblPlayerLastMove.TabIndex = 3
-		Me.lblPlayerLastMove.Text = "0"
-		Me.lblPlayerLastMove.UseMnemonic = False
+		Me.LblPlayerLastMove.AutoSize = True
+		Me.LblPlayerLastMove.Location = New System.Drawing.Point(104, 48)
+		Me.LblPlayerLastMove.Name = "lblPlayerLastMove"
+		Me.LblPlayerLastMove.Size = New System.Drawing.Size(10, 13)
+		Me.LblPlayerLastMove.TabIndex = 3
+		Me.LblPlayerLastMove.Text = "0"
+		Me.LblPlayerLastMove.UseMnemonic = False
 		'
 		'lblPlayerScore
 		'
-		Me.lblPlayerScore.AutoSize = True
-		Me.lblPlayerScore.Location = New System.Drawing.Point(104, 24)
-		Me.lblPlayerScore.Name = "lblPlayerScore"
-		Me.lblPlayerScore.Size = New System.Drawing.Size(10, 13)
-		Me.lblPlayerScore.TabIndex = 1
-		Me.lblPlayerScore.Text = "0"
-		Me.lblPlayerScore.UseMnemonic = False
+		Me.LblPlayerScore.AutoSize = True
+		Me.LblPlayerScore.Location = New System.Drawing.Point(104, 24)
+		Me.LblPlayerScore.Name = "lblPlayerScore"
+		Me.LblPlayerScore.Size = New System.Drawing.Size(10, 13)
+		Me.LblPlayerScore.TabIndex = 1
+		Me.LblPlayerScore.Text = "0"
+		Me.LblPlayerScore.UseMnemonic = False
 		'
 		'lblPlayerTimeLbl
 		'
-		Me.lblPlayerTimeLbl.AutoSize = True
-		Me.lblPlayerTimeLbl.Location = New System.Drawing.Point(36, 72)
-		Me.lblPlayerTimeLbl.Name = "lblPlayerTimeLbl"
-		Me.lblPlayerTimeLbl.Size = New System.Drawing.Size(33, 13)
-		Me.lblPlayerTimeLbl.TabIndex = 4
-		Me.lblPlayerTimeLbl.Text = "Time:"
-		Me.lblPlayerTimeLbl.UseMnemonic = False
+		Me.LblPlayerTimeLbl.AutoSize = True
+		Me.LblPlayerTimeLbl.Location = New System.Drawing.Point(36, 72)
+		Me.LblPlayerTimeLbl.Name = "lblPlayerTimeLbl"
+		Me.LblPlayerTimeLbl.Size = New System.Drawing.Size(33, 13)
+		Me.LblPlayerTimeLbl.TabIndex = 4
+		Me.LblPlayerTimeLbl.Text = "Time:"
+		Me.LblPlayerTimeLbl.UseMnemonic = False
 		'
 		'lblPlayerLastMoveLbl
 		'
-		Me.lblPlayerLastMoveLbl.AutoSize = True
-		Me.lblPlayerLastMoveLbl.Location = New System.Drawing.Point(12, 48)
-		Me.lblPlayerLastMoveLbl.Name = "lblPlayerLastMoveLbl"
-		Me.lblPlayerLastMoveLbl.Size = New System.Drawing.Size(59, 13)
-		Me.lblPlayerLastMoveLbl.TabIndex = 2
-		Me.lblPlayerLastMoveLbl.Text = "Last Move:"
-		Me.lblPlayerLastMoveLbl.UseMnemonic = False
+		Me.LblPlayerLastMoveLbl.AutoSize = True
+		Me.LblPlayerLastMoveLbl.Location = New System.Drawing.Point(12, 48)
+		Me.LblPlayerLastMoveLbl.Name = "lblPlayerLastMoveLbl"
+		Me.LblPlayerLastMoveLbl.Size = New System.Drawing.Size(59, 13)
+		Me.LblPlayerLastMoveLbl.TabIndex = 2
+		Me.LblPlayerLastMoveLbl.Text = "Last Move:"
+		Me.LblPlayerLastMoveLbl.UseMnemonic = False
 		'
 		'lblPlayerScoreLbl
 		'
-		Me.lblPlayerScoreLbl.AutoSize = True
-		Me.lblPlayerScoreLbl.Location = New System.Drawing.Point(32, 24)
-		Me.lblPlayerScoreLbl.Name = "lblPlayerScoreLbl"
-		Me.lblPlayerScoreLbl.Size = New System.Drawing.Size(37, 13)
-		Me.lblPlayerScoreLbl.TabIndex = 0
-		Me.lblPlayerScoreLbl.Text = "Score:"
-		Me.lblPlayerScoreLbl.UseMnemonic = False
+		Me.LblPlayerScoreLbl.AutoSize = True
+		Me.LblPlayerScoreLbl.Location = New System.Drawing.Point(32, 24)
+		Me.LblPlayerScoreLbl.Name = "lblPlayerScoreLbl"
+		Me.LblPlayerScoreLbl.Size = New System.Drawing.Size(37, 13)
+		Me.LblPlayerScoreLbl.TabIndex = 0
+		Me.LblPlayerScoreLbl.Text = "Score:"
+		Me.LblPlayerScoreLbl.UseMnemonic = False
 		'
 		'txtStatus
 		'
-		Me.txtStatus.AutoSize = False
-		Me.txtStatus.BackColor = System.Drawing.Color.Black
-		Me.txtStatus.Font = New System.Drawing.Font("Courier New", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.txtStatus.ForeColor = System.Drawing.Color.Red
-		Me.txtStatus.Location = New System.Drawing.Point(308, 244)
-		Me.txtStatus.Multiline = True
-		Me.txtStatus.Name = "txtStatus"
-		Me.txtStatus.ReadOnly = True
-		Me.txtStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-		Me.txtStatus.Size = New System.Drawing.Size(188, 76)
-		Me.txtStatus.TabIndex = 3
-		Me.txtStatus.TabStop = False
-		Me.txtStatus.Text = "Ready!" & Microsoft.VisualBasic.ChrW(13) & Microsoft.VisualBasic.ChrW(10) & "Ready!!" & Microsoft.VisualBasic.ChrW(13) & Microsoft.VisualBasic.ChrW(10) & "Ready!!!" & Microsoft.VisualBasic.ChrW(13) & Microsoft.VisualBasic.ChrW(10) & "Ready!!!!" & Microsoft.VisualBasic.ChrW(13) & Microsoft.VisualBasic.ChrW(10) & "Ready!!!!!"
+		Me.TxtStatus.AutoSize = False
+		Me.TxtStatus.BackColor = System.Drawing.Color.Black
+		Me.TxtStatus.Font = New System.Drawing.Font("Courier New", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.TxtStatus.ForeColor = System.Drawing.Color.Red
+		Me.TxtStatus.Location = New System.Drawing.Point(308, 244)
+		Me.TxtStatus.Multiline = True
+		Me.TxtStatus.Name = "txtStatus"
+		Me.TxtStatus.ReadOnly = True
+		Me.TxtStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+		Me.TxtStatus.Size = New System.Drawing.Size(188, 76)
+		Me.TxtStatus.TabIndex = 3
+		Me.TxtStatus.TabStop = False
+		Me.TxtStatus.Text = "Ready!" & Microsoft.VisualBasic.ChrW(13) & Microsoft.VisualBasic.ChrW(10) & "Ready!!" & Microsoft.VisualBasic.ChrW(13) & Microsoft.VisualBasic.ChrW(10) & "Ready!!!" & Microsoft.VisualBasic.ChrW(13) & Microsoft.VisualBasic.ChrW(10) & "Ready!!!!" & Microsoft.VisualBasic.ChrW(13) & Microsoft.VisualBasic.ChrW(10) & "Ready!!!!!"
 		'
 		'frmMain
 		'
 		Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
 		Me.ClientSize = New System.Drawing.Size(504, 327)
-		Me.Controls.AddRange(New System.Windows.Forms.Control() {Me.txtStatus, Me.pnlStatus, Me.pnlButtons, Me.pnlPawns})
+		Me.Controls.AddRange(New System.Windows.Forms.Control() {Me.TxtStatus, Me.PnlStatus, Me.PnlButtons, Me.PnlPawns})
 		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
 		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.MaximizeBox = False
-		Me.Menu = Me.mnuMain
+		Me.Menu = Me.MnuMain
 		Me.Name = "frmMain"
 		Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
 		Me.Text = "4Play"
-		Me.pnlPawns.ResumeLayout(False)
-		Me.pnlButtons.ResumeLayout(False)
-		Me.pnlStatus.ResumeLayout(False)
-		Me.grpComputer.ResumeLayout(False)
-		Me.grpPlayer.ResumeLayout(False)
+		Me.PnlPawns.ResumeLayout(False)
+		Me.PnlButtons.ResumeLayout(False)
+		Me.PnlStatus.ResumeLayout(False)
+		Me.GrpComputer.ResumeLayout(False)
+		Me.GrpPlayer.ResumeLayout(False)
 		Me.ResumeLayout(False)
 
 	End Sub
@@ -1071,9 +1071,9 @@ Public Class FrmMain
 		Dim i As Integer
 		Dim sTmp As String = ""
 
-		If (iMessageLine <= MaxStatusLine) Then
+		If iMessageLine <= MaxStatusLine Then
 			sMessages(iMessageLine) = Note
-			iMessageLine = iMessageLine + 1
+			iMessageLine += 1
 		Else
 			' We are past the last message line, so we need to shift all messages up
 			For i = 1 To MaxStatusLine
@@ -1084,8 +1084,8 @@ Public Class FrmMain
 
 		' Now lets referesh out status box
 		For i = 0 To MaxStatusLine
-			If (sMessages(i) <> "") Then
-				If (sTmp = "") Then
+			If sMessages(i) <> "" Then
+				If sTmp = "" Then
 					sTmp = sMessages(i)
 				Else
 					sTmp = sTmp & vbNewLine & sMessages(i)
@@ -1093,24 +1093,24 @@ Public Class FrmMain
 			End If
 		Next
 
-		txtStatus.Text = sTmp
-		txtStatus.SelectionLength = 0
-		txtStatus.SelectionStart = Len(sTmp)
-		txtStatus.ScrollToCaret()
+		TxtStatus.Text = sTmp
+		TxtStatus.SelectionLength = 0
+		TxtStatus.SelectionStart = Len(sTmp)
+		TxtStatus.ScrollToCaret()
 	End Sub
 
-	Private Sub cmdColumn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmd1.Click, cmd2.Click, cmd3.Click, cmd4.Click, cmd5.Click, cmd6.Click, cmd7.Click
+	Private Sub CmdColumn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmd1.Click, cmd2.Click, cmd3.Click, cmd4.Click, cmd5.Click, cmd6.Click, cmd7.Click
 		Static bInCmdColumnClick As Boolean
 		Dim Index As Integer = CInt(CType(sender, Button).Tag)
 		Dim i As Integer
 
 		' Don't allow reentry by the user if computer is playing
-		If (bInCmdColumnClick) Then Exit Sub
+		If bInCmdColumnClick Then Exit Sub
 		bInCmdColumnClick = True
 
 		' Player's move
-		If (GameEngine.CurrentPlayer = Cls4Play.Player1Chip) Then
-			If (GameEngine.PutChipInRow(Index)) Then
+		If GameEngine.CurrentPlayer = Cls4Play.Player1Chip Then
+			If GameEngine.PutChipInRow(Index) Then
 				PlayerMove = Index + 1
 				DrawChips()
 				GameEngine.SwitchPlayers()
@@ -1119,33 +1119,33 @@ Public Class FrmMain
 		End If
 
 		' Disable housefull columns
-		cmd1.Enabled = (GameEngine.GetTotalMovesInRow(0) <= Cls4Play.MaxY)
-		cmd2.Enabled = (GameEngine.GetTotalMovesInRow(1) <= Cls4Play.MaxY)
-		cmd3.Enabled = (GameEngine.GetTotalMovesInRow(2) <= Cls4Play.MaxY)
-		cmd4.Enabled = (GameEngine.GetTotalMovesInRow(3) <= Cls4Play.MaxY)
-		cmd5.Enabled = (GameEngine.GetTotalMovesInRow(4) <= Cls4Play.MaxY)
-		cmd6.Enabled = (GameEngine.GetTotalMovesInRow(5) <= Cls4Play.MaxY)
-		cmd7.Enabled = (GameEngine.GetTotalMovesInRow(6) <= Cls4Play.MaxY)
+		cmd1.Enabled = GameEngine.GetTotalMovesInRow(0) <= Cls4Play.MaxY
+		cmd2.Enabled = GameEngine.GetTotalMovesInRow(1) <= Cls4Play.MaxY
+		cmd3.Enabled = GameEngine.GetTotalMovesInRow(2) <= Cls4Play.MaxY
+		cmd4.Enabled = GameEngine.GetTotalMovesInRow(3) <= Cls4Play.MaxY
+		cmd5.Enabled = GameEngine.GetTotalMovesInRow(4) <= Cls4Play.MaxY
+		cmd6.Enabled = GameEngine.GetTotalMovesInRow(5) <= Cls4Play.MaxY
+		cmd7.Enabled = GameEngine.GetTotalMovesInRow(6) <= Cls4Play.MaxY
 
 		' Check all possible cases (fixes an old bug)
-		If (GameEngine.IsWinner(Cls4Play.Player1Chip)) Then
+		If GameEngine.IsWinner(Cls4Play.Player1Chip) Then
 			DrawChips()
-			tmrUpdate_Tick(tmrUpdate, New System.EventArgs())
+			TmrUpdate_Tick(TmrUpdate, New System.EventArgs())
 			MsgBox("You win!", MsgBoxStyle.Exclamation)
 			NewGame()
-			PlayerScore = PlayerScore + 1
+			PlayerScore += 1
 			bInCmdColumnClick = False
 			Exit Sub
-		ElseIf (GameEngine.IsWinner(Cls4Play.Player2Chip)) Then
+		ElseIf GameEngine.IsWinner(Cls4Play.Player2Chip) Then
 			DrawChips()
-			tmrUpdate_Tick(tmrUpdate, New System.EventArgs())
+			TmrUpdate_Tick(TmrUpdate, New System.EventArgs())
 			MsgBox("I win!", MsgBoxStyle.Exclamation)
 			NewGame()
-			ComputerScore = ComputerScore + 1
+			ComputerScore += 1
 			bInCmdColumnClick = False
 			Exit Sub
-		ElseIf (GameEngine.IsGameDraw()) Then
-			tmrUpdate_Tick(tmrUpdate, New System.EventArgs())
+		ElseIf GameEngine.IsGameDraw() Then
+			TmrUpdate_Tick(TmrUpdate, New System.EventArgs())
 			MsgBox("It's a draw!", MsgBoxStyle.Exclamation)
 			NewGame()
 			bInCmdColumnClick = False
@@ -1153,9 +1153,9 @@ Public Class FrmMain
 		End If
 
 		' Computer's move
-		If (GameEngine.CurrentPlayer = Cls4Play.Player2Chip) Then
+		If GameEngine.CurrentPlayer = Cls4Play.Player2Chip Then
 			i = Math.Abs(GameEngine.Think())
-			If (GameEngine.PutChipInRow(i)) Then
+			If GameEngine.PutChipInRow(i) Then
 				ComputerMove = i + 1
 				DrawChips()
 				GameEngine.SwitchPlayers()
@@ -1165,29 +1165,29 @@ Public Class FrmMain
 		End If
 
 		' Disable housefull columns
-		cmd1.Enabled = (GameEngine.GetTotalMovesInRow(0) <= Cls4Play.MaxY)
-		cmd2.Enabled = (GameEngine.GetTotalMovesInRow(1) <= Cls4Play.MaxY)
-		cmd3.Enabled = (GameEngine.GetTotalMovesInRow(2) <= Cls4Play.MaxY)
-		cmd4.Enabled = (GameEngine.GetTotalMovesInRow(3) <= Cls4Play.MaxY)
-		cmd5.Enabled = (GameEngine.GetTotalMovesInRow(4) <= Cls4Play.MaxY)
-		cmd6.Enabled = (GameEngine.GetTotalMovesInRow(5) <= Cls4Play.MaxY)
-		cmd7.Enabled = (GameEngine.GetTotalMovesInRow(6) <= Cls4Play.MaxY)
+		cmd1.Enabled = GameEngine.GetTotalMovesInRow(0) <= Cls4Play.MaxY
+		cmd2.Enabled = GameEngine.GetTotalMovesInRow(1) <= Cls4Play.MaxY
+		cmd3.Enabled = GameEngine.GetTotalMovesInRow(2) <= Cls4Play.MaxY
+		cmd4.Enabled = GameEngine.GetTotalMovesInRow(3) <= Cls4Play.MaxY
+		cmd5.Enabled = GameEngine.GetTotalMovesInRow(4) <= Cls4Play.MaxY
+		cmd6.Enabled = GameEngine.GetTotalMovesInRow(5) <= Cls4Play.MaxY
+		cmd7.Enabled = GameEngine.GetTotalMovesInRow(6) <= Cls4Play.MaxY
 
 		' Recheck again
-		If (GameEngine.IsWinner(Cls4Play.Player1Chip)) Then
+		If GameEngine.IsWinner(Cls4Play.Player1Chip) Then
 			DrawChips()
-			tmrUpdate_Tick(tmrUpdate, New System.EventArgs())
+			TmrUpdate_Tick(TmrUpdate, New System.EventArgs())
 			MsgBox("You win!", MsgBoxStyle.Exclamation)
 			NewGame()
-			PlayerScore = PlayerScore + 1
-		ElseIf (GameEngine.IsWinner(Cls4Play.Player2Chip)) Then
+			PlayerScore += 1
+		ElseIf GameEngine.IsWinner(Cls4Play.Player2Chip) Then
 			DrawChips()
-			tmrUpdate_Tick(tmrUpdate, New System.EventArgs())
+			TmrUpdate_Tick(TmrUpdate, New System.EventArgs())
 			MsgBox("I win!", MsgBoxStyle.Exclamation)
 			NewGame()
-			ComputerScore = ComputerScore + 1
-		ElseIf (GameEngine.IsGameDraw()) Then
-			tmrUpdate_Tick(tmrUpdate, New System.EventArgs())
+			ComputerScore += 1
+		ElseIf GameEngine.IsGameDraw() Then
+			TmrUpdate_Tick(TmrUpdate, New System.EventArgs())
 			MsgBox("It's a draw!", MsgBoxStyle.Exclamation)
 			NewGame()
 		End If
@@ -1206,7 +1206,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(0, 0)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl0_0.ForeColor = txtStatus.ForeColor
+			lbl0_0.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl0_0.ForeColor = cmd1.ForeColor
 		End If
@@ -1214,7 +1214,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(0, 1)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl0_1.ForeColor = txtStatus.ForeColor
+			lbl0_1.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl0_1.ForeColor = cmd1.ForeColor
 		End If
@@ -1222,7 +1222,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(0, 2)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl0_2.ForeColor = txtStatus.ForeColor
+			lbl0_2.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl0_2.ForeColor = cmd1.ForeColor
 		End If
@@ -1230,7 +1230,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(0, 3)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl0_3.ForeColor = txtStatus.ForeColor
+			lbl0_3.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl0_3.ForeColor = cmd1.ForeColor
 		End If
@@ -1238,7 +1238,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(0, 4)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl0_4.ForeColor = txtStatus.ForeColor
+			lbl0_4.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl0_4.ForeColor = cmd1.ForeColor
 		End If
@@ -1246,7 +1246,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(0, 5)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl0_5.ForeColor = txtStatus.ForeColor
+			lbl0_5.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl0_5.ForeColor = cmd1.ForeColor
 		End If
@@ -1254,7 +1254,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(1, 0)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl1_0.ForeColor = txtStatus.ForeColor
+			lbl1_0.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl1_0.ForeColor = cmd2.ForeColor
 		End If
@@ -1262,7 +1262,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(1, 1)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl1_1.ForeColor = txtStatus.ForeColor
+			lbl1_1.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl1_1.ForeColor = cmd2.ForeColor
 		End If
@@ -1270,7 +1270,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(1, 2)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl1_2.ForeColor = txtStatus.ForeColor
+			lbl1_2.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl1_2.ForeColor = cmd2.ForeColor
 		End If
@@ -1278,7 +1278,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(1, 3)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl1_3.ForeColor = txtStatus.ForeColor
+			lbl1_3.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl1_3.ForeColor = cmd2.ForeColor
 		End If
@@ -1286,7 +1286,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(1, 4)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl1_4.ForeColor = txtStatus.ForeColor
+			lbl1_4.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl1_4.ForeColor = cmd2.ForeColor
 		End If
@@ -1294,7 +1294,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(1, 5)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl1_5.ForeColor = txtStatus.ForeColor
+			lbl1_5.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl1_5.ForeColor = cmd2.ForeColor
 		End If
@@ -1302,7 +1302,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(2, 0)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl2_0.ForeColor = txtStatus.ForeColor
+			lbl2_0.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl2_0.ForeColor = cmd3.ForeColor
 		End If
@@ -1310,7 +1310,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(2, 1)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl2_1.ForeColor = txtStatus.ForeColor
+			lbl2_1.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl2_1.ForeColor = cmd3.ForeColor
 		End If
@@ -1318,7 +1318,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(2, 2)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl2_2.ForeColor = txtStatus.ForeColor
+			lbl2_2.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl2_2.ForeColor = cmd3.ForeColor
 		End If
@@ -1326,7 +1326,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(2, 3)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl2_3.ForeColor = txtStatus.ForeColor
+			lbl2_3.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl2_3.ForeColor = cmd3.ForeColor
 		End If
@@ -1334,7 +1334,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(2, 4)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl2_4.ForeColor = txtStatus.ForeColor
+			lbl2_4.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl2_4.ForeColor = cmd3.ForeColor
 		End If
@@ -1342,7 +1342,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(2, 5)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl2_5.ForeColor = txtStatus.ForeColor
+			lbl2_5.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl2_5.ForeColor = cmd3.ForeColor
 		End If
@@ -1350,7 +1350,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(3, 0)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl3_0.ForeColor = txtStatus.ForeColor
+			lbl3_0.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl3_0.ForeColor = cmd4.ForeColor
 		End If
@@ -1358,7 +1358,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(3, 1)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl3_1.ForeColor = txtStatus.ForeColor
+			lbl3_1.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl3_1.ForeColor = cmd4.ForeColor
 		End If
@@ -1366,7 +1366,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(3, 2)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl3_2.ForeColor = txtStatus.ForeColor
+			lbl3_2.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl3_2.ForeColor = cmd4.ForeColor
 		End If
@@ -1374,7 +1374,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(3, 3)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl3_3.ForeColor = txtStatus.ForeColor
+			lbl3_3.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl3_3.ForeColor = cmd4.ForeColor
 		End If
@@ -1382,7 +1382,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(3, 4)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl3_4.ForeColor = txtStatus.ForeColor
+			lbl3_4.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl3_4.ForeColor = cmd4.ForeColor
 		End If
@@ -1390,7 +1390,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(3, 5)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl3_5.ForeColor = txtStatus.ForeColor
+			lbl3_5.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl3_5.ForeColor = cmd4.ForeColor
 		End If
@@ -1398,7 +1398,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(4, 0)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl4_0.ForeColor = txtStatus.ForeColor
+			lbl4_0.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl4_0.ForeColor = cmd5.ForeColor
 		End If
@@ -1406,7 +1406,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(4, 1)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl4_1.ForeColor = txtStatus.ForeColor
+			lbl4_1.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl4_1.ForeColor = cmd5.ForeColor
 		End If
@@ -1414,7 +1414,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(4, 2)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl4_2.ForeColor = txtStatus.ForeColor
+			lbl4_2.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl4_2.ForeColor = cmd5.ForeColor
 		End If
@@ -1422,7 +1422,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(4, 3)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl4_3.ForeColor = txtStatus.ForeColor
+			lbl4_3.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl4_3.ForeColor = cmd5.ForeColor
 		End If
@@ -1430,7 +1430,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(4, 4)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl4_4.ForeColor = txtStatus.ForeColor
+			lbl4_4.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl4_4.ForeColor = cmd5.ForeColor
 		End If
@@ -1438,7 +1438,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(4, 5)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl4_5.ForeColor = txtStatus.ForeColor
+			lbl4_5.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl4_5.ForeColor = cmd5.ForeColor
 		End If
@@ -1446,7 +1446,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(5, 0)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl5_0.ForeColor = txtStatus.ForeColor
+			lbl5_0.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl5_0.ForeColor = cmd6.ForeColor
 		End If
@@ -1454,7 +1454,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(5, 1)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl5_1.ForeColor = txtStatus.ForeColor
+			lbl5_1.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl5_1.ForeColor = cmd6.ForeColor
 		End If
@@ -1462,7 +1462,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(5, 2)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl5_2.ForeColor = txtStatus.ForeColor
+			lbl5_2.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl5_2.ForeColor = cmd6.ForeColor
 		End If
@@ -1470,7 +1470,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(5, 3)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl5_3.ForeColor = txtStatus.ForeColor
+			lbl5_3.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl5_3.ForeColor = cmd6.ForeColor
 		End If
@@ -1478,7 +1478,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(5, 4)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl5_4.ForeColor = txtStatus.ForeColor
+			lbl5_4.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl5_4.ForeColor = cmd6.ForeColor
 		End If
@@ -1486,7 +1486,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(5, 5)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl5_5.ForeColor = txtStatus.ForeColor
+			lbl5_5.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl5_5.ForeColor = cmd6.ForeColor
 		End If
@@ -1494,7 +1494,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(6, 0)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl6_0.ForeColor = txtStatus.ForeColor
+			lbl6_0.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl6_0.ForeColor = cmd7.ForeColor
 		End If
@@ -1502,7 +1502,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(6, 1)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl6_1.ForeColor = txtStatus.ForeColor
+			lbl6_1.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl6_1.ForeColor = cmd7.ForeColor
 		End If
@@ -1510,7 +1510,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(6, 2)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl6_2.ForeColor = txtStatus.ForeColor
+			lbl6_2.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl6_2.ForeColor = cmd7.ForeColor
 		End If
@@ -1518,7 +1518,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(6, 3)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl6_3.ForeColor = txtStatus.ForeColor
+			lbl6_3.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl6_3.ForeColor = cmd7.ForeColor
 		End If
@@ -1526,7 +1526,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(6, 4)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl6_4.ForeColor = txtStatus.ForeColor
+			lbl6_4.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl6_4.ForeColor = cmd7.ForeColor
 		End If
@@ -1534,7 +1534,7 @@ Public Class FrmMain
 
 		myChip = GameEngine.GetMove(6, 5)
 		If myChip = Cls4Play.Player1WinChip Or myChip = Cls4Play.Player2WinChip Then
-			lbl6_5.ForeColor = txtStatus.ForeColor
+			lbl6_5.ForeColor = TxtStatus.ForeColor
 		Else
 			lbl6_5.ForeColor = cmd7.ForeColor
 		End If
@@ -1542,11 +1542,11 @@ Public Class FrmMain
 	End Sub
 #End Region
 
-	Private Sub cmdColumn_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles cmd1.KeyPress, cmd2.KeyPress, cmd3.KeyPress, cmd4.KeyPress, cmd5.KeyPress, cmd6.KeyPress, cmd7.KeyPress
+	Private Sub CmdColumn_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles cmd1.KeyPress, cmd2.KeyPress, cmd3.KeyPress, cmd4.KeyPress, cmd5.KeyPress, cmd6.KeyPress, cmd7.KeyPress
 		Dim KeyAscii As Integer = Asc(e.KeyChar)
 		Dim Index As Integer = CInt(CType(sender, Button).Tag)
 
-		If (KeyAscii >= Asc("1") And KeyAscii <= Asc("7")) Then
+		If KeyAscii >= Asc("1") And KeyAscii <= Asc("7") Then
 			Dim btnMyButton As Button = Nothing
 
 			Select Case Index
@@ -1567,7 +1567,7 @@ Public Class FrmMain
 				Case Else
 					Debug.Fail("Unhandled button!")
 			End Select
-			cmdColumn_Click(btnMyButton, New System.EventArgs())
+			CmdColumn_Click(btnMyButton, New System.EventArgs())
 		End If
 
 		If KeyAscii = 0 Then
@@ -1575,14 +1575,14 @@ Public Class FrmMain
 		End If
 	End Sub
 
-	Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+	Private Sub FrmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 		Randomize()
 		RestartGame()
 	End Sub
 
-	Private Sub frmMain_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
-		If (GameEngine.GetTotalMoves() > 0) Then
-			If (MsgBox("A game is in progress." & vbCrLf & "Are you sure you want to quit now?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) <> MsgBoxResult.Yes) Then
+	Private Sub FrmMain_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
+		If GameEngine.GetTotalMoves() > 0 Then
+			If MsgBox("A game is in progress." & vbCrLf & "Are you sure you want to quit now?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) <> MsgBoxResult.Yes Then
 				e.Cancel = True
 				Exit Sub
 			End If
@@ -1591,9 +1591,9 @@ Public Class FrmMain
 		e.Cancel = False
 	End Sub
 
-	Private Sub mnuGameNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuGameNew.Click
-		If (GameEngine.GetTotalMoves() > 0) Then
-			If (MsgBox("A game is in progress." & vbCrLf & "Are you sure you want to end this game?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) = MsgBoxResult.Yes) Then
+	Private Sub MnuGameNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuGameNew.Click
+		If GameEngine.GetTotalMoves() > 0 Then
+			If MsgBox("A game is in progress." & vbCrLf & "Are you sure you want to end this game?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) = MsgBoxResult.Yes Then
 				RestartGame()
 			End If
 		Else
@@ -1601,11 +1601,11 @@ Public Class FrmMain
 		End If
 	End Sub
 
-	Private Sub mnuGameExit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuGameExit.Click
+	Private Sub MnuGameExit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuGameExit.Click
 		Close()
 	End Sub
 
-	Private Sub mnuHelpAbout_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuHelpAbout.Click
+	Private Sub MnuHelpAbout_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuHelpAbout.Click
 		' Display the about dialog box
 		ShellAbout(Handle,
 		 Application.ProductName,
@@ -1614,11 +1614,11 @@ Public Class FrmMain
 		 Icon.Handle)
 	End Sub
 
-	Private Sub mnuHelpHint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuHelpHint.Click
+	Private Sub MnuHelpHint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuHelpHint.Click
 		MsgBox("Try column " & (Math.Abs(GameEngine.Think()) + 1) & ".", MsgBoxStyle.Information, "Hint")
 	End Sub
 
-	Private Sub mnuHelpHowTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuHelpHowTo.Click
+	Private Sub MnuHelpHowTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuHelpHowTo.Click
 		MsgBox("Your goal is to get your chip (" & Cls4Play.Player1Chip & ") in a straight line of four, in any direction. The moment you get your line, you win and your score increases by 1.", MsgBoxStyle.Information, "How To Play")
 	End Sub
 
@@ -1638,31 +1638,31 @@ Public Class FrmMain
 		ComputerScore = 0
 	End Sub
 
-	Private Sub tmrUpdate_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrUpdate.Tick
-		' Check out buttons
-		cmd1.Enabled = (GameEngine.GetTotalMovesInRow(0) <= Cls4Play.MaxY)
-		cmd2.Enabled = (GameEngine.GetTotalMovesInRow(1) <= Cls4Play.MaxY)
-		cmd3.Enabled = (GameEngine.GetTotalMovesInRow(2) <= Cls4Play.MaxY)
-		cmd4.Enabled = (GameEngine.GetTotalMovesInRow(3) <= Cls4Play.MaxY)
-		cmd5.Enabled = (GameEngine.GetTotalMovesInRow(4) <= Cls4Play.MaxY)
-		cmd6.Enabled = (GameEngine.GetTotalMovesInRow(5) <= Cls4Play.MaxY)
-		cmd7.Enabled = (GameEngine.GetTotalMovesInRow(6) <= Cls4Play.MaxY)
+	Private Sub TmrUpdate_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TmrUpdate.Tick
+		' Check the buttons
+		cmd1.Enabled = GameEngine.GetTotalMovesInRow(0) <= Cls4Play.MaxY
+		cmd2.Enabled = GameEngine.GetTotalMovesInRow(1) <= Cls4Play.MaxY
+		cmd3.Enabled = GameEngine.GetTotalMovesInRow(2) <= Cls4Play.MaxY
+		cmd4.Enabled = GameEngine.GetTotalMovesInRow(3) <= Cls4Play.MaxY
+		cmd5.Enabled = GameEngine.GetTotalMovesInRow(4) <= Cls4Play.MaxY
+		cmd6.Enabled = GameEngine.GetTotalMovesInRow(5) <= Cls4Play.MaxY
+		cmd7.Enabled = GameEngine.GetTotalMovesInRow(6) <= Cls4Play.MaxY
 
 		' Update some status text; esp time and stuff
-		lblPlayerTime.Text = Format(TimeSerial(0, 0, CInt(PlayerTime)), "HH:mm:ss")
-		lblComputerTime.Text = Format(TimeSerial(0, 0, CInt(ComputerTime)), "HH:mm:ss")
+		LblPlayerTime.Text = Format(TimeSerial(0, 0, CInt(PlayerTime)), "HH:mm:ss")
+		LblComputerTime.Text = Format(TimeSerial(0, 0, CInt(ComputerTime)), "HH:mm:ss")
 
-		lblPlayerScore.Text = CStr(PlayerScore)
-		lblComputerScore.Text = CStr(ComputerScore)
-		lblPlayerLastMove.Text = CStr(PlayerMove)
-		lblComputerLastMove.Text = CStr(ComputerMove)
+		LblPlayerScore.Text = CStr(PlayerScore)
+		LblComputerScore.Text = CStr(ComputerScore)
+		LblPlayerLastMove.Text = CStr(PlayerMove)
+		LblComputerLastMove.Text = CStr(ComputerMove)
 
 		If GameEngine.CurrentPlayer = Cls4Play.Player1Chip Then
 			If GameEngine.IsGameStarted() Then
-				PlayerTime = PlayerTime + (CSng(tmrUpdate.Interval) / 1000.0!)
+				PlayerTime += CSng(TmrUpdate.Interval) / 1000.0!
 			End If
 		Else
-			ComputerTime = ComputerTime + (CSng(tmrUpdate.Interval) / 1000.0!)
+			ComputerTime += CSng(TmrUpdate.Interval) / 1000.0!
 		End If
 	End Sub
 End Class
