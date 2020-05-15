@@ -74,8 +74,8 @@ Public Class Cls4Play
 	End Function
 
 	' Puts the move in the game matrix if allowed
-	Public Function PlayMove(ByVal x As Integer, ByVal y As Integer, Optional ByVal sPlayer As String = "") As Boolean
-		If sPlayer = "" Then sPlayer = Player
+	Public Function PlayMove(ByVal x As Integer, ByVal y As Integer, Optional ByVal sPlayer As String = vbNullString) As Boolean
+		If sPlayer = vbNullString Then sPlayer = Player
 
 		If IsMoveAllowed(x, y) Then
 			Matrix(x, y) = sPlayer
@@ -86,9 +86,9 @@ Public Class Cls4Play
 	End Function
 
 	' Find the opponent player
-	Public Function Opponent(Optional ByVal sPlayer As String = "") As String
+	Public Function Opponent(Optional ByVal sPlayer As String = vbNullString) As String
 		' Find the opponent player
-		If sPlayer = "" Then sPlayer = Player
+		If sPlayer = vbNullString Then sPlayer = Player
 		Return CStr(IIf(sPlayer = Player1Chip, Player2Chip, Player1Chip))
 	End Function
 
@@ -134,7 +134,7 @@ Public Class Cls4Play
 	End Function
 
 	' Puts a chip in a particular row if allowed
-	Public Function PutChipInRow(ByVal iRow As Integer, Optional ByVal sPlayer As String = "") As Boolean
+	Public Function PutChipInRow(ByVal iRow As Integer, Optional ByVal sPlayer As String = vbNullString) As Boolean
 		Dim y As Integer
 
 		For y = 0 To MaxY
@@ -158,12 +158,12 @@ Public Class Cls4Play
 	End Property
 
 	' Determins if the given player is the winner
-	Public Function IsWinner(Optional ByVal sChip As String = "") As Boolean
+	Public Function IsWinner(Optional ByVal sChip As String = vbNullString) As Boolean
 		Dim WinChip As String
 		Dim x, y As Integer
 
 		' If no parameter was passed check for previous player
-		If sChip = "" Then
+		If sChip = vbNullString Then
 			sChip = CStr(IIf(Player = Player1Chip, Player2Chip, Player1Chip))
 		End If
 
@@ -371,7 +371,7 @@ Public Class Cls4Play
 	End Function
 
 	' Computer AI method (pretty impressive I think :)
-	Public Function Think(Optional ByVal sPlayer As String = "") As Integer
+	Public Function Think(Optional ByVal sPlayer As String = vbNullString) As Integer
 		Dim sMatrix(MaxX, MaxY) As String
 		Dim iMove(MaxX) As Integer
 		Dim bMoveFound As Boolean
@@ -396,7 +396,7 @@ Public Class Cls4Play
 		End If
 
 		' Determine the player
-		If sPlayer = "" Then sPlayer = Player
+		If sPlayer = vbNullString Then sPlayer = Player
 
 		' Search for winning positions
 		i = ComputerSearch(sPlayer)

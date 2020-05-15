@@ -1131,9 +1131,9 @@ Public Class FrmMain
 		Static sMessages(MaxStatusLine) As String         ' this will hold all messages
 		Static iMessageLine As Integer       ' message line pointer
 		Dim i As Integer
-		Dim sTmp As String = ""
+        Dim sTmp As String = vbNullString
 
-		If iMessageLine <= MaxStatusLine Then
+        If iMessageLine <= MaxStatusLine Then
 			sMessages(iMessageLine) = Note
 			iMessageLine += 1
 		Else
@@ -1146,14 +1146,14 @@ Public Class FrmMain
 
 		' Now lets referesh out status box
 		For i = 0 To MaxStatusLine
-			If sMessages(i) <> "" Then
-				If sTmp = "" Then
-					sTmp = sMessages(i)
-				Else
-					sTmp = sTmp & vbNewLine & sMessages(i)
-				End If
-			End If
-		Next
+            If sMessages(i) <> vbNullString Then
+                If sTmp = vbNullString Then
+                    sTmp = sMessages(i)
+                Else
+                    sTmp = sTmp & vbNewLine & sMessages(i)
+                End If
+            End If
+        Next
 
 		TxtStatus.Text = sTmp
 		TxtStatus.SelectionLength = 0

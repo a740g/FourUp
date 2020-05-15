@@ -21,7 +21,7 @@ Imports System.Reflection
 <Assembly: AssemblyProduct("4Play")>
 <Assembly: AssemblyCopyright("Copyright © Samuel Gomes, 1997-2020")>
 <Assembly: AssemblyTrademark("Microsoft and Windows are registered trademarks of Microsoft Corporation")>
-<Assembly: AssemblyCulture("")>
+<Assembly: AssemblyCulture(vbNullString)>
 <Assembly: CLSCompliant(True)>
 
 ' Version information for an assembly consists of the following four values:
@@ -34,4 +34,4 @@ Imports System.Reflection
 ' You can specify all the values or you can default the Revision and Build Numbers
 ' by using the '*' as shown below
 
-<Assembly: AssemblyVersion("7.2.*")>
+<Assembly: AssemblyVersion("7.3.*")>
