@@ -7,7 +7,7 @@ Soon I upgraded to QuickBASIC Extended 7.0 and TxMUI. Next, I got hold of Visual
 code for that compiler and changed all the UI code to "Ruby". Eventually, when I started using Visual Basic 6.0
 for Windows, I ported this code and once again I had to changed the UI code. And now, thanks to Microsoft,
 I have ported the code to Visual Basic .NET! When porting for Visual Basic .NET I modularized and "class"ified
-most of the code. Although most of the code was translated by the VB.Net translator, I had To make a lot Of changes.
+most of the code. Although most of the code was translated by the VB.Net translator, I had To make a lot of changes.
 The AI is very silly and should have been much better. I should have used minimax with alpha-beta pruning to find
 the best move. Since I don't have much time (for this code) I am not going to do it (here). The Think() function
 should be a very good starting point. Eventually, I also cleaned up the UI. Building it in VB.NET from scratch
