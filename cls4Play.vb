@@ -8,9 +8,8 @@
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 ' This class defines the core game engine
-' New idea: The game logic can be very simplified if we have a
-' "recusive" function which can simply search until the computer "wins".
-' Someday when I have lots of time, I may implement it. :(
+' Currently this games uses a "weak" solver
+' Someday we should update this to use Minimax with alpha-beta pruning
 
 Public Class Cls4Play
 	' Some public constants
@@ -23,7 +22,7 @@ Public Class Cls4Play
 	Public Const MaxY As Integer = 5
 
 	' The main game Board (0 - 6) x (0 - 5) = 7 x 6
-	Private Board(MaxX, MaxY) As String
+	Private ReadOnly Board(MaxX, MaxY) As String
 	' Current player
 	Private Player As String = Player1Chip
 
