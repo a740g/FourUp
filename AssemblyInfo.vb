@@ -20,7 +20,7 @@ Imports System.Reflection
 <Assembly: AssemblyCompany("Samuel Gomes")>
 <Assembly: AssemblyProduct("4Play")>
 <Assembly: AssemblyCopyright("Copyright © Samuel Gomes, 1997-2020")>
-<Assembly: AssemblyTrademark("Microsoft and Windows are registered trademarks of Microsoft Corporation")>
+<Assembly: AssemblyTrademark("All product names, trademarks and registered trademarks are property of their respective owners")>
 <Assembly: AssemblyCulture(vbNullString)>
 <Assembly: CLSCompliant(True)>
 
@@ -35,3 +35,4 @@ Imports System.Reflection
 ' by using the '*' as shown below
 
 <Assembly: AssemblyVersion("7.3.*")>
+<Assembly: AssemblyFileVersion("7.3")>
