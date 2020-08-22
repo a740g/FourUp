@@ -23,7 +23,7 @@ Public Class FrmMain
 	End Sub
 
 	'Form overrides dispose to clean up the component list.
-	Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
+	Protected Overloads Overrides Sub Dispose(disposing As Boolean)
 		If disposing Then
 			If Not components Is Nothing Then
 				components.Dispose()
@@ -1013,19 +1013,20 @@ Public Class FrmMain
 		Me.GrpComputer.Controls.Add(Me.LblComputerLastMoveLbl)
 		Me.GrpComputer.Controls.Add(Me.LblComputerScoreLbl)
 		Me.GrpComputer.FlatStyle = System.Windows.Forms.FlatStyle.System
+		Me.GrpComputer.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.GrpComputer.Location = New System.Drawing.Point(8, 116)
 		Me.GrpComputer.Name = "GrpComputer"
 		Me.GrpComputer.Size = New System.Drawing.Size(168, 100)
 		Me.GrpComputer.TabIndex = 1
 		Me.GrpComputer.TabStop = False
-		Me.GrpComputer.Text = "Computer (O):"
+		Me.GrpComputer.Text = "Computer (Yellow)"
 		'
 		'LblComputerTime
 		'
 		Me.LblComputerTime.AutoSize = True
 		Me.LblComputerTime.Location = New System.Drawing.Point(104, 72)
 		Me.LblComputerTime.Name = "LblComputerTime"
-		Me.LblComputerTime.Size = New System.Drawing.Size(49, 13)
+		Me.LblComputerTime.Size = New System.Drawing.Size(57, 13)
 		Me.LblComputerTime.TabIndex = 5
 		Me.LblComputerTime.Text = "00:00:00"
 		Me.LblComputerTime.UseMnemonic = False
@@ -1035,7 +1036,7 @@ Public Class FrmMain
 		Me.LblComputerLastMove.AutoSize = True
 		Me.LblComputerLastMove.Location = New System.Drawing.Point(104, 48)
 		Me.LblComputerLastMove.Name = "LblComputerLastMove"
-		Me.LblComputerLastMove.Size = New System.Drawing.Size(13, 13)
+		Me.LblComputerLastMove.Size = New System.Drawing.Size(14, 13)
 		Me.LblComputerLastMove.TabIndex = 3
 		Me.LblComputerLastMove.Text = "0"
 		Me.LblComputerLastMove.UseMnemonic = False
@@ -1045,7 +1046,7 @@ Public Class FrmMain
 		Me.LblComputerScore.AutoSize = True
 		Me.LblComputerScore.Location = New System.Drawing.Point(104, 24)
 		Me.LblComputerScore.Name = "LblComputerScore"
-		Me.LblComputerScore.Size = New System.Drawing.Size(13, 13)
+		Me.LblComputerScore.Size = New System.Drawing.Size(14, 13)
 		Me.LblComputerScore.TabIndex = 1
 		Me.LblComputerScore.Text = "0"
 		Me.LblComputerScore.UseMnemonic = False
@@ -1055,7 +1056,7 @@ Public Class FrmMain
 		Me.LblComputerTimeLbl.AutoSize = True
 		Me.LblComputerTimeLbl.Location = New System.Drawing.Point(36, 72)
 		Me.LblComputerTimeLbl.Name = "LblComputerTimeLbl"
-		Me.LblComputerTimeLbl.Size = New System.Drawing.Size(33, 13)
+		Me.LblComputerTimeLbl.Size = New System.Drawing.Size(38, 13)
 		Me.LblComputerTimeLbl.TabIndex = 4
 		Me.LblComputerTimeLbl.Text = "Time:"
 		Me.LblComputerTimeLbl.UseMnemonic = False
@@ -1065,7 +1066,7 @@ Public Class FrmMain
 		Me.LblComputerLastMoveLbl.AutoSize = True
 		Me.LblComputerLastMoveLbl.Location = New System.Drawing.Point(12, 48)
 		Me.LblComputerLastMoveLbl.Name = "LblComputerLastMoveLbl"
-		Me.LblComputerLastMoveLbl.Size = New System.Drawing.Size(60, 13)
+		Me.LblComputerLastMoveLbl.Size = New System.Drawing.Size(70, 13)
 		Me.LblComputerLastMoveLbl.TabIndex = 2
 		Me.LblComputerLastMoveLbl.Text = "Last Move:"
 		Me.LblComputerLastMoveLbl.UseMnemonic = False
@@ -1075,7 +1076,7 @@ Public Class FrmMain
 		Me.LblComputerScoreLbl.AutoSize = True
 		Me.LblComputerScoreLbl.Location = New System.Drawing.Point(32, 24)
 		Me.LblComputerScoreLbl.Name = "LblComputerScoreLbl"
-		Me.LblComputerScoreLbl.Size = New System.Drawing.Size(38, 13)
+		Me.LblComputerScoreLbl.Size = New System.Drawing.Size(44, 13)
 		Me.LblComputerScoreLbl.TabIndex = 0
 		Me.LblComputerScoreLbl.Text = "Score:"
 		Me.LblComputerScoreLbl.UseMnemonic = False
@@ -1089,19 +1090,20 @@ Public Class FrmMain
 		Me.GrpPlayer.Controls.Add(Me.LblPlayerLastMoveLbl)
 		Me.GrpPlayer.Controls.Add(Me.LblPlayerScoreLbl)
 		Me.GrpPlayer.FlatStyle = System.Windows.Forms.FlatStyle.System
+		Me.GrpPlayer.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.GrpPlayer.Location = New System.Drawing.Point(8, 8)
 		Me.GrpPlayer.Name = "GrpPlayer"
 		Me.GrpPlayer.Size = New System.Drawing.Size(168, 100)
 		Me.GrpPlayer.TabIndex = 0
 		Me.GrpPlayer.TabStop = False
-		Me.GrpPlayer.Text = "Player (X):"
+		Me.GrpPlayer.Text = "Player (Red)"
 		'
 		'LblPlayerTime
 		'
 		Me.LblPlayerTime.AutoSize = True
 		Me.LblPlayerTime.Location = New System.Drawing.Point(104, 72)
 		Me.LblPlayerTime.Name = "LblPlayerTime"
-		Me.LblPlayerTime.Size = New System.Drawing.Size(49, 13)
+		Me.LblPlayerTime.Size = New System.Drawing.Size(57, 13)
 		Me.LblPlayerTime.TabIndex = 5
 		Me.LblPlayerTime.Text = "00:00:00"
 		Me.LblPlayerTime.UseMnemonic = False
@@ -1111,7 +1113,7 @@ Public Class FrmMain
 		Me.LblPlayerLastMove.AutoSize = True
 		Me.LblPlayerLastMove.Location = New System.Drawing.Point(104, 48)
 		Me.LblPlayerLastMove.Name = "LblPlayerLastMove"
-		Me.LblPlayerLastMove.Size = New System.Drawing.Size(13, 13)
+		Me.LblPlayerLastMove.Size = New System.Drawing.Size(14, 13)
 		Me.LblPlayerLastMove.TabIndex = 3
 		Me.LblPlayerLastMove.Text = "0"
 		Me.LblPlayerLastMove.UseMnemonic = False
@@ -1121,7 +1123,7 @@ Public Class FrmMain
 		Me.LblPlayerScore.AutoSize = True
 		Me.LblPlayerScore.Location = New System.Drawing.Point(104, 24)
 		Me.LblPlayerScore.Name = "LblPlayerScore"
-		Me.LblPlayerScore.Size = New System.Drawing.Size(13, 13)
+		Me.LblPlayerScore.Size = New System.Drawing.Size(14, 13)
 		Me.LblPlayerScore.TabIndex = 1
 		Me.LblPlayerScore.Text = "0"
 		Me.LblPlayerScore.UseMnemonic = False
@@ -1131,7 +1133,7 @@ Public Class FrmMain
 		Me.LblPlayerTimeLbl.AutoSize = True
 		Me.LblPlayerTimeLbl.Location = New System.Drawing.Point(36, 72)
 		Me.LblPlayerTimeLbl.Name = "LblPlayerTimeLbl"
-		Me.LblPlayerTimeLbl.Size = New System.Drawing.Size(33, 13)
+		Me.LblPlayerTimeLbl.Size = New System.Drawing.Size(38, 13)
 		Me.LblPlayerTimeLbl.TabIndex = 4
 		Me.LblPlayerTimeLbl.Text = "Time:"
 		Me.LblPlayerTimeLbl.UseMnemonic = False
@@ -1141,7 +1143,7 @@ Public Class FrmMain
 		Me.LblPlayerLastMoveLbl.AutoSize = True
 		Me.LblPlayerLastMoveLbl.Location = New System.Drawing.Point(12, 48)
 		Me.LblPlayerLastMoveLbl.Name = "LblPlayerLastMoveLbl"
-		Me.LblPlayerLastMoveLbl.Size = New System.Drawing.Size(60, 13)
+		Me.LblPlayerLastMoveLbl.Size = New System.Drawing.Size(70, 13)
 		Me.LblPlayerLastMoveLbl.TabIndex = 2
 		Me.LblPlayerLastMoveLbl.Text = "Last Move:"
 		Me.LblPlayerLastMoveLbl.UseMnemonic = False
@@ -1151,7 +1153,7 @@ Public Class FrmMain
 		Me.LblPlayerScoreLbl.AutoSize = True
 		Me.LblPlayerScoreLbl.Location = New System.Drawing.Point(32, 24)
 		Me.LblPlayerScoreLbl.Name = "LblPlayerScoreLbl"
-		Me.LblPlayerScoreLbl.Size = New System.Drawing.Size(38, 13)
+		Me.LblPlayerScoreLbl.Size = New System.Drawing.Size(44, 13)
 		Me.LblPlayerScoreLbl.TabIndex = 0
 		Me.LblPlayerScoreLbl.Text = "Score:"
 		Me.LblPlayerScoreLbl.UseMnemonic = False
@@ -1212,7 +1214,7 @@ Public Class FrmMain
 	Private WithEvents GameEngine As New Cls4Play()
 
 	' Our game engine message handler
-	Private Sub UpdateStatus(ByVal Note As String) Handles GameEngine.ProcessNote
+	Private Sub UpdateStatus(Note As String) Handles GameEngine.ProcessNote
 		Static sMessages(MaxStatusLine) As String         ' this will hold all messages
 		Static iMessageLine As Integer       ' message line pointer
 		Dim i As Integer
@@ -1246,7 +1248,7 @@ Public Class FrmMain
 		TxtStatus.ScrollToCaret()
 	End Sub
 
-	Private Sub CmdColumn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmd1.Click, cmd2.Click, cmd3.Click, cmd4.Click, cmd5.Click, cmd6.Click, cmd7.Click
+	Private Sub CmdColumn_Click(sender As System.Object, e As System.EventArgs) Handles cmd1.Click, cmd2.Click, cmd3.Click, cmd4.Click, cmd5.Click, cmd6.Click, cmd7.Click
 		Static bInCmdColumnClick As Boolean
 		Dim Index As Integer = CInt(CType(sender, Button).Tag)
 		Dim i As Integer
@@ -1275,7 +1277,7 @@ Public Class FrmMain
 		cmd7.Enabled = GameEngine.GetTotalMovesInRow(6) <= Cls4Play.MaxY
 
 		' Check all possible cases (fixes an old bug)
-		If GameEngine.IsWinner(Cls4Play.Player1Chip) Then
+		If GameEngine.IsWinner(True, Cls4Play.Player1Chip) Then
 			DrawChips()
 			TmrUpdate_Tick(TmrUpdate, New System.EventArgs())
 			MsgBox("You win!", MsgBoxStyle.Exclamation)
@@ -1283,7 +1285,7 @@ Public Class FrmMain
 			PlayerScore += 1
 			bInCmdColumnClick = False
 			Exit Sub
-		ElseIf GameEngine.IsWinner(Cls4Play.Player2Chip) Then
+		ElseIf GameEngine.IsWinner(True, Cls4Play.Player2Chip) Then
 			DrawChips()
 			TmrUpdate_Tick(TmrUpdate, New System.EventArgs())
 			MsgBox("I win!", MsgBoxStyle.Exclamation)
@@ -1321,13 +1323,13 @@ Public Class FrmMain
 		cmd7.Enabled = GameEngine.GetTotalMovesInRow(6) <= Cls4Play.MaxY
 
 		' Recheck again
-		If GameEngine.IsWinner(Cls4Play.Player1Chip) Then
+		If GameEngine.IsWinner(True, Cls4Play.Player1Chip) Then
 			DrawChips()
 			TmrUpdate_Tick(TmrUpdate, New System.EventArgs())
 			MsgBox("You win!", MsgBoxStyle.Exclamation)
 			NewGame()
 			PlayerScore += 1
-		ElseIf GameEngine.IsWinner(Cls4Play.Player2Chip) Then
+		ElseIf GameEngine.IsWinner(True, Cls4Play.Player2Chip) Then
 			DrawChips()
 			TmrUpdate_Tick(TmrUpdate, New System.EventArgs())
 			MsgBox("I win!", MsgBoxStyle.Exclamation)
@@ -1370,7 +1372,7 @@ Public Class FrmMain
 	' }
 #Region "DrawChips() [Autogenerated using C ] "
 	Private Sub DrawChips()
-		Dim myChip As String
+		Dim myChip As Integer
 
 
 		myChip = GameEngine.GetMove(0, 0)
@@ -2089,7 +2091,7 @@ Public Class FrmMain
 	End Sub
 #End Region
 
-	Private Sub CmdColumn_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles cmd1.KeyPress, cmd2.KeyPress, cmd3.KeyPress, cmd4.KeyPress, cmd5.KeyPress, cmd6.KeyPress, cmd7.KeyPress
+	Private Sub CmdColumn_KeyPress(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles cmd1.KeyPress, cmd2.KeyPress, cmd3.KeyPress, cmd4.KeyPress, cmd5.KeyPress, cmd6.KeyPress, cmd7.KeyPress
 		Dim KeyAscii As Integer = Asc(e.KeyChar)
 		Dim Index As Integer = CInt(CType(sender, Button).Tag)
 
@@ -2122,12 +2124,12 @@ Public Class FrmMain
 		End If
 	End Sub
 
-	Private Sub FrmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+	Private Sub FrmMain_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 		Randomize()
 		RestartGame()
 	End Sub
 
-	Private Sub FrmMain_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
+	Private Sub FrmMain_Closing(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
 		If GameEngine.GetTotalMoves() > 0 Then
 			If MsgBox("A game is in progress." & vbCrLf & "Are you sure you want to quit now?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) <> MsgBoxResult.Yes Then
 				e.Cancel = True
@@ -2138,7 +2140,7 @@ Public Class FrmMain
 		e.Cancel = False
 	End Sub
 
-	Private Sub MnuGameNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuGameNew.Click
+	Private Sub MnuGameNew_Click(sender As System.Object, e As System.EventArgs) Handles MnuGameNew.Click
 		If GameEngine.GetTotalMoves() > 0 Then
 			If MsgBox("A game is in progress." & vbCrLf & "Are you sure you want to end this game?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) = MsgBoxResult.Yes Then
 				RestartGame()
@@ -2148,11 +2150,11 @@ Public Class FrmMain
 		End If
 	End Sub
 
-	Private Sub MnuGameExit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuGameExit.Click
+	Private Sub MnuGameExit_Click(sender As System.Object, e As System.EventArgs) Handles MnuGameExit.Click
 		Close()
 	End Sub
 
-	Private Sub MnuHelpAbout_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuHelpAbout.Click
+	Private Sub MnuHelpAbout_Click(sender As System.Object, e As System.EventArgs) Handles MnuHelpAbout.Click
 		' Display the about dialog box
 		ShellAbout(Handle,
 		 Application.ProductName,
@@ -2161,12 +2163,12 @@ Public Class FrmMain
 		 Icon.Handle)
 	End Sub
 
-	Private Sub MnuHelpHint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuHelpHint.Click
+	Private Sub MnuHelpHint_Click(sender As System.Object, e As System.EventArgs) Handles MnuHelpHint.Click
 		MsgBox("Try column " & (Math.Abs(GameEngine.Think()) + 1) & ".", MsgBoxStyle.Information, "Hint")
 	End Sub
 
-	Private Sub MnuHelpHowTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuHelpHowTo.Click
-		MsgBox("Your goal is to get your chip (" & Cls4Play.Player1Chip & ") in a straight line of four, in any direction. The moment you get your line, you win and your score increases by 1.", MsgBoxStyle.Information, "How To Play")
+	Private Sub MnuHelpHowTo_Click(sender As System.Object, e As System.EventArgs) Handles MnuHelpHowTo.Click
+		MsgBox("Your goal is to get your red chip in a straight line of four, in any direction. The moment you get your line, you win and your score increases by 1.", MsgBoxStyle.Information, "How To Play")
 	End Sub
 
 	Private Sub NewGame()
@@ -2185,7 +2187,7 @@ Public Class FrmMain
 		ComputerScore = 0
 	End Sub
 
-	Private Sub TmrUpdate_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TmrUpdate.Tick
+	Private Sub TmrUpdate_Tick(sender As System.Object, e As System.EventArgs) Handles TmrUpdate.Tick
 		' Check the buttons
 		cmd1.Enabled = GameEngine.GetTotalMovesInRow(0) <= Cls4Play.MaxY
 		cmd2.Enabled = GameEngine.GetTotalMovesInRow(1) <= Cls4Play.MaxY
