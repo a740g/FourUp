@@ -48,7 +48,7 @@ Public Class Cls4Play
 
 	' Returns true if a move is allowed
 	Public Function IsMoveAllowed(x As Integer, y As Integer) As Boolean
-		If x > MaxX Or y > MaxY Then Return False
+		If x < 0 Or y < 0 Or x > MaxX Or y > MaxY Then Return False
 
 		If Board(x, y) = EmptyCellChip Then
 			If y > 0 Then
@@ -74,9 +74,7 @@ Public Class Cls4Play
 	End Function
 
 	' Puts the move in the game Board if allowed
-	Public Function PlayMove(x As Integer, y As Integer, Optional sPlayer As Integer = EmptyCellChip) As Boolean
-		If sPlayer = EmptyCellChip Then sPlayer = Player
-
+	Public Function PlayMove(x As Integer, y As Integer, sPlayer As Integer) As Boolean
 		If IsMoveAllowed(x, y) Then
 			Board(x, y) = sPlayer
 			Return True
@@ -86,16 +84,15 @@ Public Class Cls4Play
 	End Function
 
 	' Find the opponent player
-	Public Function Opponent(Optional sPlayer As Integer = EmptyCellChip) As Integer
+	Public Function Opponent(sPlayer As Integer) As Integer
 		' Find the opponent player
-		If sPlayer = EmptyCellChip Then sPlayer = Player
 		Return CInt(IIf(sPlayer = Player1Chip, Player2Chip, Player1Chip))
 	End Function
 
 	' Changes or switches between active players
 	Public Sub SwitchPlayers()
 		' Switch players
-		Player = Opponent()
+		Player = Opponent(Player)
 	End Sub
 
 	' Returns the total number of moves in the game Board
@@ -112,13 +109,13 @@ Public Class Cls4Play
 		Return iCount
 	End Function
 
-	' Returns the total number of moves in a particular game matix row
-	Public Function GetTotalMovesInRow(iRow As Integer) As Integer
+	' Returns the total number of moves in a particular game matix column
+	Public Function GetTotalMovesInColumn(iColumn As Integer) As Integer
 		Dim y As Integer
 		Dim iCount As Integer = 0
 
 		For y = 0 To MaxY
-			If Board(iRow, y) <> EmptyCellChip Then iCount += 1
+			If Board(iColumn, y) <> EmptyCellChip Then iCount += 1
 		Next
 
 		Return iCount
@@ -134,12 +131,12 @@ Public Class Cls4Play
 		Return GetTotalMoves() >= ((MaxX + 1) * (MaxY + 1))
 	End Function
 
-	' Puts a chip in a particular row if allowed
-	Public Function PutChipInRow(iRow As Integer, Optional sPlayer As Integer = EmptyCellChip) As Boolean
+	' Puts a chip in a particular column if allowed
+	Public Function PutChipInColumn(iColumn As Integer, sPlayer As Integer) As Boolean
 		Dim y As Integer
 
 		For y = 0 To MaxY
-			If PlayMove(iRow, y, sPlayer) Then
+			If PlayMove(iColumn, y, sPlayer) Then
 				Return True
 			End If
 		Next
@@ -159,14 +156,9 @@ Public Class Cls4Play
 	End Property
 
 	' Determins if the given player is the winner
-	Public Function IsWinner(MarkSpots As Boolean, Optional sChip As Integer = EmptyCellChip) As Boolean
+	Public Function IsWinner(MarkSpots As Boolean, sChip As Integer) As Boolean
 		Dim WinChip As Integer
 		Dim x, y As Integer
-
-		' If no parameter was passed check for previous player
-		If sChip = EmptyCellChip Then
-			sChip = CInt(IIf(Player = Player1Chip, Player2Chip, Player1Chip))
-		End If
 
 		' Set the appropriate winning chip
 		WinChip = CInt(IIf(sChip = Player1Chip, Player1WinChip, Player2WinChip))
@@ -240,63 +232,59 @@ Public Class Cls4Play
 	End Function
 
 	' Computer AI method
-	Public Function Think(Optional sPlayer As Integer = EmptyCellChip, Optional Depth As Integer = 0) As Integer
+	Public Function Think(sPlayer As Integer, Depth As Integer) As Integer
 		Dim sBoard(MaxX, MaxY) As Integer
+		Dim i As Integer
+
+		If IsGameDraw() Then Debug.Fail("Cls4Play.Think: Game logic error!", "Think() called on a draw board!")
 
 		If Depth = 0 Then RaiseEvent ProcessNote("Thinking...")
 
-		' Leave if there are no more places to think for
-		If IsGameDraw() Then Return -MaxX - 1
-
-		' Use default positions if less than 3 moves
-		If GetTotalMoves() < 3 Then
-			If Depth = 0 Then RaiseEvent ProcessNote("Opening move.")
-
-			If Board(MaxX \ 2, 0) = EmptyCellChip Then
-				Return MaxX \ 2
-			ElseIf Board((MaxX \ 2) + 1, 0) = EmptyCellChip Then
-				Return (MaxX \ 2) + 1
-			ElseIf Board((MaxX \ 2) - 1, 0) = EmptyCellChip Then
-				Return (MaxX \ 2) - 1
-			End If
-		End If
-
-		' Determine the player
-		If sPlayer = EmptyCellChip Then sPlayer = Player
+		Application.DoEvents()
 
 		' Make a copy of the game Board
 		Array.Copy(Board, sBoard, Board.Length)
 
-		Dim i As Integer
+		' Play a random move if we are at max depth
+		If (Depth > 1699) Then
+			Do
+				i = CInt(Rnd() * MaxX)
+				If PutChipInColumn(i, sPlayer) Then
+					' Restore the game Board
+					Array.Copy(sBoard, Board, Board.Length)
+					RaiseEvent ProcessNote("Maxmimum depth " & Depth & " reached.")
+					Return i
+				End If
+			Loop
+		End If
+
 		' Play a move and check if we "win" and they are not winning
 		For i = 0 To MaxX
 			' We successfully played
-			If PutChipInRow(i, sPlayer) Then
-				' Now check if we won
-				If IsWinner(False, sPlayer) And Not IsWinner(False, Opponent(sPlayer)) Then
+			If PutChipInColumn(i, sPlayer) Then
+				' Check if game is a draw
+				If (IsGameDraw()) Then
 					' Restore the game Board and return the position
 					Array.Copy(sBoard, Board, Board.Length)
-					If Depth = 0 Then RaiseEvent ProcessNote("Found " & i + 1 & ".")
+					If Depth = 0 Then RaiseEvent ProcessNote("Final move " & i + 1 & ".")
 					Return i
 				End If
+
+				' Check if we won
+				If IsWinner(False, sPlayer) Then
+					' Restore the game Board
+					Array.Copy(sBoard, Board, Board.Length)
+					If Depth = 0 Then RaiseEvent ProcessNote("Winning move " & i + 1 & ".")
+					Return i
+				End If
+
 				' Restore the board and try next position
 				Array.Copy(sBoard, Board, Board.Length)
 			End If
 		Next
 
-		' Recursive game logic starts here
-
-		' Play some move
-		For i = 0 To MaxX
-			If PutChipInRow(i, sPlayer) Then Exit For
-		Next
-
-		' Recursively call think
-		RaiseEvent ProcessNote("Depth " & Depth & ".")
-		Application.DoEvents()
-
+		' Recursively call with opponents chip
 		i = Think(Opponent(sPlayer), Depth + 1)
-
 		' Restore the board
 		Array.Copy(sBoard, Board, Board.Length)
 
