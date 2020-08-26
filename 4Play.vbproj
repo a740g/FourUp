@@ -135,7 +135,6 @@
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
     <Content Include="4Play.ico" />
-    <Content Include="screenshot.gif" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
