@@ -9,10 +9,10 @@
 
 Public Class Cls4Play
 	' Some public constants
-	Public Const Player1Chip As Integer = 1
-	Public Const Player2Chip As Integer = -1
-	Public Const Player1WinChip As Integer = 10
-	Public Const Player2WinChip As Integer = -10
+	Public Const Player1Chip As Integer = -1
+	Public Const Player2Chip As Integer = 1
+	Public Const Player1WinChip As Integer = -10
+	Public Const Player2WinChip As Integer = 10
 	Public Const EmptyCellChip As Integer = 0
 	Public Const MaxX As Integer = 6
 	Public Const MaxY As Integer = 5
@@ -229,64 +229,89 @@ Public Class Cls4Play
 	End Function
 
 	' Computer AI method
-	Public Function Think(sPlayer As Integer, Depth As Integer) As Integer
-		Dim sBoard(MaxX, MaxY) As Integer
+	Public Function Think() As Integer
+		Dim TmpBoard(MaxX, MaxY) As Integer
 		Dim i As Integer
+		Dim BestScore As Long
+		Dim Score As Long
+		Dim Move As Integer
 
 		If IsGameDraw() Then Debug.Fail("Think: Game logic error!", "Think() called on a draw board!")
 
-		If Depth = 0 Then RaiseEvent ProcessNote("Thinking...")
-
-		Application.DoEvents()
+		BestScore = Long.MinValue
 
 		' Make a copy of the game Board
-		Array.Copy(Board, sBoard, Board.Length)
+		Array.Copy(Board, TmpBoard, Board.Length)
 
-		' Play a random move if we are at max depth
-		If (Depth > 1699) Then
-			Do
-				i = CInt(Rnd() * MaxX)
-				If PutChipInColumn(i, sPlayer) Then
-					' Restore the game Board
-					Array.Copy(sBoard, Board, Board.Length)
-					RaiseEvent ProcessNote("Maxmimum depth " & Depth & " reached.")
-					Return i
-				End If
-			Loop
-		End If
-
-		' Play a move and check if we "win" and they are not winning
 		For i = 0 To MaxX
 			' We successfully played
-			If PutChipInColumn(i, sPlayer) Then
-				' Check if game is a draw
-				If (IsGameDraw()) Then
-					' Restore the game Board and return the position
-					Array.Copy(sBoard, Board, Board.Length)
-					If Depth = 0 Then RaiseEvent ProcessNote("Final move " & i + 1 & ".")
-					Return i
-				End If
-
-				' Check if we won
-				If IsWinner(False, sPlayer) Then
-					' Restore the game Board
-					Array.Copy(sBoard, Board, Board.Length)
-					If Depth = 0 Then RaiseEvent ProcessNote("Winning move " & i + 1 & ".")
-					Return i
-				End If
-
+			RaiseEvent ProcessNote("Checking " & (i + 1) & ".")
+			If PutChipInColumn(i, Player2Chip) Then
+				Score = Minimax(0, Long.MinValue, Long.MaxValue, False)
 				' Restore the board and try next position
-				Array.Copy(sBoard, Board, Board.Length)
+				Array.Copy(TmpBoard, Board, Board.Length)
+				If (Score > BestScore) Then
+					BestScore = Score
+					Move = i
+				End If
 			End If
 		Next
 
-		' Recursively call with opponents chip
-		i = Think(Opponent(sPlayer), Depth + 1)
-		' Restore the board
-		Array.Copy(sBoard, Board, Board.Length)
+		RaiseEvent ProcessNote("Found " & (Move + 1) & ".")
 
-		If Depth = 0 Then RaiseEvent ProcessNote("Found " & i + 1 & ".")
+		Return Move
+	End Function
 
-		Return i
+	Private Function Minimax(Depth As Integer, ByVal Alpha As Long, ByVal Beta As Long, IsMaximizing As Boolean) As Long
+		Dim TmpBoard(MaxX, MaxY) As Integer
+		Dim Value As Long
+		Dim i As Integer
+
+		Application.DoEvents()
+
+		If IsGameDraw() Then
+			Return 0
+		End If
+
+		If IsWinner(False, Player1Chip) Then
+			Return Player1WinChip
+		End If
+
+		If IsWinner(False, Player2Chip) Then
+			Return Player2WinChip
+		End If
+
+		' Make a copy of the game Board
+		Array.Copy(Board, TmpBoard, Board.Length)
+
+		If IsMaximizing Then
+			Value = Long.MinValue
+			For i = 0 To MaxX
+				If PutChipInColumn(i, Player2Chip) Then
+					Value = Math.Max(Value, Minimax(Depth + 1, Alpha, Beta, False))
+					' Restore the game Board
+					Array.Copy(TmpBoard, Board, Board.Length)
+					Alpha = Math.Max(Alpha, Value)
+					If Alpha >= Beta Then
+						Exit For
+					End If
+				End If
+			Next
+		Else
+			Value = Long.MaxValue
+			For i = 0 To MaxX
+				If PutChipInColumn(i, Player1Chip) Then
+					Value = Math.Min(Value, Minimax(Depth + 1, Alpha, Beta, True))
+					' Restore the game Board
+					Array.Copy(TmpBoard, Board, Board.Length)
+					Beta = Math.Min(Beta, Value)
+					If Beta <= Alpha Then
+						Exit For
+					End If
+				End If
+			Next
+		End If
+
+		Return Value
 	End Function
 End Class

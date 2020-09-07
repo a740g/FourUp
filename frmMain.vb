@@ -2033,7 +2033,7 @@ Public Class FrmMain
 	End Sub
 
 	Private Sub MnuHelpHint_Click(sender As Object, e As EventArgs) Handles MnuHelpHint.Click
-		MsgBox("Try column " & (Math.Abs(GameEngine.Think(GameEngine.CurrentPlayer, 0)) + 1) & ".", MsgBoxStyle.Information, "Hint")
+		MsgBox("Try column " & (Math.Abs(GameEngine.Think()) + 1) & ".", MsgBoxStyle.Information, "Hint")
 	End Sub
 
 	Private Sub MnuHelpHowTo_Click(sender As Object, e As EventArgs) Handles MnuHelpHowTo.Click
@@ -2126,6 +2126,8 @@ Public Class FrmMain
 	End Sub
 
 	Private Sub TmrUpdate_Tick(sender As Object, e As EventArgs) Handles TmrUpdate.Tick
+		DrawChips()
+
 		' Check the buttons
 		Cmd1.Enabled = GameEngine.GetTotalMovesInColumn(0) <= Cls4Play.MaxY
 		Cmd2.Enabled = GameEngine.GetTotalMovesInColumn(1) <= Cls4Play.MaxY
@@ -2159,7 +2161,7 @@ Public Class FrmMain
 				AIBusy = True
 
 				' Computer's move
-				i = GameEngine.Think(GameEngine.CurrentPlayer, 0)
+				i = GameEngine.Think()
 				If GameEngine.PutChipInColumn(i, GameEngine.CurrentPlayer) Then
 					ComputerMove = i + 1
 					DrawChips()
