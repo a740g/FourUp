@@ -1,15 +1,11 @@
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-' 4Play: Classic Connect 4 against computer                  '
-'                                                            '
-' Copyright (c) Samuel Gomes, 1997-2020                      '
-' All right reserved.                                        '
-'                                                            '
-' mailto: v_2samg@hotmail.com || gomes.samuel@gmail.com      '
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-
-' This class defines the core game engine
-' Currently this games uses a "weak" solver
-' Someday we should update this to use Minimax with alpha-beta pruning
+''' <summary>
+''' 4Play: Classic Connect 4 against computer 
+''' Copyright (c) Samuel Gomes, 2020
+''' 
+''' This class defines the core game engine
+''' Currently this games uses a "weak" solver
+''' Someday we should update this to use Minimax with alpha-beta pruning
+''' </summary>
 
 Public Class Cls4Play
 	' Some public constants
@@ -20,6 +16,7 @@ Public Class Cls4Play
 	Public Const EmptyCellChip As Integer = 0
 	Public Const MaxX As Integer = 6
 	Public Const MaxY As Integer = 5
+
 	' The main game Board (0 - 6) x (0 - 5) = 7 x 6
 	Private ReadOnly Board(MaxX, MaxY) As Integer
 	' Current player
@@ -44,6 +41,29 @@ Public Class Cls4Play
 		Next
 
 		RaiseEvent ProcessNote("Ready!")
+	End Sub
+
+	' Who is the current player? (set & get)
+	Public Property CurrentPlayer() As Integer
+		Get
+			Return Player
+		End Get
+
+		Set(sValue As Integer)
+			Player = CInt(IIf(sValue = Player1Chip, Player1Chip, Player2Chip))
+		End Set
+	End Property
+
+	' Find the opponent player
+	Public Function Opponent(sPlayer As Integer) As Integer
+		' Find the opponent player
+		Return CInt(IIf(sPlayer = Player1Chip, Player2Chip, Player1Chip))
+	End Function
+
+	' Changes or switches between active players
+	Public Sub SwitchPlayers()
+		' Switch players
+		Player = Opponent(Player)
 	End Sub
 
 	' Returns true if a move is allowed
@@ -82,18 +102,6 @@ Public Class Cls4Play
 
 		Return False
 	End Function
-
-	' Find the opponent player
-	Public Function Opponent(sPlayer As Integer) As Integer
-		' Find the opponent player
-		Return CInt(IIf(sPlayer = Player1Chip, Player2Chip, Player1Chip))
-	End Function
-
-	' Changes or switches between active players
-	Public Sub SwitchPlayers()
-		' Switch players
-		Player = Opponent(Player)
-	End Sub
 
 	' Returns the total number of moves in the game Board
 	Public Function GetTotalMoves() As Integer
@@ -143,17 +151,6 @@ Public Class Cls4Play
 
 		Return False
 	End Function
-
-	' Who is the current player? (set & get)
-	Public Property CurrentPlayer() As Integer
-		Get
-			Return Player
-		End Get
-
-		Set(sValue As Integer)
-			Player = CInt(IIf(sValue = Player1Chip, Player1Chip, Player2Chip))
-		End Set
-	End Property
 
 	' Determins if the given player is the winner
 	Public Function IsWinner(MarkSpots As Boolean, sChip As Integer) As Boolean
@@ -236,7 +233,7 @@ Public Class Cls4Play
 		Dim sBoard(MaxX, MaxY) As Integer
 		Dim i As Integer
 
-		If IsGameDraw() Then Debug.Fail("Cls4Play.Think: Game logic error!", "Think() called on a draw board!")
+		If IsGameDraw() Then Debug.Fail("Think: Game logic error!", "Think() called on a draw board!")
 
 		If Depth = 0 Then RaiseEvent ProcessNote("Thinking...")
 

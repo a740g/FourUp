@@ -120,9 +120,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="AssemblyInfo.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="cls4Play.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -134,6 +131,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
     <Content Include="4Play.ico" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
