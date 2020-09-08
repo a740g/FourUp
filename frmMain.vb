@@ -1,7 +1,5 @@
-''' <summary>
-''' 4Play: Classic Connect 4 against computer
-''' Copyright (c) Samuel Gomes, 2020
-''' </summary>
+' 4Play: Classic Connect 4 against computer
+' Copyright (c) Samuel Gomes, 2020
 
 Public Class FrmMain
 	Inherits Form
@@ -1203,7 +1201,6 @@ Public Class FrmMain
 	Private PlayerMove, ComputerMove As Integer
 	Private WithEvents GameEngine As New Cls4Play()
 	Private PlayerBusy As Boolean = False               ' this is set to true when the player has clicked a column button
-	Private AIBusy As Boolean = False                   ' this is set to true when AI is busy
 
 	' Our game engine message handler
 	Private Sub UpdateStatus(Note As String) Handles GameEngine.ProcessNote
@@ -2055,9 +2052,48 @@ Public Class FrmMain
 		ComputerScore = 0
 	End Sub
 
+	Private Sub UpdateUI()
+		' Disable housefull columns
+		Cmd1.Enabled = GameEngine.GetTotalMovesInColumn(0) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+		Cmd2.Enabled = GameEngine.GetTotalMovesInColumn(1) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+		Cmd3.Enabled = GameEngine.GetTotalMovesInColumn(2) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+		Cmd4.Enabled = GameEngine.GetTotalMovesInColumn(3) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+		Cmd5.Enabled = GameEngine.GetTotalMovesInColumn(4) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+		Cmd6.Enabled = GameEngine.GetTotalMovesInColumn(5) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+		Cmd7.Enabled = GameEngine.GetTotalMovesInColumn(6) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+
+		' Check all possible cases
+		If GameEngine.IsWinner(True, Cls4Play.Player1Chip) Then
+			' Player 2 goes first if Player 1 wins
+			DrawChips()
+			UpdateStatus("You win!")
+			Application.DoEvents()
+			Threading.Thread.Sleep(5000)
+			NewGame()
+			PlayerScore += 1
+			GameEngine.Player = Cls4Play.Player2Chip
+		ElseIf GameEngine.IsWinner(True, Cls4Play.Player2Chip) Then
+			' Player 1 goes first if Player 2 wins
+			DrawChips()
+			UpdateStatus("I win!")
+			Application.DoEvents()
+			Threading.Thread.Sleep(5000)
+			NewGame()
+			ComputerScore += 1
+			GameEngine.Player = Cls4Play.Player1Chip
+			PlayerBusy = False
+		ElseIf GameEngine.IsGameDraw() Then
+			UpdateStatus("It's a draw!")
+			Application.DoEvents()
+			Threading.Thread.Sleep(5000)
+			NewGame()
+			If GameEngine.Player = Cls4Play.Player1Chip Then PlayerBusy = False
+		End If
+	End Sub
+
 	Private Sub CmdColumn_Click(sender As Object, e As EventArgs) Handles Cmd1.Click, Cmd2.Click, Cmd3.Click, Cmd4.Click, Cmd5.Click, Cmd6.Click, Cmd7.Click
 		' Don't allow reentry by the user if we are already processing a player move
-		If PlayerBusy Then Exit Sub
+		If PlayerBusy Or GameEngine.Player = Cls4Play.Player2Chip Or GameEngine.Thinking Then Exit Sub
 
 		' Set the busy flag to true until the player finished playing
 		PlayerBusy = True
@@ -2065,8 +2101,8 @@ Public Class FrmMain
 		Dim i As Integer = CInt(CType(sender, Button).Tag)
 
 		' Player's move
-		If GameEngine.CurrentPlayer = Cls4Play.Player1Chip Then
-			If GameEngine.PutChipInColumn(i, GameEngine.CurrentPlayer) Then
+		If GameEngine.Player = Cls4Play.Player1Chip Then
+			If GameEngine.PutChipInColumn(i, GameEngine.Player) Then
 				PlayerMove = i + 1
 				DrawChips()
 				GameEngine.SwitchPlayers()
@@ -2074,68 +2110,20 @@ Public Class FrmMain
 			End If
 		End If
 
-		' Disable housefull columns
-		Cmd1.Enabled = GameEngine.GetTotalMovesInColumn(0) <= Cls4Play.MaxY
-		Cmd2.Enabled = GameEngine.GetTotalMovesInColumn(1) <= Cls4Play.MaxY
-		Cmd3.Enabled = GameEngine.GetTotalMovesInColumn(2) <= Cls4Play.MaxY
-		Cmd4.Enabled = GameEngine.GetTotalMovesInColumn(3) <= Cls4Play.MaxY
-		Cmd5.Enabled = GameEngine.GetTotalMovesInColumn(4) <= Cls4Play.MaxY
-		Cmd6.Enabled = GameEngine.GetTotalMovesInColumn(5) <= Cls4Play.MaxY
-		Cmd7.Enabled = GameEngine.GetTotalMovesInColumn(6) <= Cls4Play.MaxY
-
-		' We set both busy flags to false and let the special cases below device the state
-		AIBusy = False
-		PlayerBusy = False
-
-		' Check all possible cases
-		If GameEngine.IsWinner(True, Cls4Play.Player1Chip) Then
-			' Player 2 goes first if Player 1 looses
-			AIBusy = False
-			PlayerBusy = True
-			GameEngine.CurrentPlayer = Cls4Play.Player2Chip
-			DrawChips()
-			UpdateStatus("You win!")
-			Application.DoEvents()
-			Threading.Thread.Sleep(5000)
-			NewGame()
-			PlayerScore += 1
-		ElseIf GameEngine.IsWinner(True, Cls4Play.Player2Chip) Then
-			' Player 1 goes first if Player 1 looses
-			AIBusy = False
-			PlayerBusy = False
-			GameEngine.CurrentPlayer = Cls4Play.Player1Chip
-			DrawChips()
-			UpdateStatus("I win!")
-			Application.DoEvents()
-			Threading.Thread.Sleep(5000)
-			NewGame()
-			ComputerScore += 1
-		ElseIf GameEngine.IsGameDraw() Then
-			If GameEngine.CurrentPlayer = Cls4Play.Player1Chip Then
-				AIBusy = False
-				PlayerBusy = False
-			Else
-				AIBusy = False
-				PlayerBusy = True
-			End If
-			UpdateStatus("It's a draw!")
-			Application.DoEvents()
-			Threading.Thread.Sleep(5000)
-			NewGame()
-		End If
+		UpdateUI()
 	End Sub
 
 	Private Sub TmrUpdate_Tick(sender As Object, e As EventArgs) Handles TmrUpdate.Tick
-		DrawChips()
+		'DrawChips()
 
 		' Check the buttons
-		Cmd1.Enabled = GameEngine.GetTotalMovesInColumn(0) <= Cls4Play.MaxY
-		Cmd2.Enabled = GameEngine.GetTotalMovesInColumn(1) <= Cls4Play.MaxY
-		Cmd3.Enabled = GameEngine.GetTotalMovesInColumn(2) <= Cls4Play.MaxY
-		Cmd4.Enabled = GameEngine.GetTotalMovesInColumn(3) <= Cls4Play.MaxY
-		Cmd5.Enabled = GameEngine.GetTotalMovesInColumn(4) <= Cls4Play.MaxY
-		Cmd6.Enabled = GameEngine.GetTotalMovesInColumn(5) <= Cls4Play.MaxY
-		Cmd7.Enabled = GameEngine.GetTotalMovesInColumn(6) <= Cls4Play.MaxY
+		Cmd1.Enabled = GameEngine.GetTotalMovesInColumn(0) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+		Cmd2.Enabled = GameEngine.GetTotalMovesInColumn(1) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+		Cmd3.Enabled = GameEngine.GetTotalMovesInColumn(2) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+		Cmd4.Enabled = GameEngine.GetTotalMovesInColumn(3) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+		Cmd5.Enabled = GameEngine.GetTotalMovesInColumn(4) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+		Cmd6.Enabled = GameEngine.GetTotalMovesInColumn(5) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+		Cmd7.Enabled = GameEngine.GetTotalMovesInColumn(6) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
 
 		' Update some status text; esp time and stuff
 		LblPlayerTime.Text = Format(TimeSerial(0, 0, CInt(PlayerTime)), "HH:mm:ss")
@@ -2146,7 +2134,7 @@ Public Class FrmMain
 		LblPlayerLastMove.Text = CStr(PlayerMove)
 		LblComputerLastMove.Text = CStr(ComputerMove)
 
-		If GameEngine.CurrentPlayer = Cls4Play.Player1Chip Then
+		If GameEngine.Player = Cls4Play.Player1Chip Then
 			If GameEngine.IsGameStarted() Then
 				PlayerTime += CSng(TmrUpdate.Interval) / 1000.0!
 			End If
@@ -2154,15 +2142,12 @@ Public Class FrmMain
 			If GameEngine.IsGameStarted() Then
 				ComputerTime += CSng(TmrUpdate.Interval) / 1000.0!
 			End If
-			If GameEngine.CurrentPlayer = Cls4Play.Player2Chip And Not AIBusy Then
+			If GameEngine.Player = Cls4Play.Player2Chip AndAlso Not GameEngine.Thinking Then
 				Dim i As Integer
-
-				' Set AI busy flag to true to avoid the AI playing again
-				AIBusy = True
 
 				' Computer's move
 				i = GameEngine.Think()
-				If GameEngine.PutChipInColumn(i, GameEngine.CurrentPlayer) Then
+				If GameEngine.PutChipInColumn(i, GameEngine.Player) Then
 					ComputerMove = i + 1
 					DrawChips()
 					GameEngine.SwitchPlayers()
@@ -2171,53 +2156,7 @@ Public Class FrmMain
 					Debug.Fail("TmrUpdate_Tick: Game logic error!", "Computer failed to think for itself (" & i & ")!")
 				End If
 
-				' Disable housefull columns
-				Cmd1.Enabled = GameEngine.GetTotalMovesInColumn(0) <= Cls4Play.MaxY
-				Cmd2.Enabled = GameEngine.GetTotalMovesInColumn(1) <= Cls4Play.MaxY
-				Cmd3.Enabled = GameEngine.GetTotalMovesInColumn(2) <= Cls4Play.MaxY
-				Cmd4.Enabled = GameEngine.GetTotalMovesInColumn(3) <= Cls4Play.MaxY
-				Cmd5.Enabled = GameEngine.GetTotalMovesInColumn(4) <= Cls4Play.MaxY
-				Cmd6.Enabled = GameEngine.GetTotalMovesInColumn(5) <= Cls4Play.MaxY
-				Cmd7.Enabled = GameEngine.GetTotalMovesInColumn(6) <= Cls4Play.MaxY
-
-				' We set both busy flags to false and let the special cases below device the state
-				AIBusy = False
-				PlayerBusy = False
-
-				' Recheck again
-				If GameEngine.IsWinner(True, Cls4Play.Player1Chip) Then
-					' Player 2 goes first if Player 1 looses
-					AIBusy = False
-					GameEngine.CurrentPlayer = Cls4Play.Player2Chip
-					DrawChips()
-					UpdateStatus("You win!")
-					Application.DoEvents()
-					Threading.Thread.Sleep(5000)
-					NewGame()
-					PlayerScore += 1
-				ElseIf GameEngine.IsWinner(True, Cls4Play.Player2Chip) Then
-					' Player 1 goes first if Player 1 looses
-					PlayerBusy = False
-					GameEngine.CurrentPlayer = Cls4Play.Player1Chip
-					DrawChips()
-					UpdateStatus("I win!")
-					Application.DoEvents()
-					Threading.Thread.Sleep(5000)
-					NewGame()
-					ComputerScore += 1
-				ElseIf GameEngine.IsGameDraw() Then
-					If GameEngine.CurrentPlayer = Cls4Play.Player1Chip Then
-						AIBusy = False
-						PlayerBusy = False
-					Else
-						AIBusy = False
-						PlayerBusy = True
-					End If
-					UpdateStatus("It's a draw!")
-					Application.DoEvents()
-					Threading.Thread.Sleep(5000)
-					NewGame()
-				End If
+				UpdateUI()
 			End If
 		End If
 	End Sub

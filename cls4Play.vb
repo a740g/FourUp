@@ -17,10 +17,13 @@ Public Class Cls4Play
 	Public Const MaxX As Integer = 6
 	Public Const MaxY As Integer = 5
 
+	' Flag that is set when the AI is evaluating the board
+	Public Thinking As Boolean = False
+	' Current player
+	Public Player As Integer = Player1Chip
+
 	' The main game Board (0 - 6) x (0 - 5) = 7 x 6
 	Private ReadOnly Board(MaxX, MaxY) As Integer
-	' Current player
-	Private Player As Integer = Player1Chip
 
 	' Comments while thinking
 	Public Event ProcessNote(Note As String)
@@ -42,17 +45,6 @@ Public Class Cls4Play
 
 		RaiseEvent ProcessNote("Ready!")
 	End Sub
-
-	' Who is the current player? (set & get)
-	Public Property CurrentPlayer() As Integer
-		Get
-			Return Player
-		End Get
-
-		Set(sValue As Integer)
-			Player = CInt(IIf(sValue = Player1Chip, Player1Chip, Player2Chip))
-		End Set
-	End Property
 
 	' Find the opponent player
 	Public Function Opponent(sPlayer As Integer) As Integer
@@ -231,21 +223,32 @@ Public Class Cls4Play
 	' Computer AI method
 	Public Function Think() As Integer
 		Dim TmpBoard(MaxX, MaxY) As Integer
-		Dim i As Integer
+		Dim i As Integer, iB As Integer, iE As Integer, iStep As Integer
 		Dim BestScore As Long
 		Dim Score As Long
 		Dim Move As Integer
 
 		If IsGameDraw() Then Debug.Fail("Think: Game logic error!", "Think() called on a draw board!")
 
-		BestScore = Long.MinValue
+		' Set thiking flag to true
+		Thinking = True
+		RaiseEvent ProcessNote("Thinking...")
 
 		' Make a copy of the game Board
 		Array.Copy(Board, TmpBoard, Board.Length)
 
-		For i = 0 To MaxX
+		BestScore = Long.MinValue
+		iStep = If(CInt(Rnd() * 1.0F) = 0, -1, 1)
+		If iStep = -1 Then
+			iB = MaxX
+			iE = 0
+		Else
+			iB = 0
+			iE = MaxX
+		End If
+
+		For i = iB To iE Step iStep
 			' We successfully played
-			RaiseEvent ProcessNote("Checking " & (i + 1) & ".")
 			If PutChipInColumn(i, Player2Chip) Then
 				Score = Minimax(0, Long.MinValue, Long.MaxValue, False)
 				' Restore the board and try next position
@@ -254,10 +257,14 @@ Public Class Cls4Play
 					BestScore = Score
 					Move = i
 				End If
+				RaiseEvent ProcessNote((i + 1) & " has score a of " & Score)
 			End If
 		Next
 
-		RaiseEvent ProcessNote("Found " & (Move + 1) & ".")
+		RaiseEvent ProcessNote("Move " & (Move + 1) & " with score " & BestScore)
+
+		' Set thinking flag to false
+		Thinking = False
 
 		Return Move
 	End Function
@@ -269,16 +276,16 @@ Public Class Cls4Play
 
 		Application.DoEvents()
 
-		If IsGameDraw() Then
-			Return 0
-		End If
-
 		If IsWinner(False, Player1Chip) Then
 			Return Player1WinChip
 		End If
 
 		If IsWinner(False, Player2Chip) Then
 			Return Player2WinChip
+		End If
+
+		If IsGameDraw() Or Depth > 9 Then
+			Return 0
 		End If
 
 		' Make a copy of the game Board
