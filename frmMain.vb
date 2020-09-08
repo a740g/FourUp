@@ -2008,6 +2008,9 @@ Public Class FrmMain
 		End If
 
 		e.Cancel = False
+
+		' Force close if AI is busy
+		If GameEngine.Thinking Then End
 	End Sub
 
 	Private Sub MnuGameNew_Click(sender As Object, e As EventArgs) Handles MnuGameNew.Click
@@ -2142,7 +2145,7 @@ Public Class FrmMain
 			If GameEngine.IsGameStarted() Then
 				ComputerTime += CSng(TmrUpdate.Interval) / 1000.0!
 			End If
-			If GameEngine.Player = Cls4Play.Player2Chip AndAlso Not GameEngine.Thinking Then
+			If GameEngine.Player = Cls4Play.Player2Chip And Not GameEngine.Thinking Then
 				Dim i As Integer
 
 				' Computer's move
@@ -2155,6 +2158,8 @@ Public Class FrmMain
 				Else
 					Debug.Fail("TmrUpdate_Tick: Game logic error!", "Computer failed to think for itself (" & i & ")!")
 				End If
+
+				PlayerBusy = False
 
 				UpdateUI()
 			End If
