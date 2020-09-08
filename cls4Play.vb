@@ -1,11 +1,9 @@
-''' <summary>
-''' 4Play: Classic Connect 4 against computer 
-''' Copyright (c) Samuel Gomes, 2020
-''' 
-''' This class defines the core game engine
-''' Currently this games uses a "weak" solver
-''' Someday we should update this to use Minimax with alpha-beta pruning
-''' </summary>
+' 4Play: Classic Connect 4 game against AI
+' Copyright (c) Samuel Gomes, 2020
+
+' This class defines the core game engine
+' Currently this games uses the Minimax solver with alpha-beta pruning
+' TODO: There are bugs to fix and we'll have to optimize the AI
 
 Public Class Cls4Play
 	' Some public constants

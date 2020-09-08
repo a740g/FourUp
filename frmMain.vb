@@ -1,4 +1,4 @@
-' 4Play: Classic Connect 4 against computer
+' 4Play: Classic Connect 4 game against AI
 ' Copyright (c) Samuel Gomes, 2020
 
 Public Class FrmMain
