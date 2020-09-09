@@ -241,7 +241,7 @@ Public Class FrmMain
 		'
 		Me.MnuHelpHint.Index = 1
 		Me.MnuHelpHint.Shortcut = System.Windows.Forms.Shortcut.ShiftF1
-		Me.MnuHelpHint.Text = "Hi&nt..."
+		Me.MnuHelpHint.Text = "&Show AI Thinking"
 		'
 		'MnuHelpSeperator1
 		'
@@ -1194,11 +1194,9 @@ Public Class FrmMain
 #End Region
 
 	' Win32 Shell About box
-	Private Declare Function ShellAbout Lib "shell32" Alias "ShellAboutA" (ByVal hWnd As IntPtr, ByVal szApp As String, ByVal szOtherStuff As String, ByVal hIcon As IntPtr) As Integer
+	Private Declare Ansi Function ShellAbout Lib "shell32" Alias "ShellAboutA" (ByVal hWnd As IntPtr, ByVal szApp As String, ByVal szOtherStuff As String, ByVal hIcon As IntPtr) As Integer
 
 	Private PlayerTime, ComputerTime As Single
-	Private PlayerScore, ComputerScore As Integer
-	Private PlayerMove, ComputerMove As Integer
 	Private WithEvents GameEngine As New Cls4Play()
 	Private PlayerBusy As Boolean = False               ' this is set to true when the player has clicked a column button
 
@@ -1216,11 +1214,10 @@ Public Class FrmMain
 
 	' The following function was generated programatically:
 	' https://www.onlinegdb.com/online_c_compiler
-	' int x, y;
 	'
-	' for (x = 0; x < 7; x++)
+	' for (int x = 0; x < 7; x++)
 	' {
-	'	for (y = 0; y < 6; y++)
+	'	for (int y = 0; y < 6; y++)
 	'   {
 	'		printf("\nMyChip = GameEngine.GetMove(%d, %d)\n", x, y);
 	'       printf("If myChip = Cls4Play.Player1WinChip Then\n");
@@ -2033,7 +2030,7 @@ Public Class FrmMain
 	End Sub
 
 	Private Sub MnuHelpHint_Click(sender As Object, e As EventArgs) Handles MnuHelpHint.Click
-		MsgBox("Try column " & (Math.Abs(GameEngine.Think()) + 1) & ".", MsgBoxStyle.Information, "Hint")
+		MnuHelpHint.Checked = Not MnuHelpHint.Checked
 	End Sub
 
 	Private Sub MnuHelpHowTo_Click(sender As Object, e As EventArgs) Handles MnuHelpHowTo.Click
@@ -2045,14 +2042,14 @@ Public Class FrmMain
 		DrawChips()
 		PlayerTime = 0
 		ComputerTime = 0
-		PlayerMove = 0
-		ComputerMove = 0
+		LblPlayerLastMove.Text = CStr(0)
+		LblComputerLastMove.Text = CStr(0)
 	End Sub
 
 	Private Sub RestartGame()
 		NewGame()
-		PlayerScore = 0
-		ComputerScore = 0
+		LblPlayerScore.Text = CStr(0)
+		LblComputerScore.Text = CStr(0)
 	End Sub
 
 	Private Sub UpdateUI()
@@ -2073,7 +2070,7 @@ Public Class FrmMain
 			Application.DoEvents()
 			Threading.Thread.Sleep(5000)
 			NewGame()
-			PlayerScore += 1
+			LblPlayerScore.Text = CStr(Val(LblPlayerScore.Text) + 1)
 			GameEngine.Player = Cls4Play.Player2Chip
 		ElseIf GameEngine.IsWinner(True, Cls4Play.Player2Chip) Then
 			' Player 1 goes first if Player 2 wins
@@ -2082,7 +2079,7 @@ Public Class FrmMain
 			Application.DoEvents()
 			Threading.Thread.Sleep(5000)
 			NewGame()
-			ComputerScore += 1
+			LblComputerScore.Text = CStr(Val(LblComputerScore.Text) + 1)
 			GameEngine.Player = Cls4Play.Player1Chip
 			PlayerBusy = False
 		ElseIf GameEngine.IsGameDraw() Then
@@ -2098,7 +2095,7 @@ Public Class FrmMain
 		' Don't allow reentry by the user if we are already processing a player move
 		If PlayerBusy Or GameEngine.Player = Cls4Play.Player2Chip Or GameEngine.Thinking Then Exit Sub
 
-		' Set the busy flag to true until the player finished playing
+		' Set the busy flag to true until the player and AI finishes playing
 		PlayerBusy = True
 
 		Dim i As Integer = CInt(CType(sender, Button).Tag)
@@ -2106,10 +2103,9 @@ Public Class FrmMain
 		' Player's move
 		If GameEngine.Player = Cls4Play.Player1Chip Then
 			If GameEngine.PutChipInColumn(i, GameEngine.Player) Then
-				PlayerMove = i + 1
+				LblPlayerLastMove.Text = CStr(i + 1)
 				DrawChips()
 				GameEngine.SwitchPlayers()
-				Application.DoEvents()
 			End If
 		End If
 
@@ -2117,7 +2113,7 @@ Public Class FrmMain
 	End Sub
 
 	Private Sub TmrUpdate_Tick(sender As Object, e As EventArgs) Handles TmrUpdate.Tick
-		'DrawChips()
+		If MnuHelpHint.Checked Then DrawChips()
 
 		' Check the buttons
 		Cmd1.Enabled = GameEngine.GetTotalMovesInColumn(0) <= Cls4Play.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
@@ -2131,11 +2127,6 @@ Public Class FrmMain
 		' Update some status text; esp time and stuff
 		LblPlayerTime.Text = Format(TimeSerial(0, 0, CInt(PlayerTime)), "HH:mm:ss")
 		LblComputerTime.Text = Format(TimeSerial(0, 0, CInt(ComputerTime)), "HH:mm:ss")
-
-		LblPlayerScore.Text = CStr(PlayerScore)
-		LblComputerScore.Text = CStr(ComputerScore)
-		LblPlayerLastMove.Text = CStr(PlayerMove)
-		LblComputerLastMove.Text = CStr(ComputerMove)
 
 		If GameEngine.Player = Cls4Play.Player1Chip Then
 			If GameEngine.IsGameStarted() Then
@@ -2151,10 +2142,9 @@ Public Class FrmMain
 				' Computer's move
 				i = GameEngine.Think()
 				If GameEngine.PutChipInColumn(i, GameEngine.Player) Then
-					ComputerMove = i + 1
+					LblComputerLastMove.Text = CStr(i + 1)
 					DrawChips()
 					GameEngine.SwitchPlayers()
-					Application.DoEvents()
 				Else
 					Debug.Fail("TmrUpdate_Tick: Game logic error!", "Computer failed to think for itself (" & i & ")!")
 				End If

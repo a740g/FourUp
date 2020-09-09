@@ -2,7 +2,7 @@
 ' Copyright (c) Samuel Gomes, 2020
 
 ' This class defines the core game engine
-' Currently this games uses the Minimax solver with alpha-beta pruning
+' Currently this game uses the Minimax solver with alpha-beta pruning
 ' TODO: There are bugs to fix and we'll have to optimize the AI
 
 Public Class Cls4Play
@@ -28,6 +28,7 @@ Public Class Cls4Play
 
 	' Class constructor
 	Public Sub New()
+		Randomize()
 		RestartGame()
 	End Sub
 
@@ -235,8 +236,7 @@ Public Class Cls4Play
 		' Make a copy of the game Board
 		Array.Copy(Board, TmpBoard, Board.Length)
 
-		BestScore = Long.MinValue
-		iStep = If(CInt(Rnd() * 1.0F) = 0, -1, 1)
+		iStep = If(CInt(Rnd() * 1.0!) = 0, -1, 1)
 		If iStep = -1 Then
 			iB = MaxX
 			iE = 0
@@ -244,6 +244,8 @@ Public Class Cls4Play
 			iB = 0
 			iE = MaxX
 		End If
+
+		BestScore = Long.MinValue
 
 		For i = iB To iE Step iStep
 			' We successfully played
@@ -271,8 +273,6 @@ Public Class Cls4Play
 		Dim TmpBoard(MaxX, MaxY) As Integer
 		Dim Value As Long
 		Dim i As Integer
-
-		Application.DoEvents()
 
 		If IsWinner(False, Player1Chip) Then
 			Return Player1WinChip
@@ -316,6 +316,8 @@ Public Class Cls4Play
 				End If
 			Next
 		End If
+
+		Application.DoEvents()
 
 		Return Value
 	End Function
