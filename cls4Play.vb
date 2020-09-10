@@ -4,24 +4,19 @@
 ' This class defines the core game engine
 ' Currently this game uses the Minimax solver with alpha-beta pruning
 ' TODO: There are bugs to fix and we'll have to optimize the AI
+' https://towardsdatascience.com/how-a-chess-playing-computer-thinks-about-its-next-move-8f028bd0e7b1
 
 Public Class Cls4Play
-	' Some public constants
-	Public Const Player1Chip As Integer = -1
-	Public Const Player2Chip As Integer = 1
+	Public Const Player1Chip As Integer = -1                ' Player 1 (human) checker
+	Public Const Player2Chip As Integer = 1                 ' Player 2 (AI) checker
 	Public Const Player1WinChip As Integer = -10
 	Public Const Player2WinChip As Integer = 10
 	Public Const EmptyCellChip As Integer = 0
-	Public Const MaxX As Integer = 6
-	Public Const MaxY As Integer = 5
-
-	' Flag that is set when the AI is evaluating the board
-	Public Thinking As Boolean = False
-	' Current player
-	Public Player As Integer = Player1Chip
-
-	' The main game Board (0 - 6) x (0 - 5) = 7 x 6
-	Private ReadOnly Board(MaxX, MaxY) As Integer
+	Public Const MaxX As Integer = 6                        ' Maximum number of columns
+	Public Const MaxY As Integer = 5                        ' Maximum number of rows
+	Public Thinking As Boolean = False                      ' Flag that is set when the AI is evaluating the board
+	Public Player As Integer = Player1Chip                  ' Current player
+	Public ReadOnly Board(MaxX, MaxY) As Integer           ' The main game Board (0 - 6) x (0 - 5) = 7 x 6
 
 	' Comments while thinking
 	Public Event ProcessNote(Note As String)
@@ -77,11 +72,6 @@ Public Class Cls4Play
 
 		' Place is already taken!
 		Return False
-	End Function
-
-	' Gets a move from a particular game Board position
-	Public Function GetMove(x As Integer, y As Integer) As Integer
-		Return Board(x, y)
 	End Function
 
 	' Puts the move in the game Board if allowed

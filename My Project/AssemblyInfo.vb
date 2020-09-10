@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("4Play Executable")>
+<Assembly: AssemblyTitle("4 Play")>
 <Assembly: AssemblyDescription("Classic Connect 4 game")>
 <Assembly: AssemblyCompany("Samuel Gomes")>
-<Assembly: AssemblyProduct("4Play")>
+<Assembly: AssemblyProduct("4 Play")>
 <Assembly: AssemblyCopyright("Copyright © Samuel Gomes, 2020")>
 <Assembly: AssemblyTrademark("All product names, trademarks and registered trademarks are property of their respective owners")>
 
