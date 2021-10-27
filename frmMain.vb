@@ -2069,9 +2069,10 @@ Public Class FrmMain
 		Cmd7.Enabled = Connect4Board.GetTotalMovesInColumn(6) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
 
 		' Check all possible cases
-		If Connect4Board.IsWinner(True) Then
+		Dim winner As SByte = Connect4Board.IsWinner(True)
+		If winner <> GameBoard.EmptyCell Then
 			DrawChips()
-			If Connect4Board.GetPlayer() = GameBoard.Player1Checker Then
+			If winner = GameBoard.Player2Checker Then
 				UpdateStatus("I win!")
 				LblComputerScore.Text = CStr(Val(LblComputerScore.Text) + 1)
 				PlayerBusy = False
@@ -2087,13 +2088,13 @@ Public Class FrmMain
 			Application.DoEvents()
 			Threading.Thread.Sleep(5000)
 			NewGame()
-			If Connect4Board.GetPlayer() = GameBoard.Player1Checker Then PlayerBusy = False
+			If Connect4Board.GetNextPlayer() = GameBoard.Player1Checker Then PlayerBusy = False
 		End If
 	End Sub
 
 	Private Sub CmdColumn_Click(sender As Object, e As EventArgs) Handles Cmd1.Click, Cmd2.Click, Cmd3.Click, Cmd4.Click, Cmd5.Click, Cmd6.Click, Cmd7.Click
 		' Don't allow reentry by the user if we are already processing a player move
-		If PlayerBusy Or Connect4Board.GetPlayer() = GameBoard.Player2Checker Or GameEngine.Thinking Then Exit Sub
+		If PlayerBusy Or Connect4Board.GetNextPlayer() = GameBoard.Player2Checker Or GameEngine.Thinking Then Exit Sub
 
 		' Set the busy flag to true until the player and AI finishes playing
 		PlayerBusy = True
@@ -2125,7 +2126,7 @@ Public Class FrmMain
 		LblPlayerTime.Text = Format(TimeSerial(0, 0, CInt(PlayerTime)), "HH:mm:ss")
 		LblComputerTime.Text = Format(TimeSerial(0, 0, CInt(ComputerTime)), "HH:mm:ss")
 
-		If Connect4Board.GetPlayer() = GameBoard.Player2Checker Then
+		If Connect4Board.GetNextPlayer() = GameBoard.Player2Checker Then
 			If Connect4Board.HasGameStarted() Then
 				ComputerTime += TmrUpdate.Interval / 1000.0!
 			End If

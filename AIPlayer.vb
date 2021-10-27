@@ -30,7 +30,7 @@ Public Class AIPlayer
 		' Make a copy of the game Board
 		Dim TmpBoard As GameBoard = CType(C4Board.Clone(), GameBoard)
 
-		' Random move if < 4 moves on the board
+		' Random move if < 3 moves on the board
 		If C4Board.GetTotalMoves() < 3 Then
 			Do
 				move = CByte(CInt(Rnd() * CInt(C4Board.MaxX)))
@@ -51,7 +51,7 @@ Public Class AIPlayer
 		For x = 0 To C4Board.MaxX
 			' We successfully played
 			If C4Board.PlayMove(x) Then
-				score = Minimax(0, Long.MinValue, Long.MaxValue, False, C4Board)
+				score = Minimax(Long.MinValue, Long.MaxValue, False, C4Board)
 				' Restore the board and try next position
 				C4Board = CType(TmpBoard.Clone(), GameBoard)
 				If (score > BestScore) Then
@@ -71,18 +71,18 @@ Public Class AIPlayer
 	End Function
 
 	' AI Minimax logic
-	Private Function Minimax(Depth As Integer, Alpha As Long, Beta As Long, IsMaximizing As Boolean, ByRef C4Board As GameBoard) As Long
+	Private Function Minimax(Alpha As Long, Beta As Long, IsMaximizing As Boolean, ByRef C4Board As GameBoard) As Long
 		Dim value As Long
 		Dim x As Byte
 
 		' Return the winner if someone won
-		If C4Board.IsWinner() Then
-			' Note the PlayMove function will always switch the player, so we always return the opponent (who actually made the move)
-			Return C4Board.GetOpponent()
+		value = C4Board.IsWinner()
+		If value <> GameBoard.EmptyCell Then
+			Return value
 		End If
 
 		' Leave if the game is a draw or we have reached the maximum depth
-		If C4Board.IsGameDraw() Or Depth > 9 Then
+		If C4Board.IsGameDraw() Then
 			Return 0
 		End If
 
@@ -93,11 +93,11 @@ Public Class AIPlayer
 			value = Long.MinValue
 			For x = 0 To C4Board.MaxX
 				If C4Board.PlayMove(x) Then
-					value = Math.Max(value, Minimax(Depth + 1, Alpha, Beta, False, C4Board))
+					value = Math.Max(value, Minimax(Alpha, Beta, False, C4Board))
 					' Restore the game Board
 					C4Board = CType(TmpBoard.Clone(), GameBoard)
 					Alpha = Math.Max(Alpha, value)
-					If Alpha >= Beta Then
+					If Beta <= Alpha Then
 						Exit For
 					End If
 				End If
@@ -106,7 +106,7 @@ Public Class AIPlayer
 			value = Long.MaxValue
 			For x = 0 To C4Board.MaxX
 				If C4Board.PlayMove(x) Then
-					value = Math.Min(value, Minimax(Depth + 1, Alpha, Beta, True, C4Board))
+					value = Math.Min(value, Minimax(Alpha, Beta, True, C4Board))
 					' Restore the game Board
 					C4Board = CType(TmpBoard.Clone(), GameBoard)
 					Beta = Math.Min(Beta, value)

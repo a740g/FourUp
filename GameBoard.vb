@@ -14,8 +14,7 @@ Public Class GameBoard
 	Public Const EmptyCell As SByte = 0                         ' Empty cell marker
 	Public ReadOnly MaxX As Byte                                ' Maximum number of columns
 	Public ReadOnly MaxY As Byte                                ' Maximum number of rows
-	Private CurrentPlayer As SByte                              ' Current player. Note this player has not played yet!
-	Private LastPlayer As SByte                                 ' Last player. This is the player who moved last!
+	Private NextPlayer As SByte                                 ' Next player. Note this player has not played yet!
 	Private ReadOnly Moves(0) As Byte                           ' Number of moves in a column
 	Private TotalMoves As UShort                                ' Total moves on the board
 
@@ -25,7 +24,7 @@ Public Class GameBoard
 		MaxY = y
 		ReDim Position(MaxX, MaxY)
 		ReDim Moves(MaxX)
-		CurrentPlayer = Player1Checker                          ' Human player always goes first
+		NextPlayer = Player1Checker                          ' Human player always goes first
 		Reset()
 	End Sub
 
@@ -44,14 +43,14 @@ Public Class GameBoard
 	End Sub
 
 	' Set and set the current player. Validates player checker while setting
-	Public Function GetPlayer() As SByte
-		Return CurrentPlayer
+	Public Function GetNextPlayer() As SByte
+		Return NextPlayer
 	End Function
 
 	' Find the opponent player for value. Validates value
 	Public Function GetOpponent() As SByte
 		' Find the opponent player
-		Return CSByte(IIf(CurrentPlayer = Player1Checker, Player2Checker, Player1Checker))
+		Return -NextPlayer
 	End Function
 
 	' Returns the number of moves played. Will re-evaluate number of moves if ForceCheck is true
@@ -107,15 +106,14 @@ Public Class GameBoard
 		For y = 0 To MaxY
 			If IsMoveAllowed(x, y) Then
 				' Put the checker in the column
-				Position(x, y) = CurrentPlayer
+				Position(x, y) = NextPlayer
 
 				' Increment total moves and move in the column
 				Moves(x) += CByte(1)
 				TotalMoves += 1US
 
-				' Switch the player after saving the current player to last player
-				LastPlayer = CurrentPlayer
-				CurrentPlayer = GetOpponent()
+				' Switch the player
+				NextPlayer = -NextPlayer
 
 				Return True
 			End If
@@ -124,26 +122,27 @@ Public Class GameBoard
 		Return False
 	End Function
 
-	' Determines if the last player is the winner and optionally marks the winning position if the last player won
-	Public Function IsWinner(Optional mark As Boolean = False) As Boolean
+	' Determines if we have a winner and return the player, else zero
+	Public Function IsWinner(Optional mark As Boolean = False) As SByte
 		Dim x, y As Integer
-		Dim WinnerChecker As SByte
-
-		' Set the appropriate winning checker
-		WinnerChecker = CSByte(IIf(LastPlayer = Player1Checker, Player1WinningChecker, Player2WinningChecker))
+		Dim pChecker, wChecker As SByte
 
 		' Check vertically (|)
 		For x = 0 To MaxX
 			For y = 0 To MaxY - CByte(3)
-				If (Position(x, y) + Position(x, y + 1) + Position(x, y + 2) + Position(x, y + 3)) = (LastPlayer + LastPlayer + LastPlayer + LastPlayer) Then
+				If Math.Abs(Position(x, y) + Position(x, y + 1) + Position(x, y + 2) + Position(x, y + 3)) = 4 Then
+					pChecker = Position(x, y)
+
 					If mark Then
-						Position(x, y) = WinnerChecker
-						Position(x, y + 1) = WinnerChecker
-						Position(x, y + 2) = WinnerChecker
-						Position(x, y + 3) = WinnerChecker
+						wChecker = pChecker * CSByte(2)
+
+						Position(x, y) = wChecker
+						Position(x, y + 1) = wChecker
+						Position(x, y + 2) = wChecker
+						Position(x, y + 3) = wChecker
 					End If
 
-					Return True
+					Return pChecker
 				End If
 			Next
 		Next
@@ -151,15 +150,19 @@ Public Class GameBoard
 		' Check horizontally (-)
 		For y = 0 To MaxY
 			For x = 0 To MaxX - CByte(3)
-				If (Position(x, y) + Position(x + 1, y) + Position(x + 2, y) + Position(x + 3, y)) = (LastPlayer + LastPlayer + LastPlayer + LastPlayer) Then
+				If Math.Abs(Position(x, y) + Position(x + 1, y) + Position(x + 2, y) + Position(x + 3, y)) = 4 Then
+					pChecker = Position(x, y)
+
 					If mark Then
-						Position(x, y) = WinnerChecker
-						Position(x + 1, y) = WinnerChecker
-						Position(x + 2, y) = WinnerChecker
-						Position(x + 3, y) = WinnerChecker
+						wChecker = pChecker * CSByte(2)
+
+						Position(x, y) = wChecker
+						Position(x + 1, y) = wChecker
+						Position(x + 2, y) = wChecker
+						Position(x + 3, y) = wChecker
 					End If
 
-					Return True
+					Return pChecker
 				End If
 			Next
 		Next
@@ -167,15 +170,19 @@ Public Class GameBoard
 		' Check diagonally (/)
 		For y = 0 To MaxY - CByte(3)
 			For x = 0 To MaxX - CByte(3)
-				If (Position(x, y) + Position(x + 1, y + 1) + Position(x + 2, y + 2) + Position(x + 3, y + 3)) = (LastPlayer + LastPlayer + LastPlayer + LastPlayer) Then
+				If Math.Abs(Position(x, y) + Position(x + 1, y + 1) + Position(x + 2, y + 2) + Position(x + 3, y + 3)) = 4 Then
+					pChecker = Position(x, y)
+
 					If mark Then
-						Position(x, y) = WinnerChecker
-						Position(x + 1, y + 1) = WinnerChecker
-						Position(x + 2, y + 2) = WinnerChecker
-						Position(x + 3, y + 3) = WinnerChecker
+						wChecker = pChecker * CSByte(2)
+
+						Position(x, y) = wChecker
+						Position(x + 1, y + 1) = wChecker
+						Position(x + 2, y + 2) = wChecker
+						Position(x + 3, y + 3) = wChecker
 					End If
 
-					Return True
+					Return pChecker
 				End If
 			Next
 		Next
@@ -183,21 +190,25 @@ Public Class GameBoard
 		' Check diagonally (\)
 		For y = 0 To MaxY - CByte(3)
 			For x = MaxX To 3 Step -1
-				If (Position(x, y) + Position(x - 1, y + 1) + Position(x - 2, y + 2) + Position(x - 3, y + 3)) = (LastPlayer + LastPlayer + LastPlayer + LastPlayer) Then
+				If Math.Abs(Position(x, y) + Position(x - 1, y + 1) + Position(x - 2, y + 2) + Position(x - 3, y + 3)) = 4 Then
+					pChecker = Position(x, y)
+
 					If mark Then
-						Position(x, y) = WinnerChecker
-						Position(x - 1, y + 1) = WinnerChecker
-						Position(x - 2, y + 2) = WinnerChecker
-						Position(x - 3, y + 3) = WinnerChecker
+						wChecker = pChecker * CSByte(2)
+
+						Position(x, y) = wChecker
+						Position(x - 1, y + 1) = wChecker
+						Position(x - 2, y + 2) = wChecker
+						Position(x - 3, y + 3) = wChecker
 					End If
 
-					Return True
+					Return pChecker
 				End If
 			Next
 		Next
 
 		' No winner yet
-		Return False
+		Return EmptyCell
 	End Function
 
 	' This creates a new copy of an object of GameBoard
@@ -205,8 +216,7 @@ Public Class GameBoard
 		Dim c As New GameBoard(MaxX, MaxY)
 
 		Array.Copy(Position, c.Position, Position.Length)
-		c.CurrentPlayer = CurrentPlayer
-		c.LastPlayer = LastPlayer
+		c.NextPlayer = NextPlayer
 		Array.Copy(Moves, c.Moves, Moves.Length)
 		c.TotalMoves = TotalMoves
 
