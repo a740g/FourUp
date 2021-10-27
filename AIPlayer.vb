@@ -5,9 +5,7 @@
 ' See here: https://towardsdatascience.com/how-a-chess-playing-computer-thinks-about-its-next-move-8f028bd0e7b1
 
 Public Class AIPlayer
-	Public Thinking As Boolean = False                      ' Flag that is set when the AI is evaluating the board
-
-	' Comments while thinking
+	' AI Debug messages
 	Public Event ProcessNote(Note As String)
 
 	' Class constructor
@@ -23,10 +21,6 @@ Public Class AIPlayer
 
 		Debug.Assert(C4Board.IsGameDraw() = False)
 
-		' Set thiking flag to true
-		Thinking = True
-		RaiseEvent ProcessNote("Thinking...")
-
 		' Make a copy of the game Board
 		Dim TmpBoard As GameBoard = CType(C4Board.Clone(), GameBoard)
 
@@ -38,8 +32,6 @@ Public Class AIPlayer
 					' Restore the game Board
 					C4Board = CType(TmpBoard.Clone(), GameBoard)
 					RaiseEvent ProcessNote("Random move " & (move + 1))
-
-					Thinking = False
 
 					Return move
 				End If
@@ -63,9 +55,6 @@ Public Class AIPlayer
 		Next
 
 		RaiseEvent ProcessNote("Move " & (move + 1) & " with score " & BestScore)
-
-		' Set thinking flag to false
-		Thinking = False
 
 		Return move
 	End Function

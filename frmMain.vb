@@ -1201,7 +1201,8 @@ Public Class FrmMain
 	Private PlayerTime, ComputerTime As Single
 	Public Connect4Board As New GameBoard(6, 5)         ' Our game board
 	Private WithEvents GameEngine As New AIPlayer
-	Private PlayerBusy As Boolean = False               ' this is set to true when the player has clicked a column button
+	Private PlayerBusy As Boolean = False               ' This is set to true when the player has clicked a column button
+	Private AIBusy As Boolean = False                   ' This is set when AI is busy evaluating the board
 
 	' Our game engine message handler
 	Private Sub UpdateStatus(Note As String) Handles GameEngine.ProcessNote
@@ -2012,7 +2013,7 @@ Public Class FrmMain
 		e.Cancel = False
 
 		' Force close if AI is busy
-		If GameEngine.Thinking Then End
+		If AIBusy Then End
 	End Sub
 
 	Private Sub MnuGameNew_Click(sender As Object, e As EventArgs) Handles MnuGameNew.Click
@@ -2060,13 +2061,13 @@ Public Class FrmMain
 
 	Private Sub UpdateUI()
 		' Disable housefull columns. The additional checks below will reject user input of AI or Player has already played in the UI but logic is not complete
-		Cmd1.Enabled = Connect4Board.GetTotalMovesInColumn(0) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
-		Cmd2.Enabled = Connect4Board.GetTotalMovesInColumn(1) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
-		Cmd3.Enabled = Connect4Board.GetTotalMovesInColumn(2) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
-		Cmd4.Enabled = Connect4Board.GetTotalMovesInColumn(3) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
-		Cmd5.Enabled = Connect4Board.GetTotalMovesInColumn(4) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
-		Cmd6.Enabled = Connect4Board.GetTotalMovesInColumn(5) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
-		Cmd7.Enabled = Connect4Board.GetTotalMovesInColumn(6) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+		Cmd1.Enabled = Connect4Board.GetTotalMovesInColumn(0) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
+		Cmd2.Enabled = Connect4Board.GetTotalMovesInColumn(1) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
+		Cmd3.Enabled = Connect4Board.GetTotalMovesInColumn(2) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
+		Cmd4.Enabled = Connect4Board.GetTotalMovesInColumn(3) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
+		Cmd5.Enabled = Connect4Board.GetTotalMovesInColumn(4) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
+		Cmd6.Enabled = Connect4Board.GetTotalMovesInColumn(5) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
+		Cmd7.Enabled = Connect4Board.GetTotalMovesInColumn(6) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
 
 		' Check all possible cases
 		Dim winner As SByte = Connect4Board.IsWinner(True)
@@ -2094,7 +2095,7 @@ Public Class FrmMain
 
 	Private Sub CmdColumn_Click(sender As Object, e As EventArgs) Handles Cmd1.Click, Cmd2.Click, Cmd3.Click, Cmd4.Click, Cmd5.Click, Cmd6.Click, Cmd7.Click
 		' Don't allow reentry by the user if we are already processing a player move
-		If PlayerBusy Or Connect4Board.GetNextPlayer() = GameBoard.Player2Checker Or GameEngine.Thinking Then Exit Sub
+		If PlayerBusy Or Connect4Board.GetNextPlayer() = GameBoard.Player2Checker Or AIBusy Then Exit Sub
 
 		' Set the busy flag to true until the player and AI finishes playing
 		PlayerBusy = True
@@ -2114,13 +2115,13 @@ Public Class FrmMain
 		If MnuHelpHint.Checked Then DrawChips()
 
 		' Disable housefull columns. The additional checks below will reject user input of AI or Player has already played in the UI but logic is not complete
-		Cmd1.Enabled = Connect4Board.GetTotalMovesInColumn(0) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
-		Cmd2.Enabled = Connect4Board.GetTotalMovesInColumn(1) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
-		Cmd3.Enabled = Connect4Board.GetTotalMovesInColumn(2) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
-		Cmd4.Enabled = Connect4Board.GetTotalMovesInColumn(3) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
-		Cmd5.Enabled = Connect4Board.GetTotalMovesInColumn(4) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
-		Cmd6.Enabled = Connect4Board.GetTotalMovesInColumn(5) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
-		Cmd7.Enabled = Connect4Board.GetTotalMovesInColumn(6) <= Connect4Board.MaxY AndAlso Not GameEngine.Thinking AndAlso Not PlayerBusy
+		Cmd1.Enabled = Connect4Board.GetTotalMovesInColumn(0) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
+		Cmd2.Enabled = Connect4Board.GetTotalMovesInColumn(1) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
+		Cmd3.Enabled = Connect4Board.GetTotalMovesInColumn(2) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
+		Cmd4.Enabled = Connect4Board.GetTotalMovesInColumn(3) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
+		Cmd5.Enabled = Connect4Board.GetTotalMovesInColumn(4) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
+		Cmd6.Enabled = Connect4Board.GetTotalMovesInColumn(5) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
+		Cmd7.Enabled = Connect4Board.GetTotalMovesInColumn(6) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
 
 		' Update some status text; esp time and stuff
 		LblPlayerTime.Text = Format(TimeSerial(0, 0, CInt(PlayerTime)), "HH:mm:ss")
@@ -2130,10 +2131,13 @@ Public Class FrmMain
 			If Connect4Board.HasGameStarted() Then
 				ComputerTime += TmrUpdate.Interval / 1000.0!
 			End If
-			If Not GameEngine.Thinking Then
+			If Not AIBusy Then
 				Dim i As Byte
 
 				' Computer's move
+				UpdateStatus("Thinking...")
+
+				AIBusy = True
 				i = GameEngine.Think(Connect4Board)
 				If Connect4Board.PlayMove(i) Then
 					LblComputerLastMove.Text = CStr(i + 1)
@@ -2142,6 +2146,7 @@ Public Class FrmMain
 					Debug.Fail("TmrUpdate_Tick: Game logic error!", "Computer failed to think for itself (" & i & ")!")
 				End If
 
+				AIBusy = False
 				PlayerBusy = False
 
 				UpdateUI()
