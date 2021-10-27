@@ -4,7 +4,7 @@
 	'  of the Project Designer ("Properties" under the "Project" menu).
 
 
-	Private Sub SplashScreen_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+	Private Sub SplashScreen_Load(sender As Object, e As EventArgs) Handles Me.Load
 		'Set up the dialog text at runtime according to the application's assembly information.  
 
 		'TODO: Customize the application's assembly information in the "Application" pane of the project 
