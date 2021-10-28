@@ -18,17 +18,21 @@ Public Class GameBoard
 	Private ReadOnly Moves(0) As Byte                           ' Number of moves in a column
 	Private TotalMoves As UShort                                ' Total moves on the board
 
-	' Constructor - sets the board size and reset the board
+	' Constructor - sets the board size
 	Public Sub New(x As Byte, y As Byte)
+		' Set the board size
 		MaxX = x
 		MaxY = y
+		' Allocate memory based on board size
 		ReDim Position(MaxX, MaxY)
 		ReDim Moves(MaxX)
-		NextPlayer = Player1Checker                          ' Human player always goes first
-		Reset()
+		' Player 1 always goes first
+		NextPlayer = Player1Checker
+		' Reset the board. Really not required
+		'Reset()
 	End Sub
 
-	' Clears the game Board
+	' Clears the game board
 	Public Sub Reset()
 		Dim x, y As Integer
 
@@ -42,23 +46,23 @@ Public Class GameBoard
 		TotalMoves = 0
 	End Sub
 
-	' Set and set the current player. Validates player checker while setting
+	' Gets the next player (who has not played yet!)
 	Public Function GetNextPlayer() As SByte
 		Return NextPlayer
 	End Function
 
-	' Find the opponent player for value. Validates value
-	Public Function GetOpponent() As SByte
+	' Gets the last player (who played the last move provided the game has started)
+	Public Function GetLastPlayer() As SByte
 		' Find the opponent player
 		Return -NextPlayer
 	End Function
 
-	' Returns the number of moves played. Will re-evaluate number of moves if ForceCheck is true
+	' Returns the number of moves played
 	Public Function GetTotalMoves() As UShort
 		Return TotalMoves
 	End Function
 
-	' Returns the total number of moves in a particular game matix column
+	' Returns the total number of moves in a particular column
 	Public Function GetTotalMovesInColumn(x As Byte) As UShort
 		Debug.Assert(x <= MaxX)
 
@@ -99,11 +103,9 @@ Public Class GameBoard
 
 	' Puts the move in the game board by the current player if allowed
 	Public Function PlayMove(x As Byte) As Boolean
-		Dim y As Byte
-
 		Debug.Assert(x <= MaxX)
 
-		For y = 0 To MaxY
+		For y As Byte = 0 To MaxY
 			If IsMoveAllowed(x, y) Then
 				' Put the checker in the column
 				Position(x, y) = NextPlayer

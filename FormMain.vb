@@ -6,7 +6,7 @@
 ' I have tried my best to follow the MS VB.Net naming conventions whereever possbile while updating the code
 ' See here: https://docs.microsoft.com/en-us/dotnet/visual-basic/programming-guide/program-structure/naming-conventions
 
-Public Class FrmMain
+Public Class FormMain
 	Inherits Form
 
 #Region " Windows Form Designer generated code "
@@ -117,7 +117,7 @@ Public Class FrmMain
 	Friend WithEvents LblComputerScoreLbl As Windows.Forms.Label
 	<DebuggerStepThrough()> Private Sub InitializeComponent()
 		Me.components = New Container()
-		Dim resources As ComponentResourceManager = New ComponentResourceManager(GetType(FrmMain))
+		Dim resources As ComponentResourceManager = New ComponentResourceManager(GetType(FormMain))
 		Me.MnuMain = New MainMenu(Me.components)
 		Me.MnuGame = New MenuItem()
 		Me.MnuGameNew = New MenuItem()
@@ -2112,6 +2112,11 @@ Public Class FrmMain
 	End Sub
 
 	Private Sub TmrUpdate_Tick(sender As Object, e As EventArgs) Handles TmrUpdate.Tick
+		' We do not want any updates if the game has not started
+		If Not Connect4Board.HasGameStarted() Then Return
+
+		' Show the game board while AI is evaluating the board. This has to go. We cannot change the main game board when AI is evaluating
+		' This does a lot of funny stuff to the UI code that depend on the class
 		If MnuHelpHint.Checked Then DrawChips()
 
 		' Disable housefull columns. The additional checks below will reject user input of AI or Player has already played in the UI but logic is not complete
@@ -2128,9 +2133,8 @@ Public Class FrmMain
 		LblComputerTime.Text = Format(TimeSerial(0, 0, CInt(ComputerTime)), "HH:mm:ss")
 
 		If Connect4Board.GetNextPlayer() = GameBoard.Player2Checker Then
-			If Connect4Board.HasGameStarted() Then
-				ComputerTime += TmrUpdate.Interval / 1000.0!
-			End If
+			ComputerTime += TmrUpdate.Interval / 1000.0!
+
 			If Not AIBusy Then
 				Dim i As Byte
 
@@ -2152,9 +2156,7 @@ Public Class FrmMain
 				UpdateUI()
 			End If
 		Else
-			If Connect4Board.HasGameStarted() Then
-				PlayerTime += TmrUpdate.Interval / 1000.0!
-			End If
+			PlayerTime += TmrUpdate.Interval / 1000.0!
 		End If
 	End Sub
 End Class
