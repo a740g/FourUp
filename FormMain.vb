@@ -47,16 +47,16 @@ Public Class FormMain
 	Friend WithEvents MnuHelpHint As MenuItem
 	Friend WithEvents MnuHelpSeperator1 As MenuItem
 	Friend WithEvents MnuHelpAbout As MenuItem
-	Friend WithEvents TmrUpdate As Windows.Forms.Timer
+	Friend WithEvents TmrUpdate As Timer
 	Friend WithEvents PnlPawns As Panel
 	Friend WithEvents PnlButtons As Panel
 	Friend WithEvents Cmd1 As Button
 	Friend WithEvents TxtStatus As TextBox
-	Friend WithEvents LblPlayerScoreLbl As Windows.Forms.Label
-	Friend WithEvents LblPlayerLastMoveLbl As Windows.Forms.Label
-	Friend WithEvents LblPlayerScore As Windows.Forms.Label
-	Friend WithEvents LblPlayerLastMove As Windows.Forms.Label
-	Friend WithEvents LblPlayerTime As Windows.Forms.Label
+	Friend WithEvents LblPlayerScoreLbl As Label
+	Friend WithEvents LblPlayerLastMoveLbl As Label
+	Friend WithEvents LblPlayerScore As Label
+	Friend WithEvents LblPlayerLastMove As Label
+	Friend WithEvents LblPlayerTime As Label
 	Friend WithEvents Cmd2 As Button
 	Friend WithEvents Cmd3 As Button
 	Friend WithEvents Cmd4 As Button
@@ -64,60 +64,60 @@ Public Class FormMain
 	Friend WithEvents Cmd6 As Button
 	Friend WithEvents Cmd7 As Button
 	Friend WithEvents PnlStatus As Panel
-	Friend WithEvents Lbl0_0 As Windows.Forms.Label
-	Friend WithEvents Lbl0_1 As Windows.Forms.Label
-	Friend WithEvents Lbl0_2 As Windows.Forms.Label
-	Friend WithEvents Lbl0_3 As Windows.Forms.Label
-	Friend WithEvents Lbl0_4 As Windows.Forms.Label
-	Friend WithEvents Lbl0_5 As Windows.Forms.Label
-	Friend WithEvents Lbl1_5 As Windows.Forms.Label
-	Friend WithEvents Lbl1_4 As Windows.Forms.Label
-	Friend WithEvents Lbl1_3 As Windows.Forms.Label
-	Friend WithEvents Lbl1_2 As Windows.Forms.Label
-	Friend WithEvents Lbl1_1 As Windows.Forms.Label
-	Friend WithEvents Lbl1_0 As Windows.Forms.Label
-	Friend WithEvents Lbl2_5 As Windows.Forms.Label
-	Friend WithEvents Lbl2_4 As Windows.Forms.Label
-	Friend WithEvents Lbl2_3 As Windows.Forms.Label
-	Friend WithEvents Lbl2_2 As Windows.Forms.Label
-	Friend WithEvents Lbl2_1 As Windows.Forms.Label
-	Friend WithEvents Lbl2_0 As Windows.Forms.Label
-	Friend WithEvents Lbl3_5 As Windows.Forms.Label
-	Friend WithEvents Lbl3_4 As Windows.Forms.Label
-	Friend WithEvents Lbl3_3 As Windows.Forms.Label
-	Friend WithEvents Lbl3_2 As Windows.Forms.Label
-	Friend WithEvents Lbl3_1 As Windows.Forms.Label
-	Friend WithEvents Lbl3_0 As Windows.Forms.Label
-	Friend WithEvents Lbl4_5 As Windows.Forms.Label
-	Friend WithEvents Lbl4_4 As Windows.Forms.Label
-	Friend WithEvents Lbl4_3 As Windows.Forms.Label
-	Friend WithEvents Lbl4_2 As Windows.Forms.Label
-	Friend WithEvents Lbl4_1 As Windows.Forms.Label
-	Friend WithEvents Lbl4_0 As Windows.Forms.Label
-	Friend WithEvents Lbl5_5 As Windows.Forms.Label
-	Friend WithEvents Lbl5_4 As Windows.Forms.Label
-	Friend WithEvents Lbl5_3 As Windows.Forms.Label
-	Friend WithEvents Lbl5_2 As Windows.Forms.Label
-	Friend WithEvents Lbl5_1 As Windows.Forms.Label
-	Friend WithEvents Lbl5_0 As Windows.Forms.Label
-	Friend WithEvents Lbl6_5 As Windows.Forms.Label
-	Friend WithEvents Lbl6_4 As Windows.Forms.Label
-	Friend WithEvents Lbl6_3 As Windows.Forms.Label
-	Friend WithEvents Lbl6_2 As Windows.Forms.Label
-	Friend WithEvents Lbl6_1 As Windows.Forms.Label
-	Friend WithEvents Lbl6_0 As Windows.Forms.Label
+	Friend WithEvents Lbl0_0 As Label
+	Friend WithEvents Lbl0_1 As Label
+	Friend WithEvents Lbl0_2 As Label
+	Friend WithEvents Lbl0_3 As Label
+	Friend WithEvents Lbl0_4 As Label
+	Friend WithEvents Lbl0_5 As Label
+	Friend WithEvents Lbl1_5 As Label
+	Friend WithEvents Lbl1_4 As Label
+	Friend WithEvents Lbl1_3 As Label
+	Friend WithEvents Lbl1_2 As Label
+	Friend WithEvents Lbl1_1 As Label
+	Friend WithEvents Lbl1_0 As Label
+	Friend WithEvents Lbl2_5 As Label
+	Friend WithEvents Lbl2_4 As Label
+	Friend WithEvents Lbl2_3 As Label
+	Friend WithEvents Lbl2_2 As Label
+	Friend WithEvents Lbl2_1 As Label
+	Friend WithEvents Lbl2_0 As Label
+	Friend WithEvents Lbl3_5 As Label
+	Friend WithEvents Lbl3_4 As Label
+	Friend WithEvents Lbl3_3 As Label
+	Friend WithEvents Lbl3_2 As Label
+	Friend WithEvents Lbl3_1 As Label
+	Friend WithEvents Lbl3_0 As Label
+	Friend WithEvents Lbl4_5 As Label
+	Friend WithEvents Lbl4_4 As Label
+	Friend WithEvents Lbl4_3 As Label
+	Friend WithEvents Lbl4_2 As Label
+	Friend WithEvents Lbl4_1 As Label
+	Friend WithEvents Lbl4_0 As Label
+	Friend WithEvents Lbl5_5 As Label
+	Friend WithEvents Lbl5_4 As Label
+	Friend WithEvents Lbl5_3 As Label
+	Friend WithEvents Lbl5_2 As Label
+	Friend WithEvents Lbl5_1 As Label
+	Friend WithEvents Lbl5_0 As Label
+	Friend WithEvents Lbl6_5 As Label
+	Friend WithEvents Lbl6_4 As Label
+	Friend WithEvents Lbl6_3 As Label
+	Friend WithEvents Lbl6_2 As Label
+	Friend WithEvents Lbl6_1 As Label
+	Friend WithEvents Lbl6_0 As Label
 	Friend WithEvents GrpPlayer As GroupBox
 	Friend WithEvents GrpComputer As GroupBox
-	Friend WithEvents LblPlayerTimeLbl As Windows.Forms.Label
-	Friend WithEvents LblComputerTime As Windows.Forms.Label
-	Friend WithEvents LblComputerLastMove As Windows.Forms.Label
-	Friend WithEvents LblComputerScore As Windows.Forms.Label
-	Friend WithEvents LblComputerTimeLbl As Windows.Forms.Label
-	Friend WithEvents LblComputerLastMoveLbl As Windows.Forms.Label
-	Friend WithEvents LblComputerScoreLbl As Windows.Forms.Label
+	Friend WithEvents LblPlayerTimeLbl As Label
+	Friend WithEvents LblComputerTime As Label
+	Friend WithEvents LblComputerLastMove As Label
+	Friend WithEvents LblComputerScore As Label
+	Friend WithEvents LblComputerTimeLbl As Label
+	Friend WithEvents LblComputerLastMoveLbl As Label
+	Friend WithEvents LblComputerScoreLbl As Label
 	<DebuggerStepThrough()> Private Sub InitializeComponent()
 		Me.components = New Container()
-		Dim resources As ComponentResourceManager = New ComponentResourceManager(GetType(FormMain))
+		Dim resources As New ComponentResourceManager(GetType(FormMain))
 		Me.MnuMain = New MainMenu(Me.components)
 		Me.MnuGame = New MenuItem()
 		Me.MnuGameNew = New MenuItem()
@@ -128,50 +128,50 @@ Public Class FormMain
 		Me.MnuHelpHint = New MenuItem()
 		Me.MnuHelpSeperator1 = New MenuItem()
 		Me.MnuHelpAbout = New MenuItem()
-		Me.TmrUpdate = New Windows.Forms.Timer(Me.components)
+		Me.TmrUpdate = New Timer(Me.components)
 		Me.PnlPawns = New Panel()
-		Me.Lbl6_5 = New Windows.Forms.Label()
-		Me.Lbl6_4 = New Windows.Forms.Label()
-		Me.Lbl6_3 = New Windows.Forms.Label()
-		Me.Lbl6_2 = New Windows.Forms.Label()
-		Me.Lbl6_1 = New Windows.Forms.Label()
-		Me.Lbl6_0 = New Windows.Forms.Label()
-		Me.Lbl5_5 = New Windows.Forms.Label()
-		Me.Lbl5_4 = New Windows.Forms.Label()
-		Me.Lbl5_3 = New Windows.Forms.Label()
-		Me.Lbl5_2 = New Windows.Forms.Label()
-		Me.Lbl5_1 = New Windows.Forms.Label()
-		Me.Lbl5_0 = New Windows.Forms.Label()
-		Me.Lbl4_5 = New Windows.Forms.Label()
-		Me.Lbl4_4 = New Windows.Forms.Label()
-		Me.Lbl4_3 = New Windows.Forms.Label()
-		Me.Lbl4_2 = New Windows.Forms.Label()
-		Me.Lbl4_1 = New Windows.Forms.Label()
-		Me.Lbl4_0 = New Windows.Forms.Label()
-		Me.Lbl3_5 = New Windows.Forms.Label()
-		Me.Lbl3_4 = New Windows.Forms.Label()
-		Me.Lbl3_3 = New Windows.Forms.Label()
-		Me.Lbl3_2 = New Windows.Forms.Label()
-		Me.Lbl3_1 = New Windows.Forms.Label()
-		Me.Lbl3_0 = New Windows.Forms.Label()
-		Me.Lbl2_5 = New Windows.Forms.Label()
-		Me.Lbl2_4 = New Windows.Forms.Label()
-		Me.Lbl2_3 = New Windows.Forms.Label()
-		Me.Lbl2_2 = New Windows.Forms.Label()
-		Me.Lbl2_1 = New Windows.Forms.Label()
-		Me.Lbl2_0 = New Windows.Forms.Label()
-		Me.Lbl1_5 = New Windows.Forms.Label()
-		Me.Lbl1_4 = New Windows.Forms.Label()
-		Me.Lbl1_3 = New Windows.Forms.Label()
-		Me.Lbl1_2 = New Windows.Forms.Label()
-		Me.Lbl1_1 = New Windows.Forms.Label()
-		Me.Lbl1_0 = New Windows.Forms.Label()
-		Me.Lbl0_5 = New Windows.Forms.Label()
-		Me.Lbl0_4 = New Windows.Forms.Label()
-		Me.Lbl0_3 = New Windows.Forms.Label()
-		Me.Lbl0_2 = New Windows.Forms.Label()
-		Me.Lbl0_1 = New Windows.Forms.Label()
-		Me.Lbl0_0 = New Windows.Forms.Label()
+		Me.Lbl6_5 = New Label()
+		Me.Lbl6_4 = New Label()
+		Me.Lbl6_3 = New Label()
+		Me.Lbl6_2 = New Label()
+		Me.Lbl6_1 = New Label()
+		Me.Lbl6_0 = New Label()
+		Me.Lbl5_5 = New Label()
+		Me.Lbl5_4 = New Label()
+		Me.Lbl5_3 = New Label()
+		Me.Lbl5_2 = New Label()
+		Me.Lbl5_1 = New Label()
+		Me.Lbl5_0 = New Label()
+		Me.Lbl4_5 = New Label()
+		Me.Lbl4_4 = New Label()
+		Me.Lbl4_3 = New Label()
+		Me.Lbl4_2 = New Label()
+		Me.Lbl4_1 = New Label()
+		Me.Lbl4_0 = New Label()
+		Me.Lbl3_5 = New Label()
+		Me.Lbl3_4 = New Label()
+		Me.Lbl3_3 = New Label()
+		Me.Lbl3_2 = New Label()
+		Me.Lbl3_1 = New Label()
+		Me.Lbl3_0 = New Label()
+		Me.Lbl2_5 = New Label()
+		Me.Lbl2_4 = New Label()
+		Me.Lbl2_3 = New Label()
+		Me.Lbl2_2 = New Label()
+		Me.Lbl2_1 = New Label()
+		Me.Lbl2_0 = New Label()
+		Me.Lbl1_5 = New Label()
+		Me.Lbl1_4 = New Label()
+		Me.Lbl1_3 = New Label()
+		Me.Lbl1_2 = New Label()
+		Me.Lbl1_1 = New Label()
+		Me.Lbl1_0 = New Label()
+		Me.Lbl0_5 = New Label()
+		Me.Lbl0_4 = New Label()
+		Me.Lbl0_3 = New Label()
+		Me.Lbl0_2 = New Label()
+		Me.Lbl0_1 = New Label()
+		Me.Lbl0_0 = New Label()
 		Me.PnlButtons = New Panel()
 		Me.Cmd7 = New Button()
 		Me.Cmd6 = New Button()
@@ -182,19 +182,19 @@ Public Class FormMain
 		Me.Cmd1 = New Button()
 		Me.PnlStatus = New Panel()
 		Me.GrpComputer = New GroupBox()
-		Me.LblComputerTime = New Windows.Forms.Label()
-		Me.LblComputerLastMove = New Windows.Forms.Label()
-		Me.LblComputerScore = New Windows.Forms.Label()
-		Me.LblComputerTimeLbl = New Windows.Forms.Label()
-		Me.LblComputerLastMoveLbl = New Windows.Forms.Label()
-		Me.LblComputerScoreLbl = New Windows.Forms.Label()
+		Me.LblComputerTime = New Label()
+		Me.LblComputerLastMove = New Label()
+		Me.LblComputerScore = New Label()
+		Me.LblComputerTimeLbl = New Label()
+		Me.LblComputerLastMoveLbl = New Label()
+		Me.LblComputerScoreLbl = New Label()
 		Me.GrpPlayer = New GroupBox()
-		Me.LblPlayerTime = New Windows.Forms.Label()
-		Me.LblPlayerLastMove = New Windows.Forms.Label()
-		Me.LblPlayerScore = New Windows.Forms.Label()
-		Me.LblPlayerTimeLbl = New Windows.Forms.Label()
-		Me.LblPlayerLastMoveLbl = New Windows.Forms.Label()
-		Me.LblPlayerScoreLbl = New Windows.Forms.Label()
+		Me.LblPlayerTime = New Label()
+		Me.LblPlayerLastMove = New Label()
+		Me.LblPlayerScore = New Label()
+		Me.LblPlayerTimeLbl = New Label()
+		Me.LblPlayerLastMoveLbl = New Label()
+		Me.LblPlayerScoreLbl = New Label()
 		Me.TxtStatus = New TextBox()
 		Me.PnlPawns.SuspendLayout()
 		Me.PnlButtons.SuspendLayout()
@@ -1201,8 +1201,7 @@ Public Class FormMain
 	Private PlayerTime, ComputerTime As Single
 	Public Connect4Board As New GameBoard(6, 5)         ' Our game board
 	Private WithEvents GameEngine As New AIPlayer
-	Private PlayerBusy As Boolean = False               ' This is set to true when the player has clicked a column button
-	Private AIBusy As Boolean = False                   ' This is set when AI is busy evaluating the board
+	Private GameBusy As Boolean = False                 ' All UI input and AI play will be disabled if this is true
 
 	' Our game engine message handler
 	Private Sub UpdateStatus(Note As String) Handles GameEngine.ProcessNote
@@ -1244,8 +1243,8 @@ Public Class FormMain
 
 	'    return 0;
 	'}
-#Region " DrawChips() [Auto-generated using C] "
-	Private Sub DrawChips()
+#Region " DrawBoard() [Auto-generated using C] "
+	Private Sub DrawBoard()
 		Dim myChip As SByte
 
 		myChip = Connect4Board.Position(0, 0)
@@ -2013,7 +2012,7 @@ Public Class FormMain
 		e.Cancel = False
 
 		' Force close if AI is busy
-		If AIBusy Then End
+		If GameBusy Then End
 	End Sub
 
 	Private Sub MnuGameNew_Click(sender As Object, e As EventArgs) Handles MnuGameNew.Click
@@ -2045,7 +2044,7 @@ Public Class FormMain
 
 	Private Sub NewGame()
 		Connect4Board.Reset()
-		DrawChips()
+		DrawBoard()
 		PlayerTime = 0
 		ComputerTime = 0
 		LblPlayerLastMove.Text = CStr(0)
@@ -2061,102 +2060,101 @@ Public Class FormMain
 
 	Private Sub UpdateUI()
 		' Disable housefull columns. The additional checks below will reject user input of AI or Player has already played in the UI but logic is not complete
-		Cmd1.Enabled = Connect4Board.GetTotalMovesInColumn(0) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
-		Cmd2.Enabled = Connect4Board.GetTotalMovesInColumn(1) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
-		Cmd3.Enabled = Connect4Board.GetTotalMovesInColumn(2) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
-		Cmd4.Enabled = Connect4Board.GetTotalMovesInColumn(3) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
-		Cmd5.Enabled = Connect4Board.GetTotalMovesInColumn(4) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
-		Cmd6.Enabled = Connect4Board.GetTotalMovesInColumn(5) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
-		Cmd7.Enabled = Connect4Board.GetTotalMovesInColumn(6) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
+		Cmd1.Enabled = Connect4Board.GetTotalMovesInColumn(0) <= Connect4Board.MaxY AndAlso Not GameBusy
+		Cmd2.Enabled = Connect4Board.GetTotalMovesInColumn(1) <= Connect4Board.MaxY AndAlso Not GameBusy
+		Cmd3.Enabled = Connect4Board.GetTotalMovesInColumn(2) <= Connect4Board.MaxY AndAlso Not GameBusy
+		Cmd4.Enabled = Connect4Board.GetTotalMovesInColumn(3) <= Connect4Board.MaxY AndAlso Not GameBusy
+		Cmd5.Enabled = Connect4Board.GetTotalMovesInColumn(4) <= Connect4Board.MaxY AndAlso Not GameBusy
+		Cmd6.Enabled = Connect4Board.GetTotalMovesInColumn(5) <= Connect4Board.MaxY AndAlso Not GameBusy
+		Cmd7.Enabled = Connect4Board.GetTotalMovesInColumn(6) <= Connect4Board.MaxY AndAlso Not GameBusy
 
-		' Check all possible cases
-		Dim winner As SByte = Connect4Board.IsWinner(True)
+		' Draw the game board
+		If MnuHelpHint.Checked Or Not GameBusy Then
+			DrawBoard()
+		End If
+
+		' Update some status text; esp time and stuff
+		LblPlayerTime.Text = Format(TimeSerial(0, 0, CInt(PlayerTime)), "HH:mm:ss")
+		LblComputerTime.Text = Format(TimeSerial(0, 0, CInt(ComputerTime)), "HH:mm:ss")
+
+		' Check all possible cases and show and message depending on who won or if is a draw game
+		Dim winner = Connect4Board.IsWinner(True)
 		If winner <> GameBoard.EmptyCell Then
-			DrawChips()
 			If winner = GameBoard.Player2Checker Then
 				UpdateStatus("I win!")
 				LblComputerScore.Text = CStr(Val(LblComputerScore.Text) + 1)
-				PlayerBusy = False
 			Else
 				UpdateStatus("You win!")
 				LblPlayerScore.Text = CStr(Val(LblPlayerScore.Text) + 1)
 			End If
+			' We call DrawBoard here to draw the winning positions
+			DrawBoard()
+			' Wait a bit and then reset the game board
 			Application.DoEvents()
 			Threading.Thread.Sleep(5000)
 			NewGame()
 		ElseIf Connect4Board.IsGameDraw() Then
 			UpdateStatus("It's a draw!")
+			' Wait a bit and then reset the game board
 			Application.DoEvents()
 			Threading.Thread.Sleep(5000)
 			NewGame()
-			If Connect4Board.GetNextPlayer() = GameBoard.Player1Checker Then PlayerBusy = False
 		End If
 	End Sub
 
 	Private Sub CmdColumn_Click(sender As Object, e As EventArgs) Handles Cmd1.Click, Cmd2.Click, Cmd3.Click, Cmd4.Click, Cmd5.Click, Cmd6.Click, Cmd7.Click
 		' Don't allow reentry by the user if we are already processing a player move
-		If PlayerBusy Or Connect4Board.GetNextPlayer() = GameBoard.Player2Checker Or AIBusy Then Exit Sub
+		If GameBusy Or Connect4Board.GetNextPlayer() = GameBoard.Player2Checker Then Exit Sub
 
-		' Set the busy flag to true until the player and AI finishes playing
-		PlayerBusy = True
+		' Set the busy flag to true until the player finishes playing
+		GameBusy = True
 
 		Dim i As Byte = CByte(CType(sender, Button).Tag)
 
 		' Player's move
 		If Connect4Board.PlayMove(i) Then
 			LblPlayerLastMove.Text = CStr(i + 1)
-			DrawChips()
 		End If
 
-		UpdateUI()
+		GameBusy = False
 	End Sub
 
 	Private Sub TmrUpdate_Tick(sender As Object, e As EventArgs) Handles TmrUpdate.Tick
-		' We do not want any updates if the game has not started
-		If Not Connect4Board.HasGameStarted() Then Return
-
 		' Show the game board while AI is evaluating the board. This has to go. We cannot change the main game board when AI is evaluating
 		' This does a lot of funny stuff to the UI code that depend on the class
-		If MnuHelpHint.Checked Then DrawChips()
 
-		' Disable housefull columns. The additional checks below will reject user input of AI or Player has already played in the UI but logic is not complete
-		Cmd1.Enabled = Connect4Board.GetTotalMovesInColumn(0) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
-		Cmd2.Enabled = Connect4Board.GetTotalMovesInColumn(1) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
-		Cmd3.Enabled = Connect4Board.GetTotalMovesInColumn(2) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
-		Cmd4.Enabled = Connect4Board.GetTotalMovesInColumn(3) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
-		Cmd5.Enabled = Connect4Board.GetTotalMovesInColumn(4) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
-		Cmd6.Enabled = Connect4Board.GetTotalMovesInColumn(5) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
-		Cmd7.Enabled = Connect4Board.GetTotalMovesInColumn(6) <= Connect4Board.MaxY AndAlso Not AIBusy AndAlso Not PlayerBusy
-
-		' Update some status text; esp time and stuff
-		LblPlayerTime.Text = Format(TimeSerial(0, 0, CInt(PlayerTime)), "HH:mm:ss")
-		LblComputerTime.Text = Format(TimeSerial(0, 0, CInt(ComputerTime)), "HH:mm:ss")
+		' Update the UI, board and stuff
+		UpdateUI()
 
 		If Connect4Board.GetNextPlayer() = GameBoard.Player2Checker Then
-			ComputerTime += TmrUpdate.Interval / 1000.0!
+			' Tick AI time only if game has started
+			If Connect4Board.HasGameStarted() And GameBusy Then
+				ComputerTime += TmrUpdate.Interval / 1000.0!
+			End If
 
-			If Not AIBusy Then
+			If Not GameBusy Then
 				Dim i As Byte
 
 				' Computer's move
 				UpdateStatus("Thinking...")
 
-				AIBusy = True
+				GameBusy = True
+
 				i = GameEngine.Think(Connect4Board)
 				If Connect4Board.PlayMove(i) Then
 					LblComputerLastMove.Text = CStr(i + 1)
-					DrawChips()
 				Else
 					Debug.Fail("TmrUpdate_Tick: Game logic error!", "Computer failed to think for itself (" & i & ")!")
 				End If
 
-				AIBusy = False
-				PlayerBusy = False
-
-				UpdateUI()
+				' Set busy flag to false so that player can now play
+				GameBusy = False
 			End If
 		Else
-			PlayerTime += TmrUpdate.Interval / 1000.0!
+			' Tick player time only if game has started
+			If Connect4Board.HasGameStarted() And Not GameBusy Then
+				PlayerTime += TmrUpdate.Interval / 1000.0!
+			End If
 		End If
 	End Sub
 End Class

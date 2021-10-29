@@ -4,8 +4,6 @@
 ' This class implements the game board and legal play logic
 
 Public Class GameBoard
-	Implements ICloneable
-
 	Public ReadOnly Position(0, 0) As SByte                     ' The main game board (0 - 6) x (0 - 5) = 7 x 6 - for Connect Four
 	Public Const Player1Checker As SByte = -1                   ' Player 1 checker
 	Public Const Player2Checker As SByte = 1                    ' Player 2 checker
@@ -17,6 +15,7 @@ Public Class GameBoard
 	Private NextPlayer As SByte                                 ' Next player. Note this player has not played yet!
 	Private ReadOnly Moves(0) As Byte                           ' Number of moves in a column
 	Private TotalMoves As UShort                                ' Total moves on the board
+	Private ReadOnly MoveStack As Stack                         ' Previous moves
 
 	' Constructor - sets the board size
 	Public Sub New(x As Byte, y As Byte)
@@ -26,6 +25,7 @@ Public Class GameBoard
 		' Allocate memory based on board size
 		ReDim Position(MaxX, MaxY)
 		ReDim Moves(MaxX)
+		MoveStack = New Stack
 		' Player 1 always goes first
 		NextPlayer = Player1Checker
 		' Reset the board. Really not required
@@ -44,17 +44,12 @@ Public Class GameBoard
 		Next
 
 		TotalMoves = 0
+		MoveStack.Clear()
 	End Sub
 
 	' Gets the next player (who has not played yet!)
 	Public Function GetNextPlayer() As SByte
 		Return NextPlayer
-	End Function
-
-	' Gets the last player (who played the last move provided the game has started)
-	Public Function GetLastPlayer() As SByte
-		' Find the opponent player
-		Return -NextPlayer
 	End Function
 
 	' Returns the number of moves played
@@ -79,36 +74,17 @@ Public Class GameBoard
 		Return TotalMoves >= ((MaxX + 1) * (MaxY + 1))
 	End Function
 
-	' Returns true if a move is allowed
-	Private Function IsMoveAllowed(x As Byte, y As Byte) As Boolean
-		Debug.Assert(x <= MaxX And y <= MaxY)
-
-		If Position(x, y) = EmptyCell Then
-			If y > 0 Then
-				If Position(x, y - 1) = EmptyCell Then
-					' There is nothing below!
-					Return False
-				End If
-
-				Return True
-			End If
-
-			' Moves are always allowed at the base
-			Return True
-		End If
-
-		' Place is already taken!
-		Return False
-	End Function
-
 	' Puts the move in the game board by the current player if allowed
 	Public Function PlayMove(x As Byte) As Boolean
 		Debug.Assert(x <= MaxX)
 
 		For y As Byte = 0 To MaxY
-			If IsMoveAllowed(x, y) Then
+			If Position(x, y) = EmptyCell Then
 				' Put the checker in the column
 				Position(x, y) = NextPlayer
+
+				' Save this move
+				MoveStack.Push(New Point(x, y))
 
 				' Increment total moves and move in the column
 				Moves(x) += CByte(1)
@@ -120,6 +96,27 @@ Public Class GameBoard
 				Return True
 			End If
 		Next
+
+		Return False
+	End Function
+
+	' Undo the last move
+	Public Function UndoMove() As Boolean
+		' Is game board is not empty
+		If TotalMoves > 0 Then
+			' Remove the last move
+			Dim LastMove As Point = CType(MoveStack.Pop(), Point)
+			Position(LastMove.X, LastMove.Y) = EmptyCell
+
+			' Decrement total moves and move in the column
+			Moves(LastMove.X) -= CByte(1)
+			TotalMoves -= 1US
+
+			' Switch the player
+			NextPlayer = -NextPlayer
+
+			Return True
+		End If
 
 		Return False
 	End Function
@@ -213,14 +210,45 @@ Public Class GameBoard
 		Return EmptyCell
 	End Function
 
-	' This creates a new copy of an object of GameBoard
-	Public Function Clone() As Object Implements ICloneable.Clone
-		Dim c As New GameBoard(MaxX, MaxY)
+	' Determines how many connect 3 we have
+	Public Function CountConnect3(Player As SByte) As Integer
+		Dim x, y, c As Integer
 
-		Array.Copy(Position, c.Position, Position.Length)
-		c.NextPlayer = NextPlayer
-		Array.Copy(Moves, c.Moves, Moves.Length)
-		c.TotalMoves = TotalMoves
+		' Check vertically (|)
+		For x = 0 To MaxX
+			For y = 0 To MaxY - CByte(2)
+				If Math.Abs(Position(x, y) + Position(x, y + 1) + Position(x, y + 2)) = 3 Then
+					If Player = Position(x, y) Then c += 1
+				End If
+			Next
+		Next
+
+		' Check horizontally (-)
+		For y = 0 To MaxY
+			For x = 0 To MaxX - CByte(2)
+				If Math.Abs(Position(x, y) + Position(x + 1, y) + Position(x + 2, y)) = 3 Then
+					If Player = Position(x, y) Then c += 1
+				End If
+			Next
+		Next
+
+		' Check diagonally (/)
+		For y = 0 To MaxY - CByte(2)
+			For x = 0 To MaxX - CByte(2)
+				If Math.Abs(Position(x, y) + Position(x + 1, y + 1) + Position(x + 2, y + 2)) = 3 Then
+					If Player = Position(x, y) Then c += 1
+				End If
+			Next
+		Next
+
+		' Check diagonally (\)
+		For y = 0 To MaxY - CByte(2)
+			For x = MaxX To 2 Step -1
+				If Math.Abs(Position(x, y) + Position(x - 1, y + 1) + Position(x - 2, y + 2)) = 3 Then
+					If Player = Position(x, y) Then c += 1
+				End If
+			Next
+		Next
 
 		Return c
 	End Function
