@@ -156,6 +156,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Content Include="4Play.ico" />
+    <Content Include="screenshot.png" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
