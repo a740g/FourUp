@@ -1199,12 +1199,11 @@ Public Class FormMain
 #End Region
 
 	Private PlayerTime, ComputerTime As Single
-	Public Connect4Board As New GameBoard(6, 5)         ' Our game board
-	Private WithEvents GameEngine As New AIPlayer
+	Public WithEvents Connect4Game As New Game(6, 5)         ' Our game board
 	Private GameBusy As Boolean = False                 ' All UI input and AI play will be disabled if this is true
 
 	' Our game engine message handler
-	Private Sub UpdateStatus(Note As String) Handles GameEngine.ProcessNote
+	Private Sub UpdateStatus(Note As String) Handles Connect4Game.ProcessNote
 		TxtStatus.AppendText(If(TxtStatus.TextLength <= 0, Note, vbCrLf & Note))
 		TxtStatus.SelectionLength = 0
 		TxtStatus.SelectionStart = TxtStatus.TextLength
@@ -1222,17 +1221,17 @@ Public Class FormMain
 	'	{
 	'	    for (int y = 0; y < 6; y++)
 	'        {
-	'            printf("\nMyChip = Connect4Board.Position(%d, %d)\n", x, y);
-	'            printf("If myChip = GameBoard.Player1WinningChecker Then\n");
+	'            printf("\nMyChip = Connect4Game.Board(%d, %d)\n", x, y);
+	'            printf("If myChip = Game.Player.RedWinner Then\n");
 	'	         printf("    Lbl%d_%d.ForeColor = Color.Red\n", x, y);
 	'	         printf("    Lbl%d_%d.Text = Chr(&H98)\n", x, y);
-	'	         printf("ElseIf myChip = GameBoard.Player2WinningChecker Then\n");
+	'	         printf("ElseIf myChip = Game.Player.YellowWinner Then\n");
 	'            printf("    Lbl%d_%d.ForeColor = Color.Yellow\n", x, y);
 	'	         printf("    Lbl%d_%d.Text = Chr(&H98)\n", x, y);
-	'	         printf("ElseIf myChip = GameBoard.Player1Checker Then\n");
+	'	         printf("ElseIf myChip = Game.Player.Red Then\n");
 	'	         printf("    Lbl%d_%d.ForeColor = Color.Red\n", x, y);
 	'	         printf("    Lbl%d_%d.Text = Chr(&H6E)\n", x, y);
-	'	         printf("ElseIf myChip = GameBoard.Player2Checker Then\n");
+	'	         printf("ElseIf myChip = Game.Player.Yellow Then\n");
 	'	         printf("    Lbl%d_%d.ForeColor = Color.Yellow\n", x, y);
 	'	         printf("    Lbl%d_%d.Text = Chr(&H6E)\n", x, y);
 	'	         printf("Else\n");
@@ -1243,718 +1242,718 @@ Public Class FormMain
 
 	'    return 0;
 	'}
-#Region " DrawBoard() [Auto-generated using C] "
+#Region "DrawBoard() [Auto-generated using C]"
 	Private Sub DrawBoard()
-		Dim myChip As SByte
+		Dim myChip As Game.Player
 
-		myChip = Connect4Board.Position(0, 0)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(0, 0)
+		If myChip = Game.Player.RedWinner Then
 			Lbl0_0.ForeColor = Color.Red
 			Lbl0_0.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl0_0.ForeColor = Color.Yellow
 			Lbl0_0.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl0_0.ForeColor = Color.Red
 			Lbl0_0.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl0_0.ForeColor = Color.Yellow
 			Lbl0_0.Text = Chr(&H6E)
 		Else
 			Lbl0_0.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(0, 1)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(0, 1)
+		If myChip = Game.Player.RedWinner Then
 			Lbl0_1.ForeColor = Color.Red
 			Lbl0_1.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl0_1.ForeColor = Color.Yellow
 			Lbl0_1.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl0_1.ForeColor = Color.Red
 			Lbl0_1.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl0_1.ForeColor = Color.Yellow
 			Lbl0_1.Text = Chr(&H6E)
 		Else
 			Lbl0_1.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(0, 2)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(0, 2)
+		If myChip = Game.Player.RedWinner Then
 			Lbl0_2.ForeColor = Color.Red
 			Lbl0_2.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl0_2.ForeColor = Color.Yellow
 			Lbl0_2.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl0_2.ForeColor = Color.Red
 			Lbl0_2.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl0_2.ForeColor = Color.Yellow
 			Lbl0_2.Text = Chr(&H6E)
 		Else
 			Lbl0_2.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(0, 3)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(0, 3)
+		If myChip = Game.Player.RedWinner Then
 			Lbl0_3.ForeColor = Color.Red
 			Lbl0_3.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl0_3.ForeColor = Color.Yellow
 			Lbl0_3.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl0_3.ForeColor = Color.Red
 			Lbl0_3.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl0_3.ForeColor = Color.Yellow
 			Lbl0_3.Text = Chr(&H6E)
 		Else
 			Lbl0_3.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(0, 4)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(0, 4)
+		If myChip = Game.Player.RedWinner Then
 			Lbl0_4.ForeColor = Color.Red
 			Lbl0_4.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl0_4.ForeColor = Color.Yellow
 			Lbl0_4.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl0_4.ForeColor = Color.Red
 			Lbl0_4.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl0_4.ForeColor = Color.Yellow
 			Lbl0_4.Text = Chr(&H6E)
 		Else
 			Lbl0_4.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(0, 5)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(0, 5)
+		If myChip = Game.Player.RedWinner Then
 			Lbl0_5.ForeColor = Color.Red
 			Lbl0_5.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl0_5.ForeColor = Color.Yellow
 			Lbl0_5.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl0_5.ForeColor = Color.Red
 			Lbl0_5.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl0_5.ForeColor = Color.Yellow
 			Lbl0_5.Text = Chr(&H6E)
 		Else
 			Lbl0_5.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(1, 0)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(1, 0)
+		If myChip = Game.Player.RedWinner Then
 			Lbl1_0.ForeColor = Color.Red
 			Lbl1_0.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl1_0.ForeColor = Color.Yellow
 			Lbl1_0.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl1_0.ForeColor = Color.Red
 			Lbl1_0.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl1_0.ForeColor = Color.Yellow
 			Lbl1_0.Text = Chr(&H6E)
 		Else
 			Lbl1_0.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(1, 1)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(1, 1)
+		If myChip = Game.Player.RedWinner Then
 			Lbl1_1.ForeColor = Color.Red
 			Lbl1_1.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl1_1.ForeColor = Color.Yellow
 			Lbl1_1.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl1_1.ForeColor = Color.Red
 			Lbl1_1.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl1_1.ForeColor = Color.Yellow
 			Lbl1_1.Text = Chr(&H6E)
 		Else
 			Lbl1_1.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(1, 2)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(1, 2)
+		If myChip = Game.Player.RedWinner Then
 			Lbl1_2.ForeColor = Color.Red
 			Lbl1_2.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl1_2.ForeColor = Color.Yellow
 			Lbl1_2.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl1_2.ForeColor = Color.Red
 			Lbl1_2.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl1_2.ForeColor = Color.Yellow
 			Lbl1_2.Text = Chr(&H6E)
 		Else
 			Lbl1_2.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(1, 3)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(1, 3)
+		If myChip = Game.Player.RedWinner Then
 			Lbl1_3.ForeColor = Color.Red
 			Lbl1_3.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl1_3.ForeColor = Color.Yellow
 			Lbl1_3.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl1_3.ForeColor = Color.Red
 			Lbl1_3.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl1_3.ForeColor = Color.Yellow
 			Lbl1_3.Text = Chr(&H6E)
 		Else
 			Lbl1_3.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(1, 4)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(1, 4)
+		If myChip = Game.Player.RedWinner Then
 			Lbl1_4.ForeColor = Color.Red
 			Lbl1_4.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl1_4.ForeColor = Color.Yellow
 			Lbl1_4.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl1_4.ForeColor = Color.Red
 			Lbl1_4.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl1_4.ForeColor = Color.Yellow
 			Lbl1_4.Text = Chr(&H6E)
 		Else
 			Lbl1_4.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(1, 5)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(1, 5)
+		If myChip = Game.Player.RedWinner Then
 			Lbl1_5.ForeColor = Color.Red
 			Lbl1_5.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl1_5.ForeColor = Color.Yellow
 			Lbl1_5.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl1_5.ForeColor = Color.Red
 			Lbl1_5.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl1_5.ForeColor = Color.Yellow
 			Lbl1_5.Text = Chr(&H6E)
 		Else
 			Lbl1_5.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(2, 0)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(2, 0)
+		If myChip = Game.Player.RedWinner Then
 			Lbl2_0.ForeColor = Color.Red
 			Lbl2_0.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl2_0.ForeColor = Color.Yellow
 			Lbl2_0.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl2_0.ForeColor = Color.Red
 			Lbl2_0.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl2_0.ForeColor = Color.Yellow
 			Lbl2_0.Text = Chr(&H6E)
 		Else
 			Lbl2_0.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(2, 1)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(2, 1)
+		If myChip = Game.Player.RedWinner Then
 			Lbl2_1.ForeColor = Color.Red
 			Lbl2_1.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl2_1.ForeColor = Color.Yellow
 			Lbl2_1.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl2_1.ForeColor = Color.Red
 			Lbl2_1.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl2_1.ForeColor = Color.Yellow
 			Lbl2_1.Text = Chr(&H6E)
 		Else
 			Lbl2_1.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(2, 2)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(2, 2)
+		If myChip = Game.Player.RedWinner Then
 			Lbl2_2.ForeColor = Color.Red
 			Lbl2_2.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl2_2.ForeColor = Color.Yellow
 			Lbl2_2.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl2_2.ForeColor = Color.Red
 			Lbl2_2.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl2_2.ForeColor = Color.Yellow
 			Lbl2_2.Text = Chr(&H6E)
 		Else
 			Lbl2_2.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(2, 3)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(2, 3)
+		If myChip = Game.Player.RedWinner Then
 			Lbl2_3.ForeColor = Color.Red
 			Lbl2_3.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl2_3.ForeColor = Color.Yellow
 			Lbl2_3.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl2_3.ForeColor = Color.Red
 			Lbl2_3.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl2_3.ForeColor = Color.Yellow
 			Lbl2_3.Text = Chr(&H6E)
 		Else
 			Lbl2_3.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(2, 4)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(2, 4)
+		If myChip = Game.Player.RedWinner Then
 			Lbl2_4.ForeColor = Color.Red
 			Lbl2_4.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl2_4.ForeColor = Color.Yellow
 			Lbl2_4.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl2_4.ForeColor = Color.Red
 			Lbl2_4.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl2_4.ForeColor = Color.Yellow
 			Lbl2_4.Text = Chr(&H6E)
 		Else
 			Lbl2_4.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(2, 5)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(2, 5)
+		If myChip = Game.Player.RedWinner Then
 			Lbl2_5.ForeColor = Color.Red
 			Lbl2_5.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl2_5.ForeColor = Color.Yellow
 			Lbl2_5.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl2_5.ForeColor = Color.Red
 			Lbl2_5.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl2_5.ForeColor = Color.Yellow
 			Lbl2_5.Text = Chr(&H6E)
 		Else
 			Lbl2_5.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(3, 0)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(3, 0)
+		If myChip = Game.Player.RedWinner Then
 			Lbl3_0.ForeColor = Color.Red
 			Lbl3_0.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl3_0.ForeColor = Color.Yellow
 			Lbl3_0.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl3_0.ForeColor = Color.Red
 			Lbl3_0.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl3_0.ForeColor = Color.Yellow
 			Lbl3_0.Text = Chr(&H6E)
 		Else
 			Lbl3_0.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(3, 1)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(3, 1)
+		If myChip = Game.Player.RedWinner Then
 			Lbl3_1.ForeColor = Color.Red
 			Lbl3_1.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl3_1.ForeColor = Color.Yellow
 			Lbl3_1.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl3_1.ForeColor = Color.Red
 			Lbl3_1.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl3_1.ForeColor = Color.Yellow
 			Lbl3_1.Text = Chr(&H6E)
 		Else
 			Lbl3_1.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(3, 2)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(3, 2)
+		If myChip = Game.Player.RedWinner Then
 			Lbl3_2.ForeColor = Color.Red
 			Lbl3_2.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl3_2.ForeColor = Color.Yellow
 			Lbl3_2.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl3_2.ForeColor = Color.Red
 			Lbl3_2.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl3_2.ForeColor = Color.Yellow
 			Lbl3_2.Text = Chr(&H6E)
 		Else
 			Lbl3_2.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(3, 3)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(3, 3)
+		If myChip = Game.Player.RedWinner Then
 			Lbl3_3.ForeColor = Color.Red
 			Lbl3_3.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl3_3.ForeColor = Color.Yellow
 			Lbl3_3.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl3_3.ForeColor = Color.Red
 			Lbl3_3.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl3_3.ForeColor = Color.Yellow
 			Lbl3_3.Text = Chr(&H6E)
 		Else
 			Lbl3_3.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(3, 4)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(3, 4)
+		If myChip = Game.Player.RedWinner Then
 			Lbl3_4.ForeColor = Color.Red
 			Lbl3_4.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl3_4.ForeColor = Color.Yellow
 			Lbl3_4.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl3_4.ForeColor = Color.Red
 			Lbl3_4.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl3_4.ForeColor = Color.Yellow
 			Lbl3_4.Text = Chr(&H6E)
 		Else
 			Lbl3_4.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(3, 5)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(3, 5)
+		If myChip = Game.Player.RedWinner Then
 			Lbl3_5.ForeColor = Color.Red
 			Lbl3_5.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl3_5.ForeColor = Color.Yellow
 			Lbl3_5.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl3_5.ForeColor = Color.Red
 			Lbl3_5.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl3_5.ForeColor = Color.Yellow
 			Lbl3_5.Text = Chr(&H6E)
 		Else
 			Lbl3_5.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(4, 0)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(4, 0)
+		If myChip = Game.Player.RedWinner Then
 			Lbl4_0.ForeColor = Color.Red
 			Lbl4_0.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl4_0.ForeColor = Color.Yellow
 			Lbl4_0.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl4_0.ForeColor = Color.Red
 			Lbl4_0.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl4_0.ForeColor = Color.Yellow
 			Lbl4_0.Text = Chr(&H6E)
 		Else
 			Lbl4_0.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(4, 1)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(4, 1)
+		If myChip = Game.Player.RedWinner Then
 			Lbl4_1.ForeColor = Color.Red
 			Lbl4_1.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl4_1.ForeColor = Color.Yellow
 			Lbl4_1.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl4_1.ForeColor = Color.Red
 			Lbl4_1.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl4_1.ForeColor = Color.Yellow
 			Lbl4_1.Text = Chr(&H6E)
 		Else
 			Lbl4_1.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(4, 2)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(4, 2)
+		If myChip = Game.Player.RedWinner Then
 			Lbl4_2.ForeColor = Color.Red
 			Lbl4_2.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl4_2.ForeColor = Color.Yellow
 			Lbl4_2.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl4_2.ForeColor = Color.Red
 			Lbl4_2.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl4_2.ForeColor = Color.Yellow
 			Lbl4_2.Text = Chr(&H6E)
 		Else
 			Lbl4_2.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(4, 3)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(4, 3)
+		If myChip = Game.Player.RedWinner Then
 			Lbl4_3.ForeColor = Color.Red
 			Lbl4_3.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl4_3.ForeColor = Color.Yellow
 			Lbl4_3.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl4_3.ForeColor = Color.Red
 			Lbl4_3.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl4_3.ForeColor = Color.Yellow
 			Lbl4_3.Text = Chr(&H6E)
 		Else
 			Lbl4_3.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(4, 4)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(4, 4)
+		If myChip = Game.Player.RedWinner Then
 			Lbl4_4.ForeColor = Color.Red
 			Lbl4_4.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl4_4.ForeColor = Color.Yellow
 			Lbl4_4.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl4_4.ForeColor = Color.Red
 			Lbl4_4.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl4_4.ForeColor = Color.Yellow
 			Lbl4_4.Text = Chr(&H6E)
 		Else
 			Lbl4_4.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(4, 5)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(4, 5)
+		If myChip = Game.Player.RedWinner Then
 			Lbl4_5.ForeColor = Color.Red
 			Lbl4_5.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl4_5.ForeColor = Color.Yellow
 			Lbl4_5.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl4_5.ForeColor = Color.Red
 			Lbl4_5.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl4_5.ForeColor = Color.Yellow
 			Lbl4_5.Text = Chr(&H6E)
 		Else
 			Lbl4_5.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(5, 0)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(5, 0)
+		If myChip = Game.Player.RedWinner Then
 			Lbl5_0.ForeColor = Color.Red
 			Lbl5_0.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl5_0.ForeColor = Color.Yellow
 			Lbl5_0.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl5_0.ForeColor = Color.Red
 			Lbl5_0.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl5_0.ForeColor = Color.Yellow
 			Lbl5_0.Text = Chr(&H6E)
 		Else
 			Lbl5_0.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(5, 1)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(5, 1)
+		If myChip = Game.Player.RedWinner Then
 			Lbl5_1.ForeColor = Color.Red
 			Lbl5_1.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl5_1.ForeColor = Color.Yellow
 			Lbl5_1.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl5_1.ForeColor = Color.Red
 			Lbl5_1.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl5_1.ForeColor = Color.Yellow
 			Lbl5_1.Text = Chr(&H6E)
 		Else
 			Lbl5_1.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(5, 2)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(5, 2)
+		If myChip = Game.Player.RedWinner Then
 			Lbl5_2.ForeColor = Color.Red
 			Lbl5_2.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl5_2.ForeColor = Color.Yellow
 			Lbl5_2.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl5_2.ForeColor = Color.Red
 			Lbl5_2.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl5_2.ForeColor = Color.Yellow
 			Lbl5_2.Text = Chr(&H6E)
 		Else
 			Lbl5_2.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(5, 3)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(5, 3)
+		If myChip = Game.Player.RedWinner Then
 			Lbl5_3.ForeColor = Color.Red
 			Lbl5_3.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl5_3.ForeColor = Color.Yellow
 			Lbl5_3.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl5_3.ForeColor = Color.Red
 			Lbl5_3.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl5_3.ForeColor = Color.Yellow
 			Lbl5_3.Text = Chr(&H6E)
 		Else
 			Lbl5_3.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(5, 4)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(5, 4)
+		If myChip = Game.Player.RedWinner Then
 			Lbl5_4.ForeColor = Color.Red
 			Lbl5_4.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl5_4.ForeColor = Color.Yellow
 			Lbl5_4.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl5_4.ForeColor = Color.Red
 			Lbl5_4.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl5_4.ForeColor = Color.Yellow
 			Lbl5_4.Text = Chr(&H6E)
 		Else
 			Lbl5_4.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(5, 5)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(5, 5)
+		If myChip = Game.Player.RedWinner Then
 			Lbl5_5.ForeColor = Color.Red
 			Lbl5_5.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl5_5.ForeColor = Color.Yellow
 			Lbl5_5.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl5_5.ForeColor = Color.Red
 			Lbl5_5.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl5_5.ForeColor = Color.Yellow
 			Lbl5_5.Text = Chr(&H6E)
 		Else
 			Lbl5_5.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(6, 0)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(6, 0)
+		If myChip = Game.Player.RedWinner Then
 			Lbl6_0.ForeColor = Color.Red
 			Lbl6_0.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl6_0.ForeColor = Color.Yellow
 			Lbl6_0.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl6_0.ForeColor = Color.Red
 			Lbl6_0.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl6_0.ForeColor = Color.Yellow
 			Lbl6_0.Text = Chr(&H6E)
 		Else
 			Lbl6_0.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(6, 1)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(6, 1)
+		If myChip = Game.Player.RedWinner Then
 			Lbl6_1.ForeColor = Color.Red
 			Lbl6_1.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl6_1.ForeColor = Color.Yellow
 			Lbl6_1.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl6_1.ForeColor = Color.Red
 			Lbl6_1.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl6_1.ForeColor = Color.Yellow
 			Lbl6_1.Text = Chr(&H6E)
 		Else
 			Lbl6_1.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(6, 2)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(6, 2)
+		If myChip = Game.Player.RedWinner Then
 			Lbl6_2.ForeColor = Color.Red
 			Lbl6_2.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl6_2.ForeColor = Color.Yellow
 			Lbl6_2.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl6_2.ForeColor = Color.Red
 			Lbl6_2.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl6_2.ForeColor = Color.Yellow
 			Lbl6_2.Text = Chr(&H6E)
 		Else
 			Lbl6_2.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(6, 3)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(6, 3)
+		If myChip = Game.Player.RedWinner Then
 			Lbl6_3.ForeColor = Color.Red
 			Lbl6_3.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl6_3.ForeColor = Color.Yellow
 			Lbl6_3.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl6_3.ForeColor = Color.Red
 			Lbl6_3.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl6_3.ForeColor = Color.Yellow
 			Lbl6_3.Text = Chr(&H6E)
 		Else
 			Lbl6_3.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(6, 4)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(6, 4)
+		If myChip = Game.Player.RedWinner Then
 			Lbl6_4.ForeColor = Color.Red
 			Lbl6_4.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl6_4.ForeColor = Color.Yellow
 			Lbl6_4.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl6_4.ForeColor = Color.Red
 			Lbl6_4.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl6_4.ForeColor = Color.Yellow
 			Lbl6_4.Text = Chr(&H6E)
 		Else
 			Lbl6_4.Text = vbNullChar
 		End If
 
-		myChip = Connect4Board.Position(6, 5)
-		If myChip = GameBoard.Player1WinningChecker Then
+		myChip = Connect4Game.Board(6, 5)
+		If myChip = Game.Player.RedWinner Then
 			Lbl6_5.ForeColor = Color.Red
 			Lbl6_5.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player2WinningChecker Then
+		ElseIf myChip = Game.Player.YellowWinner Then
 			Lbl6_5.ForeColor = Color.Yellow
 			Lbl6_5.Text = Chr(&H98)
-		ElseIf myChip = GameBoard.Player1Checker Then
+		ElseIf myChip = Game.Player.Red Then
 			Lbl6_5.ForeColor = Color.Red
 			Lbl6_5.Text = Chr(&H6E)
-		ElseIf myChip = GameBoard.Player2Checker Then
+		ElseIf myChip = Game.Player.Yellow Then
 			Lbl6_5.ForeColor = Color.Yellow
 			Lbl6_5.Text = Chr(&H6E)
 		Else
@@ -2002,7 +2001,7 @@ Public Class FormMain
 	End Sub
 
 	Private Sub FrmMain_Closing(sender As Object, e As CancelEventArgs) Handles MyBase.Closing
-		If Connect4Board.GetTotalMoves() > 0 Then
+		If Connect4Game.GetTotalMoves() > 0 Then
 			If MsgBox("A game is in progress." & vbCrLf & "Are you sure you want to quit now?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) <> MsgBoxResult.Yes Then
 				e.Cancel = True
 				Exit Sub
@@ -2016,7 +2015,7 @@ Public Class FormMain
 	End Sub
 
 	Private Sub MnuGameNew_Click(sender As Object, e As EventArgs) Handles MnuGameNew.Click
-		If Connect4Board.GetTotalMoves() > 0 Then
+		If Connect4Game.GetTotalMoves() > 0 Then
 			If MsgBox("A game is in progress." & vbCrLf & "Are you sure you want to end this game?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) = MsgBoxResult.Yes Then
 				RestartGame()
 			End If
@@ -2043,7 +2042,7 @@ Public Class FormMain
 	End Sub
 
 	Private Sub NewGame()
-		Connect4Board.Reset()
+		Connect4Game.Reset()
 		DrawBoard()
 		PlayerTime = 0
 		ComputerTime = 0
@@ -2060,13 +2059,13 @@ Public Class FormMain
 
 	Private Sub UpdateUI()
 		' Disable housefull columns. The additional checks below will reject user input of AI or Player has already played in the UI but logic is not complete
-		Cmd1.Enabled = Connect4Board.GetTotalMovesInColumn(0) <= Connect4Board.MaxY AndAlso Not GameBusy
-		Cmd2.Enabled = Connect4Board.GetTotalMovesInColumn(1) <= Connect4Board.MaxY AndAlso Not GameBusy
-		Cmd3.Enabled = Connect4Board.GetTotalMovesInColumn(2) <= Connect4Board.MaxY AndAlso Not GameBusy
-		Cmd4.Enabled = Connect4Board.GetTotalMovesInColumn(3) <= Connect4Board.MaxY AndAlso Not GameBusy
-		Cmd5.Enabled = Connect4Board.GetTotalMovesInColumn(4) <= Connect4Board.MaxY AndAlso Not GameBusy
-		Cmd6.Enabled = Connect4Board.GetTotalMovesInColumn(5) <= Connect4Board.MaxY AndAlso Not GameBusy
-		Cmd7.Enabled = Connect4Board.GetTotalMovesInColumn(6) <= Connect4Board.MaxY AndAlso Not GameBusy
+		Cmd1.Enabled = Connect4Game.GetTotalMovesInColumn(0) <= Connect4Game.MaxY AndAlso Not GameBusy
+		Cmd2.Enabled = Connect4Game.GetTotalMovesInColumn(1) <= Connect4Game.MaxY AndAlso Not GameBusy
+		Cmd3.Enabled = Connect4Game.GetTotalMovesInColumn(2) <= Connect4Game.MaxY AndAlso Not GameBusy
+		Cmd4.Enabled = Connect4Game.GetTotalMovesInColumn(3) <= Connect4Game.MaxY AndAlso Not GameBusy
+		Cmd5.Enabled = Connect4Game.GetTotalMovesInColumn(4) <= Connect4Game.MaxY AndAlso Not GameBusy
+		Cmd6.Enabled = Connect4Game.GetTotalMovesInColumn(5) <= Connect4Game.MaxY AndAlso Not GameBusy
+		Cmd7.Enabled = Connect4Game.GetTotalMovesInColumn(6) <= Connect4Game.MaxY AndAlso Not GameBusy
 
 		' Draw the game board
 		If MnuHelpHint.Checked Or Not GameBusy Then
@@ -2078,9 +2077,9 @@ Public Class FormMain
 		LblComputerTime.Text = Format(TimeSerial(0, 0, CInt(ComputerTime)), "HH:mm:ss")
 
 		' Check all possible cases and show and message depending on who won or if is a draw game
-		Dim winner = Connect4Board.IsWinner(True)
-		If winner <> GameBoard.EmptyCell Then
-			If winner = GameBoard.Player2Checker Then
+		Dim winner = Connect4Game.GetWinner(True)
+		If winner <> Game.Player.None Then
+			If winner = Game.Player.Yellow Then
 				UpdateStatus("I win!")
 				LblComputerScore.Text = CStr(Val(LblComputerScore.Text) + 1)
 			Else
@@ -2093,7 +2092,7 @@ Public Class FormMain
 			Application.DoEvents()
 			Threading.Thread.Sleep(5000)
 			NewGame()
-		ElseIf Connect4Board.IsGameDraw() Then
+		ElseIf Connect4Game.IsGameDraw() Then
 			UpdateStatus("It's a draw!")
 			' Wait a bit and then reset the game board
 			Application.DoEvents()
@@ -2104,7 +2103,7 @@ Public Class FormMain
 
 	Private Sub CmdColumn_Click(sender As Object, e As EventArgs) Handles Cmd1.Click, Cmd2.Click, Cmd3.Click, Cmd4.Click, Cmd5.Click, Cmd6.Click, Cmd7.Click
 		' Don't allow reentry by the user if we are already processing a player move
-		If GameBusy Or Connect4Board.GetNextPlayer() = GameBoard.Player2Checker Then Exit Sub
+		If GameBusy Or Connect4Game.GetNextPlayer() = Game.Player.Yellow Then Exit Sub
 
 		' Set the busy flag to true until the player finishes playing
 		GameBusy = True
@@ -2112,7 +2111,7 @@ Public Class FormMain
 		Dim i As Byte = CByte(CType(sender, Button).Tag)
 
 		' Player's move
-		If Connect4Board.PlayMove(i) Then
+		If Connect4Game.PlayMove(i) Then
 			LblPlayerLastMove.Text = CStr(i + 1)
 		End If
 
@@ -2126,9 +2125,9 @@ Public Class FormMain
 		' Update the UI, board and stuff
 		UpdateUI()
 
-		If Connect4Board.GetNextPlayer() = GameBoard.Player2Checker Then
+		If Connect4Game.GetNextPlayer() = Game.Player.Yellow Then
 			' Tick AI time only if game has started
-			If Connect4Board.HasGameStarted() And GameBusy Then
+			If Connect4Game.HasGameStarted() And GameBusy Then
 				ComputerTime += TmrUpdate.Interval / 1000.0!
 			End If
 
@@ -2140,8 +2139,8 @@ Public Class FormMain
 
 				GameBusy = True
 
-				i = GameEngine.Think(Connect4Board)
-				If Connect4Board.PlayMove(i) Then
+				i = Connect4Game.Think()
+				If Connect4Game.PlayMove(i) Then
 					LblComputerLastMove.Text = CStr(i + 1)
 				Else
 					Debug.Fail("TmrUpdate_Tick: Game logic error!", "Computer failed to think for itself (" & i & ")!")
@@ -2152,7 +2151,7 @@ Public Class FormMain
 			End If
 		Else
 			' Tick player time only if game has started
-			If Connect4Board.HasGameStarted() And Not GameBusy Then
+			If Connect4Game.HasGameStarted() And Not GameBusy Then
 				PlayerTime += TmrUpdate.Interval / 1000.0!
 			End If
 		End If
