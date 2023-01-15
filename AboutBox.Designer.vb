@@ -13,7 +13,6 @@ Partial Class AboutBox
 			MyBase.Dispose(disposing)
 		End Try
 	End Sub
-
 	Friend WithEvents TableLayoutPanel As System.Windows.Forms.TableLayoutPanel
 	Friend WithEvents LogoPictureBox As System.Windows.Forms.PictureBox
 	Friend WithEvents LabelProductName As System.Windows.Forms.Label
