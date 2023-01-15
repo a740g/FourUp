@@ -8,8 +8,9 @@
 
 This code has come a long way - from the good old 16-bit DOS to 64-bit Windows.
 
-- [Visual Basic .Net](https://visualstudio.microsoft.com/free-developer-offers/) + Negamax solver (WIP)
-- [Visual Basic .Net](https://visualstudio.microsoft.com/free-developer-offers/) + Minimax solver
+- [Visual Basic .Net](https://visualstudio.microsoft.com/free-developer-offers/) + [Negamax](https://en.wikipedia.org/wiki/Negamax) solver (WIP)
+- [Visual Basic .Net](https://visualstudio.microsoft.com/free-developer-offers/) + [Minimax](https://en.wikipedia.org/wiki/Minimax) solver
+- [Visual Basic .Net](https://visualstudio.microsoft.com/free-developer-offers/) + Crude solver
 - [Visual Basic 6.0](https://winworldpc.com/product/microsoft-visual-bas/60) + Crude solver
 - [Microsoft Visual Basic 1.0 for DOS](https://winworldpc.com/product/microsoft-visual-bas/10-for-dos) + Random play
 - [Microsoft BASIC PDS 7.1](https://winworldpc.com/product/microsoft-basic/pds-71) + Random play
