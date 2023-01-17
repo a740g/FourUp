@@ -24,20 +24,20 @@ Namespace My
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Public Sub New()
             MyBase.New(Global.Microsoft.VisualBasic.ApplicationServices.AuthenticationMode.Windows)
-            Me.IsSingleInstance = true
+            Me.IsSingleInstance = false
             Me.EnableVisualStyles = true
-            Me.SaveMySettingsOnExit = true
+            Me.SaveMySettingsOnExit = false
             Me.ShutDownStyle = Global.Microsoft.VisualBasic.ApplicationServices.ShutdownMode.AfterMainFormCloses
         End Sub
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.FourPlay.FormMain
+            Me.MainForm = Global.FourUp.FormMain
         End Sub
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateSplashScreen()
-            Me.SplashScreen = Global.FourPlay.SplashScreen
+            Me.SplashScreen = Global.FourUp.SplashScreen
         End Sub
     End Class
 End Namespace

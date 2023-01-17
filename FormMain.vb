@@ -1,8 +1,8 @@
-' 4Play: Classic Connect 4 game
-' Copyright (c) Samuel Gomes, 2020
+' Four Up: Classic Connect 4 game
+' Copyright (c) Samuel Gomes, 2023
 
 ' The code in this game has been migrated from QuickBASIC, VBDOS, VB6 to VB.Net
-' As such the name conventions are clearly a mishmash from these eras
+' As such the naming conventions are clearly a mishmash from these eras
 ' I have tried my best to follow the MS VB.Net naming conventions whereever possbile while updating the code
 ' See here: https://docs.microsoft.com/en-us/dotnet/visual-basic/programming-guide/program-structure/naming-conventions
 
@@ -116,1089 +116,1089 @@ Public Class FormMain
 	Friend WithEvents LblComputerLastMoveLbl As Label
 	Friend WithEvents LblComputerScoreLbl As Label
 	<DebuggerStepThrough()> Private Sub InitializeComponent()
-		Me.components = New Container()
-		Dim resources As New ComponentResourceManager(GetType(FormMain))
-		Me.MnuMain = New MainMenu(Me.components)
-		Me.MnuGame = New MenuItem()
-		Me.MnuGameNew = New MenuItem()
-		Me.MnuGameSeperator1 = New MenuItem()
-		Me.MnuGameExit = New MenuItem()
-		Me.MnuHelp = New MenuItem()
-		Me.MnuHelpHowTo = New MenuItem()
-		Me.MnuHelpHint = New MenuItem()
-		Me.MnuHelpSeperator1 = New MenuItem()
-		Me.MnuHelpAbout = New MenuItem()
-		Me.TmrUpdate = New Timer(Me.components)
-		Me.PnlPawns = New Panel()
-		Me.Lbl6_5 = New Label()
-		Me.Lbl6_4 = New Label()
-		Me.Lbl6_3 = New Label()
-		Me.Lbl6_2 = New Label()
-		Me.Lbl6_1 = New Label()
-		Me.Lbl6_0 = New Label()
-		Me.Lbl5_5 = New Label()
-		Me.Lbl5_4 = New Label()
-		Me.Lbl5_3 = New Label()
-		Me.Lbl5_2 = New Label()
-		Me.Lbl5_1 = New Label()
-		Me.Lbl5_0 = New Label()
-		Me.Lbl4_5 = New Label()
-		Me.Lbl4_4 = New Label()
-		Me.Lbl4_3 = New Label()
-		Me.Lbl4_2 = New Label()
-		Me.Lbl4_1 = New Label()
-		Me.Lbl4_0 = New Label()
-		Me.Lbl3_5 = New Label()
-		Me.Lbl3_4 = New Label()
-		Me.Lbl3_3 = New Label()
-		Me.Lbl3_2 = New Label()
-		Me.Lbl3_1 = New Label()
-		Me.Lbl3_0 = New Label()
-		Me.Lbl2_5 = New Label()
-		Me.Lbl2_4 = New Label()
-		Me.Lbl2_3 = New Label()
-		Me.Lbl2_2 = New Label()
-		Me.Lbl2_1 = New Label()
-		Me.Lbl2_0 = New Label()
-		Me.Lbl1_5 = New Label()
-		Me.Lbl1_4 = New Label()
-		Me.Lbl1_3 = New Label()
-		Me.Lbl1_2 = New Label()
-		Me.Lbl1_1 = New Label()
-		Me.Lbl1_0 = New Label()
-		Me.Lbl0_5 = New Label()
-		Me.Lbl0_4 = New Label()
-		Me.Lbl0_3 = New Label()
-		Me.Lbl0_2 = New Label()
-		Me.Lbl0_1 = New Label()
-		Me.Lbl0_0 = New Label()
-		Me.PnlButtons = New Panel()
-		Me.Cmd7 = New Button()
-		Me.Cmd6 = New Button()
-		Me.Cmd5 = New Button()
-		Me.Cmd4 = New Button()
-		Me.Cmd3 = New Button()
-		Me.Cmd2 = New Button()
-		Me.Cmd1 = New Button()
-		Me.PnlStatus = New Panel()
-		Me.GrpComputer = New GroupBox()
-		Me.LblComputerTime = New Label()
-		Me.LblComputerLastMove = New Label()
-		Me.LblComputerScore = New Label()
-		Me.LblComputerTimeLbl = New Label()
-		Me.LblComputerLastMoveLbl = New Label()
-		Me.LblComputerScoreLbl = New Label()
-		Me.GrpPlayer = New GroupBox()
-		Me.LblPlayerTime = New Label()
-		Me.LblPlayerLastMove = New Label()
-		Me.LblPlayerScore = New Label()
-		Me.LblPlayerTimeLbl = New Label()
-		Me.LblPlayerLastMoveLbl = New Label()
-		Me.LblPlayerScoreLbl = New Label()
-		Me.TxtStatus = New TextBox()
-		Me.PnlPawns.SuspendLayout()
-		Me.PnlButtons.SuspendLayout()
-		Me.PnlStatus.SuspendLayout()
-		Me.GrpComputer.SuspendLayout()
-		Me.GrpPlayer.SuspendLayout()
-		Me.SuspendLayout()
-		'
-		'MnuMain
-		'
-		Me.MnuMain.MenuItems.AddRange(New MenuItem() {Me.MnuGame, Me.MnuHelp})
-		'
-		'MnuGame
-		'
-		Me.MnuGame.Index = 0
-		Me.MnuGame.MenuItems.AddRange(New MenuItem() {Me.MnuGameNew, Me.MnuGameSeperator1, Me.MnuGameExit})
-		Me.MnuGame.Text = "&Game"
-		'
-		'MnuGameNew
-		'
-		Me.MnuGameNew.Index = 0
-		Me.MnuGameNew.Shortcut = System.Windows.Forms.Shortcut.F2
-		Me.MnuGameNew.Text = "&New"
-		'
-		'MnuGameSeperator1
-		'
-		Me.MnuGameSeperator1.Index = 1
-		Me.MnuGameSeperator1.Text = "-"
-		'
-		'MnuGameExit
-		'
-		Me.MnuGameExit.Index = 2
-		Me.MnuGameExit.Shortcut = System.Windows.Forms.Shortcut.AltF4
-		Me.MnuGameExit.Text = "E&xit"
-		'
-		'MnuHelp
-		'
-		Me.MnuHelp.Index = 1
-		Me.MnuHelp.MenuItems.AddRange(New MenuItem() {Me.MnuHelpHowTo, Me.MnuHelpHint, Me.MnuHelpSeperator1, Me.MnuHelpAbout})
-		Me.MnuHelp.Text = "&Help"
-		'
-		'MnuHelpHowTo
-		'
-		Me.MnuHelpHowTo.Index = 0
-		Me.MnuHelpHowTo.Shortcut = System.Windows.Forms.Shortcut.F1
-		Me.MnuHelpHowTo.Text = "How &To..."
-		'
-		'MnuHelpHint
-		'
-		Me.MnuHelpHint.Index = 1
-		Me.MnuHelpHint.Shortcut = System.Windows.Forms.Shortcut.ShiftF1
-		Me.MnuHelpHint.Text = "&Show AI Thinking"
-		'
-		'MnuHelpSeperator1
-		'
-		Me.MnuHelpSeperator1.Index = 2
-		Me.MnuHelpSeperator1.Text = "-"
-		'
-		'MnuHelpAbout
-		'
-		Me.MnuHelpAbout.Index = 3
-		Me.MnuHelpAbout.Shortcut = System.Windows.Forms.Shortcut.AltF1
-		Me.MnuHelpAbout.Text = "&About 4 Play..."
-		'
-		'TmrUpdate
-		'
-		Me.TmrUpdate.Enabled = True
-		'
-		'PnlPawns
-		'
-		Me.PnlPawns.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.PnlPawns.Controls.Add(Me.Lbl6_5)
-		Me.PnlPawns.Controls.Add(Me.Lbl6_4)
-		Me.PnlPawns.Controls.Add(Me.Lbl6_3)
-		Me.PnlPawns.Controls.Add(Me.Lbl6_2)
-		Me.PnlPawns.Controls.Add(Me.Lbl6_1)
-		Me.PnlPawns.Controls.Add(Me.Lbl6_0)
-		Me.PnlPawns.Controls.Add(Me.Lbl5_5)
-		Me.PnlPawns.Controls.Add(Me.Lbl5_4)
-		Me.PnlPawns.Controls.Add(Me.Lbl5_3)
-		Me.PnlPawns.Controls.Add(Me.Lbl5_2)
-		Me.PnlPawns.Controls.Add(Me.Lbl5_1)
-		Me.PnlPawns.Controls.Add(Me.Lbl5_0)
-		Me.PnlPawns.Controls.Add(Me.Lbl4_5)
-		Me.PnlPawns.Controls.Add(Me.Lbl4_4)
-		Me.PnlPawns.Controls.Add(Me.Lbl4_3)
-		Me.PnlPawns.Controls.Add(Me.Lbl4_2)
-		Me.PnlPawns.Controls.Add(Me.Lbl4_1)
-		Me.PnlPawns.Controls.Add(Me.Lbl4_0)
-		Me.PnlPawns.Controls.Add(Me.Lbl3_5)
-		Me.PnlPawns.Controls.Add(Me.Lbl3_4)
-		Me.PnlPawns.Controls.Add(Me.Lbl3_3)
-		Me.PnlPawns.Controls.Add(Me.Lbl3_2)
-		Me.PnlPawns.Controls.Add(Me.Lbl3_1)
-		Me.PnlPawns.Controls.Add(Me.Lbl3_0)
-		Me.PnlPawns.Controls.Add(Me.Lbl2_5)
-		Me.PnlPawns.Controls.Add(Me.Lbl2_4)
-		Me.PnlPawns.Controls.Add(Me.Lbl2_3)
-		Me.PnlPawns.Controls.Add(Me.Lbl2_2)
-		Me.PnlPawns.Controls.Add(Me.Lbl2_1)
-		Me.PnlPawns.Controls.Add(Me.Lbl2_0)
-		Me.PnlPawns.Controls.Add(Me.Lbl1_5)
-		Me.PnlPawns.Controls.Add(Me.Lbl1_4)
-		Me.PnlPawns.Controls.Add(Me.Lbl1_3)
-		Me.PnlPawns.Controls.Add(Me.Lbl1_2)
-		Me.PnlPawns.Controls.Add(Me.Lbl1_1)
-		Me.PnlPawns.Controls.Add(Me.Lbl1_0)
-		Me.PnlPawns.Controls.Add(Me.Lbl0_5)
-		Me.PnlPawns.Controls.Add(Me.Lbl0_4)
-		Me.PnlPawns.Controls.Add(Me.Lbl0_3)
-		Me.PnlPawns.Controls.Add(Me.Lbl0_2)
-		Me.PnlPawns.Controls.Add(Me.Lbl0_1)
-		Me.PnlPawns.Controls.Add(Me.Lbl0_0)
-		Me.PnlPawns.Location = New Point(8, 8)
-		Me.PnlPawns.Name = "PnlPawns"
-		Me.PnlPawns.Size = New Size(292, 252)
-		Me.PnlPawns.TabIndex = 0
-		'
-		'Lbl6_5
-		'
-		Me.Lbl6_5.BackColor = System.Drawing.Color.Blue
-		Me.Lbl6_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl6_5.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl6_5.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl6_5.Location = New Point(248, 8)
-		Me.Lbl6_5.Name = "Lbl6_5"
-		Me.Lbl6_5.Size = New Size(32, 32)
-		Me.Lbl6_5.TabIndex = 41
-		Me.Lbl6_5.Text = "n"
-		Me.Lbl6_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl6_5.UseMnemonic = False
-		'
-		'Lbl6_4
-		'
-		Me.Lbl6_4.BackColor = System.Drawing.Color.Blue
-		Me.Lbl6_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl6_4.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl6_4.ForeColor = System.Drawing.Color.Red
-		Me.Lbl6_4.Location = New Point(248, 48)
-		Me.Lbl6_4.Name = "Lbl6_4"
-		Me.Lbl6_4.Size = New Size(32, 32)
-		Me.Lbl6_4.TabIndex = 40
-		Me.Lbl6_4.Text = "n"
-		Me.Lbl6_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl6_4.UseMnemonic = False
-		'
-		'Lbl6_3
-		'
-		Me.Lbl6_3.BackColor = System.Drawing.Color.Blue
-		Me.Lbl6_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl6_3.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl6_3.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl6_3.Location = New Point(248, 88)
-		Me.Lbl6_3.Name = "Lbl6_3"
-		Me.Lbl6_3.Size = New Size(32, 32)
-		Me.Lbl6_3.TabIndex = 39
-		Me.Lbl6_3.Text = "n"
-		Me.Lbl6_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl6_3.UseMnemonic = False
-		'
-		'Lbl6_2
-		'
-		Me.Lbl6_2.BackColor = System.Drawing.Color.Blue
-		Me.Lbl6_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl6_2.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl6_2.ForeColor = System.Drawing.Color.Red
-		Me.Lbl6_2.Location = New Point(248, 128)
-		Me.Lbl6_2.Name = "Lbl6_2"
-		Me.Lbl6_2.Size = New Size(32, 32)
-		Me.Lbl6_2.TabIndex = 38
-		Me.Lbl6_2.Text = "n"
-		Me.Lbl6_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl6_2.UseMnemonic = False
-		'
-		'Lbl6_1
-		'
-		Me.Lbl6_1.BackColor = System.Drawing.Color.Blue
-		Me.Lbl6_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl6_1.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl6_1.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl6_1.Location = New Point(248, 168)
-		Me.Lbl6_1.Name = "Lbl6_1"
-		Me.Lbl6_1.Size = New Size(32, 32)
-		Me.Lbl6_1.TabIndex = 37
-		Me.Lbl6_1.Text = "n"
-		Me.Lbl6_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl6_1.UseMnemonic = False
-		'
-		'Lbl6_0
-		'
-		Me.Lbl6_0.BackColor = System.Drawing.Color.Blue
-		Me.Lbl6_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl6_0.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl6_0.ForeColor = System.Drawing.Color.Red
-		Me.Lbl6_0.Location = New Point(248, 208)
-		Me.Lbl6_0.Name = "Lbl6_0"
-		Me.Lbl6_0.Size = New Size(32, 32)
-		Me.Lbl6_0.TabIndex = 36
-		Me.Lbl6_0.Text = "n"
-		Me.Lbl6_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl6_0.UseMnemonic = False
-		'
-		'Lbl5_5
-		'
-		Me.Lbl5_5.BackColor = System.Drawing.Color.Blue
-		Me.Lbl5_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl5_5.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl5_5.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl5_5.Location = New Point(208, 8)
-		Me.Lbl5_5.Name = "Lbl5_5"
-		Me.Lbl5_5.Size = New Size(32, 32)
-		Me.Lbl5_5.TabIndex = 35
-		Me.Lbl5_5.Text = "n"
-		Me.Lbl5_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl5_5.UseMnemonic = False
-		'
-		'Lbl5_4
-		'
-		Me.Lbl5_4.BackColor = System.Drawing.Color.Blue
-		Me.Lbl5_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl5_4.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl5_4.ForeColor = System.Drawing.Color.Red
-		Me.Lbl5_4.Location = New Point(208, 48)
-		Me.Lbl5_4.Name = "Lbl5_4"
-		Me.Lbl5_4.Size = New Size(32, 32)
-		Me.Lbl5_4.TabIndex = 34
-		Me.Lbl5_4.Text = "n"
-		Me.Lbl5_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl5_4.UseMnemonic = False
-		'
-		'Lbl5_3
-		'
-		Me.Lbl5_3.BackColor = System.Drawing.Color.Blue
-		Me.Lbl5_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl5_3.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl5_3.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl5_3.Location = New Point(208, 88)
-		Me.Lbl5_3.Name = "Lbl5_3"
-		Me.Lbl5_3.Size = New Size(32, 32)
-		Me.Lbl5_3.TabIndex = 33
-		Me.Lbl5_3.Text = "n"
-		Me.Lbl5_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl5_3.UseMnemonic = False
-		'
-		'Lbl5_2
-		'
-		Me.Lbl5_2.BackColor = System.Drawing.Color.Blue
-		Me.Lbl5_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl5_2.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl5_2.ForeColor = System.Drawing.Color.Red
-		Me.Lbl5_2.Location = New Point(208, 128)
-		Me.Lbl5_2.Name = "Lbl5_2"
-		Me.Lbl5_2.Size = New Size(32, 32)
-		Me.Lbl5_2.TabIndex = 32
-		Me.Lbl5_2.Text = "n"
-		Me.Lbl5_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl5_2.UseMnemonic = False
-		'
-		'Lbl5_1
-		'
-		Me.Lbl5_1.BackColor = System.Drawing.Color.Blue
-		Me.Lbl5_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl5_1.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl5_1.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl5_1.Location = New Point(208, 168)
-		Me.Lbl5_1.Name = "Lbl5_1"
-		Me.Lbl5_1.Size = New Size(32, 32)
-		Me.Lbl5_1.TabIndex = 31
-		Me.Lbl5_1.Text = "n"
-		Me.Lbl5_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl5_1.UseMnemonic = False
-		'
-		'Lbl5_0
-		'
-		Me.Lbl5_0.BackColor = System.Drawing.Color.Blue
-		Me.Lbl5_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl5_0.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl5_0.ForeColor = System.Drawing.Color.Red
-		Me.Lbl5_0.Location = New Point(208, 208)
-		Me.Lbl5_0.Name = "Lbl5_0"
-		Me.Lbl5_0.Size = New Size(32, 32)
-		Me.Lbl5_0.TabIndex = 30
-		Me.Lbl5_0.Text = "n"
-		Me.Lbl5_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl5_0.UseMnemonic = False
-		'
-		'Lbl4_5
-		'
-		Me.Lbl4_5.BackColor = System.Drawing.Color.Blue
-		Me.Lbl4_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl4_5.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl4_5.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl4_5.Location = New Point(168, 8)
-		Me.Lbl4_5.Name = "Lbl4_5"
-		Me.Lbl4_5.Size = New Size(32, 32)
-		Me.Lbl4_5.TabIndex = 29
-		Me.Lbl4_5.Text = "n"
-		Me.Lbl4_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl4_5.UseMnemonic = False
-		'
-		'Lbl4_4
-		'
-		Me.Lbl4_4.BackColor = System.Drawing.Color.Blue
-		Me.Lbl4_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl4_4.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl4_4.ForeColor = System.Drawing.Color.Red
-		Me.Lbl4_4.Location = New Point(168, 48)
-		Me.Lbl4_4.Name = "Lbl4_4"
-		Me.Lbl4_4.Size = New Size(32, 32)
-		Me.Lbl4_4.TabIndex = 28
-		Me.Lbl4_4.Text = "n"
-		Me.Lbl4_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl4_4.UseMnemonic = False
-		'
-		'Lbl4_3
-		'
-		Me.Lbl4_3.BackColor = System.Drawing.Color.Blue
-		Me.Lbl4_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl4_3.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl4_3.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl4_3.Location = New Point(168, 88)
-		Me.Lbl4_3.Name = "Lbl4_3"
-		Me.Lbl4_3.Size = New Size(32, 32)
-		Me.Lbl4_3.TabIndex = 27
-		Me.Lbl4_3.Text = "n"
-		Me.Lbl4_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl4_3.UseMnemonic = False
-		'
-		'Lbl4_2
-		'
-		Me.Lbl4_2.BackColor = System.Drawing.Color.Blue
-		Me.Lbl4_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl4_2.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl4_2.ForeColor = System.Drawing.Color.Red
-		Me.Lbl4_2.Location = New Point(168, 128)
-		Me.Lbl4_2.Name = "Lbl4_2"
-		Me.Lbl4_2.Size = New Size(32, 32)
-		Me.Lbl4_2.TabIndex = 26
-		Me.Lbl4_2.Text = "n"
-		Me.Lbl4_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl4_2.UseMnemonic = False
-		'
-		'Lbl4_1
-		'
-		Me.Lbl4_1.BackColor = System.Drawing.Color.Blue
-		Me.Lbl4_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl4_1.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl4_1.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl4_1.Location = New Point(168, 168)
-		Me.Lbl4_1.Name = "Lbl4_1"
-		Me.Lbl4_1.Size = New Size(32, 32)
-		Me.Lbl4_1.TabIndex = 25
-		Me.Lbl4_1.Text = "n"
-		Me.Lbl4_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl4_1.UseMnemonic = False
-		'
-		'Lbl4_0
-		'
-		Me.Lbl4_0.BackColor = System.Drawing.Color.Blue
-		Me.Lbl4_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl4_0.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl4_0.ForeColor = System.Drawing.Color.Red
-		Me.Lbl4_0.Location = New Point(168, 208)
-		Me.Lbl4_0.Name = "Lbl4_0"
-		Me.Lbl4_0.Size = New Size(32, 32)
-		Me.Lbl4_0.TabIndex = 24
-		Me.Lbl4_0.Text = "n"
-		Me.Lbl4_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl4_0.UseMnemonic = False
-		'
-		'Lbl3_5
-		'
-		Me.Lbl3_5.BackColor = System.Drawing.Color.Blue
-		Me.Lbl3_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl3_5.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl3_5.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl3_5.Location = New Point(128, 8)
-		Me.Lbl3_5.Name = "Lbl3_5"
-		Me.Lbl3_5.Size = New Size(32, 32)
-		Me.Lbl3_5.TabIndex = 23
-		Me.Lbl3_5.Text = "n"
-		Me.Lbl3_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl3_5.UseMnemonic = False
-		'
-		'Lbl3_4
-		'
-		Me.Lbl3_4.BackColor = System.Drawing.Color.Blue
-		Me.Lbl3_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl3_4.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl3_4.ForeColor = System.Drawing.Color.Red
-		Me.Lbl3_4.Location = New Point(128, 48)
-		Me.Lbl3_4.Name = "Lbl3_4"
-		Me.Lbl3_4.Size = New Size(32, 32)
-		Me.Lbl3_4.TabIndex = 22
-		Me.Lbl3_4.Text = "n"
-		Me.Lbl3_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl3_4.UseMnemonic = False
-		'
-		'Lbl3_3
-		'
-		Me.Lbl3_3.BackColor = System.Drawing.Color.Blue
-		Me.Lbl3_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl3_3.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl3_3.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl3_3.Location = New Point(128, 88)
-		Me.Lbl3_3.Name = "Lbl3_3"
-		Me.Lbl3_3.Size = New Size(32, 32)
-		Me.Lbl3_3.TabIndex = 21
-		Me.Lbl3_3.Text = "n"
-		Me.Lbl3_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl3_3.UseMnemonic = False
-		'
-		'Lbl3_2
-		'
-		Me.Lbl3_2.BackColor = System.Drawing.Color.Blue
-		Me.Lbl3_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl3_2.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl3_2.ForeColor = System.Drawing.Color.Red
-		Me.Lbl3_2.Location = New Point(128, 128)
-		Me.Lbl3_2.Name = "Lbl3_2"
-		Me.Lbl3_2.Size = New Size(32, 32)
-		Me.Lbl3_2.TabIndex = 20
-		Me.Lbl3_2.Text = "n"
-		Me.Lbl3_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl3_2.UseMnemonic = False
-		'
-		'Lbl3_1
-		'
-		Me.Lbl3_1.BackColor = System.Drawing.Color.Blue
-		Me.Lbl3_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl3_1.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl3_1.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl3_1.Location = New Point(128, 168)
-		Me.Lbl3_1.Name = "Lbl3_1"
-		Me.Lbl3_1.Size = New Size(32, 32)
-		Me.Lbl3_1.TabIndex = 19
-		Me.Lbl3_1.Text = "n"
-		Me.Lbl3_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl3_1.UseMnemonic = False
-		'
-		'Lbl3_0
-		'
-		Me.Lbl3_0.BackColor = System.Drawing.Color.Blue
-		Me.Lbl3_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl3_0.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl3_0.ForeColor = System.Drawing.Color.Red
-		Me.Lbl3_0.Location = New Point(128, 208)
-		Me.Lbl3_0.Name = "Lbl3_0"
-		Me.Lbl3_0.Size = New Size(32, 32)
-		Me.Lbl3_0.TabIndex = 18
-		Me.Lbl3_0.Text = "n"
-		Me.Lbl3_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl3_0.UseMnemonic = False
-		'
-		'Lbl2_5
-		'
-		Me.Lbl2_5.BackColor = System.Drawing.Color.Blue
-		Me.Lbl2_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl2_5.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl2_5.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl2_5.Location = New Point(88, 8)
-		Me.Lbl2_5.Name = "Lbl2_5"
-		Me.Lbl2_5.Size = New Size(32, 32)
-		Me.Lbl2_5.TabIndex = 17
-		Me.Lbl2_5.Text = "n"
-		Me.Lbl2_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl2_5.UseMnemonic = False
-		'
-		'Lbl2_4
-		'
-		Me.Lbl2_4.BackColor = System.Drawing.Color.Blue
-		Me.Lbl2_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl2_4.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl2_4.ForeColor = System.Drawing.Color.Red
-		Me.Lbl2_4.Location = New Point(88, 48)
-		Me.Lbl2_4.Name = "Lbl2_4"
-		Me.Lbl2_4.Size = New Size(32, 32)
-		Me.Lbl2_4.TabIndex = 16
-		Me.Lbl2_4.Text = "n"
-		Me.Lbl2_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl2_4.UseMnemonic = False
-		'
-		'Lbl2_3
-		'
-		Me.Lbl2_3.BackColor = System.Drawing.Color.Blue
-		Me.Lbl2_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl2_3.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl2_3.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl2_3.Location = New Point(88, 88)
-		Me.Lbl2_3.Name = "Lbl2_3"
-		Me.Lbl2_3.Size = New Size(32, 32)
-		Me.Lbl2_3.TabIndex = 15
-		Me.Lbl2_3.Text = "n"
-		Me.Lbl2_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl2_3.UseMnemonic = False
-		'
-		'Lbl2_2
-		'
-		Me.Lbl2_2.BackColor = System.Drawing.Color.Blue
-		Me.Lbl2_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl2_2.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl2_2.ForeColor = System.Drawing.Color.Red
-		Me.Lbl2_2.Location = New Point(88, 128)
-		Me.Lbl2_2.Name = "Lbl2_2"
-		Me.Lbl2_2.Size = New Size(32, 32)
-		Me.Lbl2_2.TabIndex = 14
-		Me.Lbl2_2.Text = "n"
-		Me.Lbl2_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl2_2.UseMnemonic = False
-		'
-		'Lbl2_1
-		'
-		Me.Lbl2_1.BackColor = System.Drawing.Color.Blue
-		Me.Lbl2_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl2_1.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl2_1.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl2_1.Location = New Point(88, 168)
-		Me.Lbl2_1.Name = "Lbl2_1"
-		Me.Lbl2_1.Size = New Size(32, 32)
-		Me.Lbl2_1.TabIndex = 13
-		Me.Lbl2_1.Text = "n"
-		Me.Lbl2_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl2_1.UseMnemonic = False
-		'
-		'Lbl2_0
-		'
-		Me.Lbl2_0.BackColor = System.Drawing.Color.Blue
-		Me.Lbl2_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl2_0.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl2_0.ForeColor = System.Drawing.Color.Red
-		Me.Lbl2_0.Location = New Point(88, 208)
-		Me.Lbl2_0.Name = "Lbl2_0"
-		Me.Lbl2_0.Size = New Size(32, 32)
-		Me.Lbl2_0.TabIndex = 12
-		Me.Lbl2_0.Text = "n"
-		Me.Lbl2_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl2_0.UseMnemonic = False
-		'
-		'Lbl1_5
-		'
-		Me.Lbl1_5.BackColor = System.Drawing.Color.Blue
-		Me.Lbl1_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl1_5.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl1_5.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl1_5.Location = New Point(48, 8)
-		Me.Lbl1_5.Name = "Lbl1_5"
-		Me.Lbl1_5.Size = New Size(32, 32)
-		Me.Lbl1_5.TabIndex = 11
-		Me.Lbl1_5.Text = "n"
-		Me.Lbl1_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl1_5.UseMnemonic = False
-		'
-		'Lbl1_4
-		'
-		Me.Lbl1_4.BackColor = System.Drawing.Color.Blue
-		Me.Lbl1_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl1_4.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl1_4.ForeColor = System.Drawing.Color.Red
-		Me.Lbl1_4.Location = New Point(48, 48)
-		Me.Lbl1_4.Name = "Lbl1_4"
-		Me.Lbl1_4.Size = New Size(32, 32)
-		Me.Lbl1_4.TabIndex = 10
-		Me.Lbl1_4.Text = "n"
-		Me.Lbl1_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl1_4.UseMnemonic = False
-		'
-		'Lbl1_3
-		'
-		Me.Lbl1_3.BackColor = System.Drawing.Color.Blue
-		Me.Lbl1_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl1_3.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl1_3.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl1_3.Location = New Point(48, 88)
-		Me.Lbl1_3.Name = "Lbl1_3"
-		Me.Lbl1_3.Size = New Size(32, 32)
-		Me.Lbl1_3.TabIndex = 9
-		Me.Lbl1_3.Text = "n"
-		Me.Lbl1_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl1_3.UseMnemonic = False
-		'
-		'Lbl1_2
-		'
-		Me.Lbl1_2.BackColor = System.Drawing.Color.Blue
-		Me.Lbl1_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl1_2.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl1_2.ForeColor = System.Drawing.Color.Red
-		Me.Lbl1_2.Location = New Point(48, 128)
-		Me.Lbl1_2.Name = "Lbl1_2"
-		Me.Lbl1_2.Size = New Size(32, 32)
-		Me.Lbl1_2.TabIndex = 8
-		Me.Lbl1_2.Text = "n"
-		Me.Lbl1_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl1_2.UseMnemonic = False
-		'
-		'Lbl1_1
-		'
-		Me.Lbl1_1.BackColor = System.Drawing.Color.Blue
-		Me.Lbl1_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl1_1.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl1_1.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl1_1.Location = New Point(48, 168)
-		Me.Lbl1_1.Name = "Lbl1_1"
-		Me.Lbl1_1.Size = New Size(32, 32)
-		Me.Lbl1_1.TabIndex = 7
-		Me.Lbl1_1.Text = "n"
-		Me.Lbl1_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl1_1.UseMnemonic = False
-		'
-		'Lbl1_0
-		'
-		Me.Lbl1_0.BackColor = System.Drawing.Color.Blue
-		Me.Lbl1_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl1_0.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl1_0.ForeColor = System.Drawing.Color.Red
-		Me.Lbl1_0.Location = New Point(48, 208)
-		Me.Lbl1_0.Name = "Lbl1_0"
-		Me.Lbl1_0.Size = New Size(32, 32)
-		Me.Lbl1_0.TabIndex = 6
-		Me.Lbl1_0.Text = "n"
-		Me.Lbl1_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl1_0.UseMnemonic = False
-		'
-		'Lbl0_5
-		'
-		Me.Lbl0_5.BackColor = System.Drawing.Color.Blue
-		Me.Lbl0_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl0_5.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl0_5.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl0_5.Location = New Point(8, 8)
-		Me.Lbl0_5.Name = "Lbl0_5"
-		Me.Lbl0_5.Size = New Size(32, 32)
-		Me.Lbl0_5.TabIndex = 5
-		Me.Lbl0_5.Text = "n"
-		Me.Lbl0_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl0_5.UseMnemonic = False
-		'
-		'Lbl0_4
-		'
-		Me.Lbl0_4.BackColor = System.Drawing.Color.Blue
-		Me.Lbl0_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl0_4.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl0_4.ForeColor = System.Drawing.Color.Red
-		Me.Lbl0_4.Location = New Point(8, 48)
-		Me.Lbl0_4.Name = "Lbl0_4"
-		Me.Lbl0_4.Size = New Size(32, 32)
-		Me.Lbl0_4.TabIndex = 4
-		Me.Lbl0_4.Text = "n"
-		Me.Lbl0_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl0_4.UseMnemonic = False
-		'
-		'Lbl0_3
-		'
-		Me.Lbl0_3.BackColor = System.Drawing.Color.Blue
-		Me.Lbl0_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl0_3.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl0_3.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl0_3.Location = New Point(8, 88)
-		Me.Lbl0_3.Name = "Lbl0_3"
-		Me.Lbl0_3.Size = New Size(32, 32)
-		Me.Lbl0_3.TabIndex = 3
-		Me.Lbl0_3.Text = "n"
-		Me.Lbl0_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl0_3.UseMnemonic = False
-		'
-		'Lbl0_2
-		'
-		Me.Lbl0_2.BackColor = System.Drawing.Color.Blue
-		Me.Lbl0_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl0_2.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl0_2.ForeColor = System.Drawing.Color.Red
-		Me.Lbl0_2.Location = New Point(8, 128)
-		Me.Lbl0_2.Name = "Lbl0_2"
-		Me.Lbl0_2.Size = New Size(32, 32)
-		Me.Lbl0_2.TabIndex = 2
-		Me.Lbl0_2.Text = "n"
-		Me.Lbl0_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl0_2.UseMnemonic = False
-		'
-		'Lbl0_1
-		'
-		Me.Lbl0_1.BackColor = System.Drawing.Color.Blue
-		Me.Lbl0_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl0_1.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl0_1.ForeColor = System.Drawing.Color.Yellow
-		Me.Lbl0_1.Location = New Point(8, 168)
-		Me.Lbl0_1.Name = "Lbl0_1"
-		Me.Lbl0_1.Size = New Size(32, 32)
-		Me.Lbl0_1.TabIndex = 1
-		Me.Lbl0_1.Text = "n"
-		Me.Lbl0_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl0_1.UseMnemonic = False
-		'
-		'Lbl0_0
-		'
-		Me.Lbl0_0.BackColor = System.Drawing.Color.Blue
-		Me.Lbl0_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.Lbl0_0.Font = New Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 2)
-		Me.Lbl0_0.ForeColor = System.Drawing.Color.Red
-		Me.Lbl0_0.Location = New Point(8, 208)
-		Me.Lbl0_0.Name = "Lbl0_0"
-		Me.Lbl0_0.Size = New Size(32, 32)
-		Me.Lbl0_0.TabIndex = 0
-		Me.Lbl0_0.Text = "n"
-		Me.Lbl0_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-		Me.Lbl0_0.UseMnemonic = False
-		'
-		'PnlButtons
-		'
-		Me.PnlButtons.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.PnlButtons.Controls.Add(Me.Cmd7)
-		Me.PnlButtons.Controls.Add(Me.Cmd6)
-		Me.PnlButtons.Controls.Add(Me.Cmd5)
-		Me.PnlButtons.Controls.Add(Me.Cmd4)
-		Me.PnlButtons.Controls.Add(Me.Cmd3)
-		Me.PnlButtons.Controls.Add(Me.Cmd2)
-		Me.PnlButtons.Controls.Add(Me.Cmd1)
-		Me.PnlButtons.Location = New Point(8, 268)
-		Me.PnlButtons.Name = "PnlButtons"
-		Me.PnlButtons.Size = New Size(292, 52)
-		Me.PnlButtons.TabIndex = 1
-		'
-		'Cmd7
-		'
-		Me.Cmd7.FlatStyle = System.Windows.Forms.FlatStyle.System
-		Me.Cmd7.Font = New Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0)
-		Me.Cmd7.Location = New Point(248, 8)
-		Me.Cmd7.Name = "Cmd7"
-		Me.Cmd7.Size = New Size(32, 32)
-		Me.Cmd7.TabIndex = 6
-		Me.Cmd7.Tag = "6"
-		Me.Cmd7.Text = "&7"
-		'
-		'Cmd6
-		'
-		Me.Cmd6.FlatStyle = System.Windows.Forms.FlatStyle.System
-		Me.Cmd6.Font = New Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0)
-		Me.Cmd6.Location = New Point(208, 8)
-		Me.Cmd6.Name = "Cmd6"
-		Me.Cmd6.Size = New Size(32, 32)
-		Me.Cmd6.TabIndex = 5
-		Me.Cmd6.Tag = "5"
-		Me.Cmd6.Text = "&6"
-		'
-		'Cmd5
-		'
-		Me.Cmd5.FlatStyle = System.Windows.Forms.FlatStyle.System
-		Me.Cmd5.Font = New Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0)
-		Me.Cmd5.Location = New Point(168, 8)
-		Me.Cmd5.Name = "Cmd5"
-		Me.Cmd5.Size = New Size(32, 32)
-		Me.Cmd5.TabIndex = 4
-		Me.Cmd5.Tag = "4"
-		Me.Cmd5.Text = "&5"
-		'
-		'Cmd4
-		'
-		Me.Cmd4.FlatStyle = System.Windows.Forms.FlatStyle.System
-		Me.Cmd4.Font = New Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0)
-		Me.Cmd4.Location = New Point(128, 8)
-		Me.Cmd4.Name = "Cmd4"
-		Me.Cmd4.Size = New Size(32, 32)
-		Me.Cmd4.TabIndex = 3
-		Me.Cmd4.Tag = "3"
-		Me.Cmd4.Text = "&4"
-		'
-		'Cmd3
-		'
-		Me.Cmd3.FlatStyle = System.Windows.Forms.FlatStyle.System
-		Me.Cmd3.Font = New Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0)
-		Me.Cmd3.Location = New Point(88, 8)
-		Me.Cmd3.Name = "Cmd3"
-		Me.Cmd3.Size = New Size(32, 32)
-		Me.Cmd3.TabIndex = 2
-		Me.Cmd3.Tag = "2"
-		Me.Cmd3.Text = "&3"
-		'
-		'Cmd2
-		'
-		Me.Cmd2.FlatStyle = System.Windows.Forms.FlatStyle.System
-		Me.Cmd2.Font = New Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0)
-		Me.Cmd2.Location = New Point(48, 8)
-		Me.Cmd2.Name = "Cmd2"
-		Me.Cmd2.Size = New Size(32, 32)
-		Me.Cmd2.TabIndex = 1
-		Me.Cmd2.Tag = "1"
-		Me.Cmd2.Text = "&2"
-		'
-		'Cmd1
-		'
-		Me.Cmd1.FlatStyle = System.Windows.Forms.FlatStyle.System
-		Me.Cmd1.Font = New Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0)
-		Me.Cmd1.Location = New Point(8, 8)
-		Me.Cmd1.Name = "Cmd1"
-		Me.Cmd1.Size = New Size(32, 32)
-		Me.Cmd1.TabIndex = 0
-		Me.Cmd1.Tag = "0"
-		Me.Cmd1.Text = "&1"
-		'
-		'PnlStatus
-		'
-		Me.PnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-		Me.PnlStatus.Controls.Add(Me.GrpComputer)
-		Me.PnlStatus.Controls.Add(Me.GrpPlayer)
-		Me.PnlStatus.Location = New Point(308, 8)
-		Me.PnlStatus.Name = "PnlStatus"
-		Me.PnlStatus.Size = New Size(188, 228)
-		Me.PnlStatus.TabIndex = 2
-		'
-		'GrpComputer
-		'
-		Me.GrpComputer.Controls.Add(Me.LblComputerTime)
-		Me.GrpComputer.Controls.Add(Me.LblComputerLastMove)
-		Me.GrpComputer.Controls.Add(Me.LblComputerScore)
-		Me.GrpComputer.Controls.Add(Me.LblComputerTimeLbl)
-		Me.GrpComputer.Controls.Add(Me.LblComputerLastMoveLbl)
-		Me.GrpComputer.Controls.Add(Me.LblComputerScoreLbl)
-		Me.GrpComputer.FlatStyle = System.Windows.Forms.FlatStyle.System
-		Me.GrpComputer.Location = New Point(8, 116)
-		Me.GrpComputer.Name = "GrpComputer"
-		Me.GrpComputer.Size = New Size(168, 100)
-		Me.GrpComputer.TabIndex = 1
-		Me.GrpComputer.TabStop = False
-		Me.GrpComputer.Text = "Computer (Yellow)"
-		'
-		'LblComputerTime
-		'
-		Me.LblComputerTime.AutoSize = True
-		Me.LblComputerTime.Location = New Point(104, 72)
-		Me.LblComputerTime.Name = "LblComputerTime"
-		Me.LblComputerTime.Size = New Size(49, 13)
-		Me.LblComputerTime.TabIndex = 5
-		Me.LblComputerTime.Text = "00:00:00"
-		Me.LblComputerTime.UseMnemonic = False
-		'
-		'LblComputerLastMove
-		'
-		Me.LblComputerLastMove.AutoSize = True
-		Me.LblComputerLastMove.Location = New Point(104, 48)
-		Me.LblComputerLastMove.Name = "LblComputerLastMove"
-		Me.LblComputerLastMove.Size = New Size(13, 13)
-		Me.LblComputerLastMove.TabIndex = 3
-		Me.LblComputerLastMove.Text = "0"
-		Me.LblComputerLastMove.UseMnemonic = False
-		'
-		'LblComputerScore
-		'
-		Me.LblComputerScore.AutoSize = True
-		Me.LblComputerScore.Location = New Point(104, 24)
-		Me.LblComputerScore.Name = "LblComputerScore"
-		Me.LblComputerScore.Size = New Size(13, 13)
-		Me.LblComputerScore.TabIndex = 1
-		Me.LblComputerScore.Text = "0"
-		Me.LblComputerScore.UseMnemonic = False
-		'
-		'LblComputerTimeLbl
-		'
-		Me.LblComputerTimeLbl.AutoSize = True
-		Me.LblComputerTimeLbl.Location = New Point(36, 72)
-		Me.LblComputerTimeLbl.Name = "LblComputerTimeLbl"
-		Me.LblComputerTimeLbl.Size = New Size(33, 13)
-		Me.LblComputerTimeLbl.TabIndex = 4
-		Me.LblComputerTimeLbl.Text = "Time:"
-		Me.LblComputerTimeLbl.UseMnemonic = False
-		'
-		'LblComputerLastMoveLbl
-		'
-		Me.LblComputerLastMoveLbl.AutoSize = True
-		Me.LblComputerLastMoveLbl.Location = New Point(12, 48)
-		Me.LblComputerLastMoveLbl.Name = "LblComputerLastMoveLbl"
-		Me.LblComputerLastMoveLbl.Size = New Size(60, 13)
-		Me.LblComputerLastMoveLbl.TabIndex = 2
-		Me.LblComputerLastMoveLbl.Text = "Last Move:"
-		Me.LblComputerLastMoveLbl.UseMnemonic = False
-		'
-		'LblComputerScoreLbl
-		'
-		Me.LblComputerScoreLbl.AutoSize = True
-		Me.LblComputerScoreLbl.Location = New Point(32, 24)
-		Me.LblComputerScoreLbl.Name = "LblComputerScoreLbl"
-		Me.LblComputerScoreLbl.Size = New Size(38, 13)
-		Me.LblComputerScoreLbl.TabIndex = 0
-		Me.LblComputerScoreLbl.Text = "Score:"
-		Me.LblComputerScoreLbl.UseMnemonic = False
-		'
-		'GrpPlayer
-		'
-		Me.GrpPlayer.Controls.Add(Me.LblPlayerTime)
-		Me.GrpPlayer.Controls.Add(Me.LblPlayerLastMove)
-		Me.GrpPlayer.Controls.Add(Me.LblPlayerScore)
-		Me.GrpPlayer.Controls.Add(Me.LblPlayerTimeLbl)
-		Me.GrpPlayer.Controls.Add(Me.LblPlayerLastMoveLbl)
-		Me.GrpPlayer.Controls.Add(Me.LblPlayerScoreLbl)
-		Me.GrpPlayer.FlatStyle = System.Windows.Forms.FlatStyle.System
-		Me.GrpPlayer.Location = New Point(8, 8)
-		Me.GrpPlayer.Name = "GrpPlayer"
-		Me.GrpPlayer.Size = New Size(168, 100)
-		Me.GrpPlayer.TabIndex = 0
-		Me.GrpPlayer.TabStop = False
-		Me.GrpPlayer.Text = "Player (Red)"
-		'
-		'LblPlayerTime
-		'
-		Me.LblPlayerTime.AutoSize = True
-		Me.LblPlayerTime.Location = New Point(104, 72)
-		Me.LblPlayerTime.Name = "LblPlayerTime"
-		Me.LblPlayerTime.Size = New Size(49, 13)
-		Me.LblPlayerTime.TabIndex = 5
-		Me.LblPlayerTime.Text = "00:00:00"
-		Me.LblPlayerTime.UseMnemonic = False
-		'
-		'LblPlayerLastMove
-		'
-		Me.LblPlayerLastMove.AutoSize = True
-		Me.LblPlayerLastMove.Location = New Point(104, 48)
-		Me.LblPlayerLastMove.Name = "LblPlayerLastMove"
-		Me.LblPlayerLastMove.Size = New Size(13, 13)
-		Me.LblPlayerLastMove.TabIndex = 3
-		Me.LblPlayerLastMove.Text = "0"
-		Me.LblPlayerLastMove.UseMnemonic = False
-		'
-		'LblPlayerScore
-		'
-		Me.LblPlayerScore.AutoSize = True
-		Me.LblPlayerScore.Location = New Point(104, 24)
-		Me.LblPlayerScore.Name = "LblPlayerScore"
-		Me.LblPlayerScore.Size = New Size(13, 13)
-		Me.LblPlayerScore.TabIndex = 1
-		Me.LblPlayerScore.Text = "0"
-		Me.LblPlayerScore.UseMnemonic = False
-		'
-		'LblPlayerTimeLbl
-		'
-		Me.LblPlayerTimeLbl.AutoSize = True
-		Me.LblPlayerTimeLbl.Location = New Point(36, 72)
-		Me.LblPlayerTimeLbl.Name = "LblPlayerTimeLbl"
-		Me.LblPlayerTimeLbl.Size = New Size(33, 13)
-		Me.LblPlayerTimeLbl.TabIndex = 4
-		Me.LblPlayerTimeLbl.Text = "Time:"
-		Me.LblPlayerTimeLbl.UseMnemonic = False
-		'
-		'LblPlayerLastMoveLbl
-		'
-		Me.LblPlayerLastMoveLbl.AutoSize = True
-		Me.LblPlayerLastMoveLbl.Location = New Point(12, 48)
-		Me.LblPlayerLastMoveLbl.Name = "LblPlayerLastMoveLbl"
-		Me.LblPlayerLastMoveLbl.Size = New Size(60, 13)
-		Me.LblPlayerLastMoveLbl.TabIndex = 2
-		Me.LblPlayerLastMoveLbl.Text = "Last Move:"
-		Me.LblPlayerLastMoveLbl.UseMnemonic = False
-		'
-		'LblPlayerScoreLbl
-		'
-		Me.LblPlayerScoreLbl.AutoSize = True
-		Me.LblPlayerScoreLbl.Location = New Point(32, 24)
-		Me.LblPlayerScoreLbl.Name = "LblPlayerScoreLbl"
-		Me.LblPlayerScoreLbl.Size = New Size(38, 13)
-		Me.LblPlayerScoreLbl.TabIndex = 0
-		Me.LblPlayerScoreLbl.Text = "Score:"
-		Me.LblPlayerScoreLbl.UseMnemonic = False
-		'
-		'TxtStatus
-		'
-		Me.TxtStatus.BackColor = System.Drawing.Color.Black
-		Me.TxtStatus.Font = New Font("Courier New", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0)
-		Me.TxtStatus.ForeColor = System.Drawing.Color.Lime
-		Me.TxtStatus.Location = New Point(308, 244)
-		Me.TxtStatus.Multiline = True
-		Me.TxtStatus.Name = "TxtStatus"
-		Me.TxtStatus.ReadOnly = True
-		Me.TxtStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-		Me.TxtStatus.Size = New Size(188, 76)
-		Me.TxtStatus.TabIndex = 3
-		Me.TxtStatus.TabStop = False
-		'
-		'FrmMain
-		'
-		Me.AutoScaleBaseSize = New Size(5, 13)
-		Me.ClientSize = New Size(504, 327)
-		Me.Controls.Add(Me.TxtStatus)
-		Me.Controls.Add(Me.PnlStatus)
-		Me.Controls.Add(Me.PnlButtons)
-		Me.Controls.Add(Me.PnlPawns)
-		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-		Me.Icon = CType(resources.GetObject("$this.Icon"), Icon)
-		Me.MaximizeBox = False
-		Me.Menu = Me.MnuMain
-		Me.Name = "FrmMain"
-		Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-		Me.Text = "4Play"
-		Me.PnlPawns.ResumeLayout(False)
-		Me.PnlButtons.ResumeLayout(False)
-		Me.PnlStatus.ResumeLayout(False)
-		Me.GrpComputer.ResumeLayout(False)
-		Me.GrpComputer.PerformLayout()
-		Me.GrpPlayer.ResumeLayout(False)
-		Me.GrpPlayer.PerformLayout()
-		Me.ResumeLayout(False)
-		Me.PerformLayout()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
+        Me.MnuMain = New System.Windows.Forms.MainMenu(Me.components)
+        Me.MnuGame = New System.Windows.Forms.MenuItem()
+        Me.MnuGameNew = New System.Windows.Forms.MenuItem()
+        Me.MnuGameSeperator1 = New System.Windows.Forms.MenuItem()
+        Me.MnuGameExit = New System.Windows.Forms.MenuItem()
+        Me.MnuHelp = New System.Windows.Forms.MenuItem()
+        Me.MnuHelpHowTo = New System.Windows.Forms.MenuItem()
+        Me.MnuHelpHint = New System.Windows.Forms.MenuItem()
+        Me.MnuHelpSeperator1 = New System.Windows.Forms.MenuItem()
+        Me.MnuHelpAbout = New System.Windows.Forms.MenuItem()
+        Me.TmrUpdate = New System.Windows.Forms.Timer(Me.components)
+        Me.PnlPawns = New System.Windows.Forms.Panel()
+        Me.Lbl6_5 = New System.Windows.Forms.Label()
+        Me.Lbl6_4 = New System.Windows.Forms.Label()
+        Me.Lbl6_3 = New System.Windows.Forms.Label()
+        Me.Lbl6_2 = New System.Windows.Forms.Label()
+        Me.Lbl6_1 = New System.Windows.Forms.Label()
+        Me.Lbl6_0 = New System.Windows.Forms.Label()
+        Me.Lbl5_5 = New System.Windows.Forms.Label()
+        Me.Lbl5_4 = New System.Windows.Forms.Label()
+        Me.Lbl5_3 = New System.Windows.Forms.Label()
+        Me.Lbl5_2 = New System.Windows.Forms.Label()
+        Me.Lbl5_1 = New System.Windows.Forms.Label()
+        Me.Lbl5_0 = New System.Windows.Forms.Label()
+        Me.Lbl4_5 = New System.Windows.Forms.Label()
+        Me.Lbl4_4 = New System.Windows.Forms.Label()
+        Me.Lbl4_3 = New System.Windows.Forms.Label()
+        Me.Lbl4_2 = New System.Windows.Forms.Label()
+        Me.Lbl4_1 = New System.Windows.Forms.Label()
+        Me.Lbl4_0 = New System.Windows.Forms.Label()
+        Me.Lbl3_5 = New System.Windows.Forms.Label()
+        Me.Lbl3_4 = New System.Windows.Forms.Label()
+        Me.Lbl3_3 = New System.Windows.Forms.Label()
+        Me.Lbl3_2 = New System.Windows.Forms.Label()
+        Me.Lbl3_1 = New System.Windows.Forms.Label()
+        Me.Lbl3_0 = New System.Windows.Forms.Label()
+        Me.Lbl2_5 = New System.Windows.Forms.Label()
+        Me.Lbl2_4 = New System.Windows.Forms.Label()
+        Me.Lbl2_3 = New System.Windows.Forms.Label()
+        Me.Lbl2_2 = New System.Windows.Forms.Label()
+        Me.Lbl2_1 = New System.Windows.Forms.Label()
+        Me.Lbl2_0 = New System.Windows.Forms.Label()
+        Me.Lbl1_5 = New System.Windows.Forms.Label()
+        Me.Lbl1_4 = New System.Windows.Forms.Label()
+        Me.Lbl1_3 = New System.Windows.Forms.Label()
+        Me.Lbl1_2 = New System.Windows.Forms.Label()
+        Me.Lbl1_1 = New System.Windows.Forms.Label()
+        Me.Lbl1_0 = New System.Windows.Forms.Label()
+        Me.Lbl0_5 = New System.Windows.Forms.Label()
+        Me.Lbl0_4 = New System.Windows.Forms.Label()
+        Me.Lbl0_3 = New System.Windows.Forms.Label()
+        Me.Lbl0_2 = New System.Windows.Forms.Label()
+        Me.Lbl0_1 = New System.Windows.Forms.Label()
+        Me.Lbl0_0 = New System.Windows.Forms.Label()
+        Me.PnlButtons = New System.Windows.Forms.Panel()
+        Me.Cmd7 = New System.Windows.Forms.Button()
+        Me.Cmd6 = New System.Windows.Forms.Button()
+        Me.Cmd5 = New System.Windows.Forms.Button()
+        Me.Cmd4 = New System.Windows.Forms.Button()
+        Me.Cmd3 = New System.Windows.Forms.Button()
+        Me.Cmd2 = New System.Windows.Forms.Button()
+        Me.Cmd1 = New System.Windows.Forms.Button()
+        Me.PnlStatus = New System.Windows.Forms.Panel()
+        Me.GrpComputer = New System.Windows.Forms.GroupBox()
+        Me.LblComputerTime = New System.Windows.Forms.Label()
+        Me.LblComputerLastMove = New System.Windows.Forms.Label()
+        Me.LblComputerScore = New System.Windows.Forms.Label()
+        Me.LblComputerTimeLbl = New System.Windows.Forms.Label()
+        Me.LblComputerLastMoveLbl = New System.Windows.Forms.Label()
+        Me.LblComputerScoreLbl = New System.Windows.Forms.Label()
+        Me.GrpPlayer = New System.Windows.Forms.GroupBox()
+        Me.LblPlayerTime = New System.Windows.Forms.Label()
+        Me.LblPlayerLastMove = New System.Windows.Forms.Label()
+        Me.LblPlayerScore = New System.Windows.Forms.Label()
+        Me.LblPlayerTimeLbl = New System.Windows.Forms.Label()
+        Me.LblPlayerLastMoveLbl = New System.Windows.Forms.Label()
+        Me.LblPlayerScoreLbl = New System.Windows.Forms.Label()
+        Me.TxtStatus = New System.Windows.Forms.TextBox()
+        Me.PnlPawns.SuspendLayout()
+        Me.PnlButtons.SuspendLayout()
+        Me.PnlStatus.SuspendLayout()
+        Me.GrpComputer.SuspendLayout()
+        Me.GrpPlayer.SuspendLayout()
+        Me.SuspendLayout()
+        '
+        'MnuMain
+        '
+        Me.MnuMain.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MnuGame, Me.MnuHelp})
+        '
+        'MnuGame
+        '
+        Me.MnuGame.Index = 0
+        Me.MnuGame.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MnuGameNew, Me.MnuGameSeperator1, Me.MnuGameExit})
+        Me.MnuGame.Text = "&Game"
+        '
+        'MnuGameNew
+        '
+        Me.MnuGameNew.Index = 0
+        Me.MnuGameNew.Shortcut = System.Windows.Forms.Shortcut.F2
+        Me.MnuGameNew.Text = "&New"
+        '
+        'MnuGameSeperator1
+        '
+        Me.MnuGameSeperator1.Index = 1
+        Me.MnuGameSeperator1.Text = "-"
+        '
+        'MnuGameExit
+        '
+        Me.MnuGameExit.Index = 2
+        Me.MnuGameExit.Shortcut = System.Windows.Forms.Shortcut.AltF4
+        Me.MnuGameExit.Text = "E&xit"
+        '
+        'MnuHelp
+        '
+        Me.MnuHelp.Index = 1
+        Me.MnuHelp.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MnuHelpHowTo, Me.MnuHelpHint, Me.MnuHelpSeperator1, Me.MnuHelpAbout})
+        Me.MnuHelp.Text = "&Help"
+        '
+        'MnuHelpHowTo
+        '
+        Me.MnuHelpHowTo.Index = 0
+        Me.MnuHelpHowTo.Shortcut = System.Windows.Forms.Shortcut.F1
+        Me.MnuHelpHowTo.Text = "How &To..."
+        '
+        'MnuHelpHint
+        '
+        Me.MnuHelpHint.Index = 1
+        Me.MnuHelpHint.Shortcut = System.Windows.Forms.Shortcut.ShiftF1
+        Me.MnuHelpHint.Text = "&Show AI Thinking"
+        '
+        'MnuHelpSeperator1
+        '
+        Me.MnuHelpSeperator1.Index = 2
+        Me.MnuHelpSeperator1.Text = "-"
+        '
+        'MnuHelpAbout
+        '
+        Me.MnuHelpAbout.Index = 3
+        Me.MnuHelpAbout.Shortcut = System.Windows.Forms.Shortcut.AltF1
+        Me.MnuHelpAbout.Text = "&About Four Up..."
+        '
+        'TmrUpdate
+        '
+        Me.TmrUpdate.Enabled = True
+        '
+        'PnlPawns
+        '
+        Me.PnlPawns.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PnlPawns.Controls.Add(Me.Lbl6_5)
+        Me.PnlPawns.Controls.Add(Me.Lbl6_4)
+        Me.PnlPawns.Controls.Add(Me.Lbl6_3)
+        Me.PnlPawns.Controls.Add(Me.Lbl6_2)
+        Me.PnlPawns.Controls.Add(Me.Lbl6_1)
+        Me.PnlPawns.Controls.Add(Me.Lbl6_0)
+        Me.PnlPawns.Controls.Add(Me.Lbl5_5)
+        Me.PnlPawns.Controls.Add(Me.Lbl5_4)
+        Me.PnlPawns.Controls.Add(Me.Lbl5_3)
+        Me.PnlPawns.Controls.Add(Me.Lbl5_2)
+        Me.PnlPawns.Controls.Add(Me.Lbl5_1)
+        Me.PnlPawns.Controls.Add(Me.Lbl5_0)
+        Me.PnlPawns.Controls.Add(Me.Lbl4_5)
+        Me.PnlPawns.Controls.Add(Me.Lbl4_4)
+        Me.PnlPawns.Controls.Add(Me.Lbl4_3)
+        Me.PnlPawns.Controls.Add(Me.Lbl4_2)
+        Me.PnlPawns.Controls.Add(Me.Lbl4_1)
+        Me.PnlPawns.Controls.Add(Me.Lbl4_0)
+        Me.PnlPawns.Controls.Add(Me.Lbl3_5)
+        Me.PnlPawns.Controls.Add(Me.Lbl3_4)
+        Me.PnlPawns.Controls.Add(Me.Lbl3_3)
+        Me.PnlPawns.Controls.Add(Me.Lbl3_2)
+        Me.PnlPawns.Controls.Add(Me.Lbl3_1)
+        Me.PnlPawns.Controls.Add(Me.Lbl3_0)
+        Me.PnlPawns.Controls.Add(Me.Lbl2_5)
+        Me.PnlPawns.Controls.Add(Me.Lbl2_4)
+        Me.PnlPawns.Controls.Add(Me.Lbl2_3)
+        Me.PnlPawns.Controls.Add(Me.Lbl2_2)
+        Me.PnlPawns.Controls.Add(Me.Lbl2_1)
+        Me.PnlPawns.Controls.Add(Me.Lbl2_0)
+        Me.PnlPawns.Controls.Add(Me.Lbl1_5)
+        Me.PnlPawns.Controls.Add(Me.Lbl1_4)
+        Me.PnlPawns.Controls.Add(Me.Lbl1_3)
+        Me.PnlPawns.Controls.Add(Me.Lbl1_2)
+        Me.PnlPawns.Controls.Add(Me.Lbl1_1)
+        Me.PnlPawns.Controls.Add(Me.Lbl1_0)
+        Me.PnlPawns.Controls.Add(Me.Lbl0_5)
+        Me.PnlPawns.Controls.Add(Me.Lbl0_4)
+        Me.PnlPawns.Controls.Add(Me.Lbl0_3)
+        Me.PnlPawns.Controls.Add(Me.Lbl0_2)
+        Me.PnlPawns.Controls.Add(Me.Lbl0_1)
+        Me.PnlPawns.Controls.Add(Me.Lbl0_0)
+        Me.PnlPawns.Location = New System.Drawing.Point(8, 8)
+        Me.PnlPawns.Name = "PnlPawns"
+        Me.PnlPawns.Size = New System.Drawing.Size(292, 252)
+        Me.PnlPawns.TabIndex = 0
+        '
+        'Lbl6_5
+        '
+        Me.Lbl6_5.BackColor = System.Drawing.Color.Blue
+        Me.Lbl6_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl6_5.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl6_5.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl6_5.Location = New System.Drawing.Point(248, 8)
+        Me.Lbl6_5.Name = "Lbl6_5"
+        Me.Lbl6_5.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl6_5.TabIndex = 41
+        Me.Lbl6_5.Text = "n"
+        Me.Lbl6_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl6_5.UseMnemonic = False
+        '
+        'Lbl6_4
+        '
+        Me.Lbl6_4.BackColor = System.Drawing.Color.Blue
+        Me.Lbl6_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl6_4.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl6_4.ForeColor = System.Drawing.Color.Red
+        Me.Lbl6_4.Location = New System.Drawing.Point(248, 48)
+        Me.Lbl6_4.Name = "Lbl6_4"
+        Me.Lbl6_4.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl6_4.TabIndex = 40
+        Me.Lbl6_4.Text = "n"
+        Me.Lbl6_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl6_4.UseMnemonic = False
+        '
+        'Lbl6_3
+        '
+        Me.Lbl6_3.BackColor = System.Drawing.Color.Blue
+        Me.Lbl6_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl6_3.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl6_3.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl6_3.Location = New System.Drawing.Point(248, 88)
+        Me.Lbl6_3.Name = "Lbl6_3"
+        Me.Lbl6_3.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl6_3.TabIndex = 39
+        Me.Lbl6_3.Text = "n"
+        Me.Lbl6_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl6_3.UseMnemonic = False
+        '
+        'Lbl6_2
+        '
+        Me.Lbl6_2.BackColor = System.Drawing.Color.Blue
+        Me.Lbl6_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl6_2.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl6_2.ForeColor = System.Drawing.Color.Red
+        Me.Lbl6_2.Location = New System.Drawing.Point(248, 128)
+        Me.Lbl6_2.Name = "Lbl6_2"
+        Me.Lbl6_2.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl6_2.TabIndex = 38
+        Me.Lbl6_2.Text = "n"
+        Me.Lbl6_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl6_2.UseMnemonic = False
+        '
+        'Lbl6_1
+        '
+        Me.Lbl6_1.BackColor = System.Drawing.Color.Blue
+        Me.Lbl6_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl6_1.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl6_1.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl6_1.Location = New System.Drawing.Point(248, 168)
+        Me.Lbl6_1.Name = "Lbl6_1"
+        Me.Lbl6_1.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl6_1.TabIndex = 37
+        Me.Lbl6_1.Text = "n"
+        Me.Lbl6_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl6_1.UseMnemonic = False
+        '
+        'Lbl6_0
+        '
+        Me.Lbl6_0.BackColor = System.Drawing.Color.Blue
+        Me.Lbl6_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl6_0.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl6_0.ForeColor = System.Drawing.Color.Red
+        Me.Lbl6_0.Location = New System.Drawing.Point(248, 208)
+        Me.Lbl6_0.Name = "Lbl6_0"
+        Me.Lbl6_0.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl6_0.TabIndex = 36
+        Me.Lbl6_0.Text = "n"
+        Me.Lbl6_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl6_0.UseMnemonic = False
+        '
+        'Lbl5_5
+        '
+        Me.Lbl5_5.BackColor = System.Drawing.Color.Blue
+        Me.Lbl5_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl5_5.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl5_5.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl5_5.Location = New System.Drawing.Point(208, 8)
+        Me.Lbl5_5.Name = "Lbl5_5"
+        Me.Lbl5_5.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl5_5.TabIndex = 35
+        Me.Lbl5_5.Text = "n"
+        Me.Lbl5_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl5_5.UseMnemonic = False
+        '
+        'Lbl5_4
+        '
+        Me.Lbl5_4.BackColor = System.Drawing.Color.Blue
+        Me.Lbl5_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl5_4.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl5_4.ForeColor = System.Drawing.Color.Red
+        Me.Lbl5_4.Location = New System.Drawing.Point(208, 48)
+        Me.Lbl5_4.Name = "Lbl5_4"
+        Me.Lbl5_4.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl5_4.TabIndex = 34
+        Me.Lbl5_4.Text = "n"
+        Me.Lbl5_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl5_4.UseMnemonic = False
+        '
+        'Lbl5_3
+        '
+        Me.Lbl5_3.BackColor = System.Drawing.Color.Blue
+        Me.Lbl5_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl5_3.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl5_3.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl5_3.Location = New System.Drawing.Point(208, 88)
+        Me.Lbl5_3.Name = "Lbl5_3"
+        Me.Lbl5_3.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl5_3.TabIndex = 33
+        Me.Lbl5_3.Text = "n"
+        Me.Lbl5_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl5_3.UseMnemonic = False
+        '
+        'Lbl5_2
+        '
+        Me.Lbl5_2.BackColor = System.Drawing.Color.Blue
+        Me.Lbl5_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl5_2.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl5_2.ForeColor = System.Drawing.Color.Red
+        Me.Lbl5_2.Location = New System.Drawing.Point(208, 128)
+        Me.Lbl5_2.Name = "Lbl5_2"
+        Me.Lbl5_2.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl5_2.TabIndex = 32
+        Me.Lbl5_2.Text = "n"
+        Me.Lbl5_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl5_2.UseMnemonic = False
+        '
+        'Lbl5_1
+        '
+        Me.Lbl5_1.BackColor = System.Drawing.Color.Blue
+        Me.Lbl5_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl5_1.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl5_1.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl5_1.Location = New System.Drawing.Point(208, 168)
+        Me.Lbl5_1.Name = "Lbl5_1"
+        Me.Lbl5_1.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl5_1.TabIndex = 31
+        Me.Lbl5_1.Text = "n"
+        Me.Lbl5_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl5_1.UseMnemonic = False
+        '
+        'Lbl5_0
+        '
+        Me.Lbl5_0.BackColor = System.Drawing.Color.Blue
+        Me.Lbl5_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl5_0.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl5_0.ForeColor = System.Drawing.Color.Red
+        Me.Lbl5_0.Location = New System.Drawing.Point(208, 208)
+        Me.Lbl5_0.Name = "Lbl5_0"
+        Me.Lbl5_0.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl5_0.TabIndex = 30
+        Me.Lbl5_0.Text = "n"
+        Me.Lbl5_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl5_0.UseMnemonic = False
+        '
+        'Lbl4_5
+        '
+        Me.Lbl4_5.BackColor = System.Drawing.Color.Blue
+        Me.Lbl4_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl4_5.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl4_5.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl4_5.Location = New System.Drawing.Point(168, 8)
+        Me.Lbl4_5.Name = "Lbl4_5"
+        Me.Lbl4_5.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl4_5.TabIndex = 29
+        Me.Lbl4_5.Text = "n"
+        Me.Lbl4_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl4_5.UseMnemonic = False
+        '
+        'Lbl4_4
+        '
+        Me.Lbl4_4.BackColor = System.Drawing.Color.Blue
+        Me.Lbl4_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl4_4.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl4_4.ForeColor = System.Drawing.Color.Red
+        Me.Lbl4_4.Location = New System.Drawing.Point(168, 48)
+        Me.Lbl4_4.Name = "Lbl4_4"
+        Me.Lbl4_4.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl4_4.TabIndex = 28
+        Me.Lbl4_4.Text = "n"
+        Me.Lbl4_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl4_4.UseMnemonic = False
+        '
+        'Lbl4_3
+        '
+        Me.Lbl4_3.BackColor = System.Drawing.Color.Blue
+        Me.Lbl4_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl4_3.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl4_3.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl4_3.Location = New System.Drawing.Point(168, 88)
+        Me.Lbl4_3.Name = "Lbl4_3"
+        Me.Lbl4_3.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl4_3.TabIndex = 27
+        Me.Lbl4_3.Text = "n"
+        Me.Lbl4_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl4_3.UseMnemonic = False
+        '
+        'Lbl4_2
+        '
+        Me.Lbl4_2.BackColor = System.Drawing.Color.Blue
+        Me.Lbl4_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl4_2.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl4_2.ForeColor = System.Drawing.Color.Red
+        Me.Lbl4_2.Location = New System.Drawing.Point(168, 128)
+        Me.Lbl4_2.Name = "Lbl4_2"
+        Me.Lbl4_2.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl4_2.TabIndex = 26
+        Me.Lbl4_2.Text = "n"
+        Me.Lbl4_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl4_2.UseMnemonic = False
+        '
+        'Lbl4_1
+        '
+        Me.Lbl4_1.BackColor = System.Drawing.Color.Blue
+        Me.Lbl4_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl4_1.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl4_1.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl4_1.Location = New System.Drawing.Point(168, 168)
+        Me.Lbl4_1.Name = "Lbl4_1"
+        Me.Lbl4_1.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl4_1.TabIndex = 25
+        Me.Lbl4_1.Text = "n"
+        Me.Lbl4_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl4_1.UseMnemonic = False
+        '
+        'Lbl4_0
+        '
+        Me.Lbl4_0.BackColor = System.Drawing.Color.Blue
+        Me.Lbl4_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl4_0.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl4_0.ForeColor = System.Drawing.Color.Red
+        Me.Lbl4_0.Location = New System.Drawing.Point(168, 208)
+        Me.Lbl4_0.Name = "Lbl4_0"
+        Me.Lbl4_0.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl4_0.TabIndex = 24
+        Me.Lbl4_0.Text = "n"
+        Me.Lbl4_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl4_0.UseMnemonic = False
+        '
+        'Lbl3_5
+        '
+        Me.Lbl3_5.BackColor = System.Drawing.Color.Blue
+        Me.Lbl3_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl3_5.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl3_5.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl3_5.Location = New System.Drawing.Point(128, 8)
+        Me.Lbl3_5.Name = "Lbl3_5"
+        Me.Lbl3_5.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl3_5.TabIndex = 23
+        Me.Lbl3_5.Text = "n"
+        Me.Lbl3_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl3_5.UseMnemonic = False
+        '
+        'Lbl3_4
+        '
+        Me.Lbl3_4.BackColor = System.Drawing.Color.Blue
+        Me.Lbl3_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl3_4.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl3_4.ForeColor = System.Drawing.Color.Red
+        Me.Lbl3_4.Location = New System.Drawing.Point(128, 48)
+        Me.Lbl3_4.Name = "Lbl3_4"
+        Me.Lbl3_4.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl3_4.TabIndex = 22
+        Me.Lbl3_4.Text = "n"
+        Me.Lbl3_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl3_4.UseMnemonic = False
+        '
+        'Lbl3_3
+        '
+        Me.Lbl3_3.BackColor = System.Drawing.Color.Blue
+        Me.Lbl3_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl3_3.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl3_3.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl3_3.Location = New System.Drawing.Point(128, 88)
+        Me.Lbl3_3.Name = "Lbl3_3"
+        Me.Lbl3_3.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl3_3.TabIndex = 21
+        Me.Lbl3_3.Text = "n"
+        Me.Lbl3_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl3_3.UseMnemonic = False
+        '
+        'Lbl3_2
+        '
+        Me.Lbl3_2.BackColor = System.Drawing.Color.Blue
+        Me.Lbl3_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl3_2.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl3_2.ForeColor = System.Drawing.Color.Red
+        Me.Lbl3_2.Location = New System.Drawing.Point(128, 128)
+        Me.Lbl3_2.Name = "Lbl3_2"
+        Me.Lbl3_2.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl3_2.TabIndex = 20
+        Me.Lbl3_2.Text = "n"
+        Me.Lbl3_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl3_2.UseMnemonic = False
+        '
+        'Lbl3_1
+        '
+        Me.Lbl3_1.BackColor = System.Drawing.Color.Blue
+        Me.Lbl3_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl3_1.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl3_1.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl3_1.Location = New System.Drawing.Point(128, 168)
+        Me.Lbl3_1.Name = "Lbl3_1"
+        Me.Lbl3_1.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl3_1.TabIndex = 19
+        Me.Lbl3_1.Text = "n"
+        Me.Lbl3_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl3_1.UseMnemonic = False
+        '
+        'Lbl3_0
+        '
+        Me.Lbl3_0.BackColor = System.Drawing.Color.Blue
+        Me.Lbl3_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl3_0.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl3_0.ForeColor = System.Drawing.Color.Red
+        Me.Lbl3_0.Location = New System.Drawing.Point(128, 208)
+        Me.Lbl3_0.Name = "Lbl3_0"
+        Me.Lbl3_0.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl3_0.TabIndex = 18
+        Me.Lbl3_0.Text = "n"
+        Me.Lbl3_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl3_0.UseMnemonic = False
+        '
+        'Lbl2_5
+        '
+        Me.Lbl2_5.BackColor = System.Drawing.Color.Blue
+        Me.Lbl2_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl2_5.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl2_5.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl2_5.Location = New System.Drawing.Point(88, 8)
+        Me.Lbl2_5.Name = "Lbl2_5"
+        Me.Lbl2_5.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl2_5.TabIndex = 17
+        Me.Lbl2_5.Text = "n"
+        Me.Lbl2_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl2_5.UseMnemonic = False
+        '
+        'Lbl2_4
+        '
+        Me.Lbl2_4.BackColor = System.Drawing.Color.Blue
+        Me.Lbl2_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl2_4.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl2_4.ForeColor = System.Drawing.Color.Red
+        Me.Lbl2_4.Location = New System.Drawing.Point(88, 48)
+        Me.Lbl2_4.Name = "Lbl2_4"
+        Me.Lbl2_4.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl2_4.TabIndex = 16
+        Me.Lbl2_4.Text = "n"
+        Me.Lbl2_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl2_4.UseMnemonic = False
+        '
+        'Lbl2_3
+        '
+        Me.Lbl2_3.BackColor = System.Drawing.Color.Blue
+        Me.Lbl2_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl2_3.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl2_3.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl2_3.Location = New System.Drawing.Point(88, 88)
+        Me.Lbl2_3.Name = "Lbl2_3"
+        Me.Lbl2_3.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl2_3.TabIndex = 15
+        Me.Lbl2_3.Text = "n"
+        Me.Lbl2_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl2_3.UseMnemonic = False
+        '
+        'Lbl2_2
+        '
+        Me.Lbl2_2.BackColor = System.Drawing.Color.Blue
+        Me.Lbl2_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl2_2.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl2_2.ForeColor = System.Drawing.Color.Red
+        Me.Lbl2_2.Location = New System.Drawing.Point(88, 128)
+        Me.Lbl2_2.Name = "Lbl2_2"
+        Me.Lbl2_2.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl2_2.TabIndex = 14
+        Me.Lbl2_2.Text = "n"
+        Me.Lbl2_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl2_2.UseMnemonic = False
+        '
+        'Lbl2_1
+        '
+        Me.Lbl2_1.BackColor = System.Drawing.Color.Blue
+        Me.Lbl2_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl2_1.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl2_1.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl2_1.Location = New System.Drawing.Point(88, 168)
+        Me.Lbl2_1.Name = "Lbl2_1"
+        Me.Lbl2_1.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl2_1.TabIndex = 13
+        Me.Lbl2_1.Text = "n"
+        Me.Lbl2_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl2_1.UseMnemonic = False
+        '
+        'Lbl2_0
+        '
+        Me.Lbl2_0.BackColor = System.Drawing.Color.Blue
+        Me.Lbl2_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl2_0.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl2_0.ForeColor = System.Drawing.Color.Red
+        Me.Lbl2_0.Location = New System.Drawing.Point(88, 208)
+        Me.Lbl2_0.Name = "Lbl2_0"
+        Me.Lbl2_0.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl2_0.TabIndex = 12
+        Me.Lbl2_0.Text = "n"
+        Me.Lbl2_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl2_0.UseMnemonic = False
+        '
+        'Lbl1_5
+        '
+        Me.Lbl1_5.BackColor = System.Drawing.Color.Blue
+        Me.Lbl1_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl1_5.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl1_5.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl1_5.Location = New System.Drawing.Point(48, 8)
+        Me.Lbl1_5.Name = "Lbl1_5"
+        Me.Lbl1_5.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl1_5.TabIndex = 11
+        Me.Lbl1_5.Text = "n"
+        Me.Lbl1_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl1_5.UseMnemonic = False
+        '
+        'Lbl1_4
+        '
+        Me.Lbl1_4.BackColor = System.Drawing.Color.Blue
+        Me.Lbl1_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl1_4.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl1_4.ForeColor = System.Drawing.Color.Red
+        Me.Lbl1_4.Location = New System.Drawing.Point(48, 48)
+        Me.Lbl1_4.Name = "Lbl1_4"
+        Me.Lbl1_4.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl1_4.TabIndex = 10
+        Me.Lbl1_4.Text = "n"
+        Me.Lbl1_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl1_4.UseMnemonic = False
+        '
+        'Lbl1_3
+        '
+        Me.Lbl1_3.BackColor = System.Drawing.Color.Blue
+        Me.Lbl1_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl1_3.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl1_3.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl1_3.Location = New System.Drawing.Point(48, 88)
+        Me.Lbl1_3.Name = "Lbl1_3"
+        Me.Lbl1_3.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl1_3.TabIndex = 9
+        Me.Lbl1_3.Text = "n"
+        Me.Lbl1_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl1_3.UseMnemonic = False
+        '
+        'Lbl1_2
+        '
+        Me.Lbl1_2.BackColor = System.Drawing.Color.Blue
+        Me.Lbl1_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl1_2.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl1_2.ForeColor = System.Drawing.Color.Red
+        Me.Lbl1_2.Location = New System.Drawing.Point(48, 128)
+        Me.Lbl1_2.Name = "Lbl1_2"
+        Me.Lbl1_2.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl1_2.TabIndex = 8
+        Me.Lbl1_2.Text = "n"
+        Me.Lbl1_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl1_2.UseMnemonic = False
+        '
+        'Lbl1_1
+        '
+        Me.Lbl1_1.BackColor = System.Drawing.Color.Blue
+        Me.Lbl1_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl1_1.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl1_1.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl1_1.Location = New System.Drawing.Point(48, 168)
+        Me.Lbl1_1.Name = "Lbl1_1"
+        Me.Lbl1_1.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl1_1.TabIndex = 7
+        Me.Lbl1_1.Text = "n"
+        Me.Lbl1_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl1_1.UseMnemonic = False
+        '
+        'Lbl1_0
+        '
+        Me.Lbl1_0.BackColor = System.Drawing.Color.Blue
+        Me.Lbl1_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl1_0.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl1_0.ForeColor = System.Drawing.Color.Red
+        Me.Lbl1_0.Location = New System.Drawing.Point(48, 208)
+        Me.Lbl1_0.Name = "Lbl1_0"
+        Me.Lbl1_0.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl1_0.TabIndex = 6
+        Me.Lbl1_0.Text = "n"
+        Me.Lbl1_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl1_0.UseMnemonic = False
+        '
+        'Lbl0_5
+        '
+        Me.Lbl0_5.BackColor = System.Drawing.Color.Blue
+        Me.Lbl0_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl0_5.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl0_5.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl0_5.Location = New System.Drawing.Point(8, 8)
+        Me.Lbl0_5.Name = "Lbl0_5"
+        Me.Lbl0_5.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl0_5.TabIndex = 5
+        Me.Lbl0_5.Text = "n"
+        Me.Lbl0_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl0_5.UseMnemonic = False
+        '
+        'Lbl0_4
+        '
+        Me.Lbl0_4.BackColor = System.Drawing.Color.Blue
+        Me.Lbl0_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl0_4.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl0_4.ForeColor = System.Drawing.Color.Red
+        Me.Lbl0_4.Location = New System.Drawing.Point(8, 48)
+        Me.Lbl0_4.Name = "Lbl0_4"
+        Me.Lbl0_4.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl0_4.TabIndex = 4
+        Me.Lbl0_4.Text = "n"
+        Me.Lbl0_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl0_4.UseMnemonic = False
+        '
+        'Lbl0_3
+        '
+        Me.Lbl0_3.BackColor = System.Drawing.Color.Blue
+        Me.Lbl0_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl0_3.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl0_3.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl0_3.Location = New System.Drawing.Point(8, 88)
+        Me.Lbl0_3.Name = "Lbl0_3"
+        Me.Lbl0_3.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl0_3.TabIndex = 3
+        Me.Lbl0_3.Text = "n"
+        Me.Lbl0_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl0_3.UseMnemonic = False
+        '
+        'Lbl0_2
+        '
+        Me.Lbl0_2.BackColor = System.Drawing.Color.Blue
+        Me.Lbl0_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl0_2.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl0_2.ForeColor = System.Drawing.Color.Red
+        Me.Lbl0_2.Location = New System.Drawing.Point(8, 128)
+        Me.Lbl0_2.Name = "Lbl0_2"
+        Me.Lbl0_2.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl0_2.TabIndex = 2
+        Me.Lbl0_2.Text = "n"
+        Me.Lbl0_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl0_2.UseMnemonic = False
+        '
+        'Lbl0_1
+        '
+        Me.Lbl0_1.BackColor = System.Drawing.Color.Blue
+        Me.Lbl0_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl0_1.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl0_1.ForeColor = System.Drawing.Color.Yellow
+        Me.Lbl0_1.Location = New System.Drawing.Point(8, 168)
+        Me.Lbl0_1.Name = "Lbl0_1"
+        Me.Lbl0_1.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl0_1.TabIndex = 1
+        Me.Lbl0_1.Text = "n"
+        Me.Lbl0_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl0_1.UseMnemonic = False
+        '
+        'Lbl0_0
+        '
+        Me.Lbl0_0.BackColor = System.Drawing.Color.Blue
+        Me.Lbl0_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Lbl0_0.Font = New System.Drawing.Font("Webdings", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Lbl0_0.ForeColor = System.Drawing.Color.Red
+        Me.Lbl0_0.Location = New System.Drawing.Point(8, 208)
+        Me.Lbl0_0.Name = "Lbl0_0"
+        Me.Lbl0_0.Size = New System.Drawing.Size(32, 32)
+        Me.Lbl0_0.TabIndex = 0
+        Me.Lbl0_0.Text = "n"
+        Me.Lbl0_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl0_0.UseMnemonic = False
+        '
+        'PnlButtons
+        '
+        Me.PnlButtons.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PnlButtons.Controls.Add(Me.Cmd7)
+        Me.PnlButtons.Controls.Add(Me.Cmd6)
+        Me.PnlButtons.Controls.Add(Me.Cmd5)
+        Me.PnlButtons.Controls.Add(Me.Cmd4)
+        Me.PnlButtons.Controls.Add(Me.Cmd3)
+        Me.PnlButtons.Controls.Add(Me.Cmd2)
+        Me.PnlButtons.Controls.Add(Me.Cmd1)
+        Me.PnlButtons.Location = New System.Drawing.Point(8, 268)
+        Me.PnlButtons.Name = "PnlButtons"
+        Me.PnlButtons.Size = New System.Drawing.Size(292, 52)
+        Me.PnlButtons.TabIndex = 1
+        '
+        'Cmd7
+        '
+        Me.Cmd7.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.Cmd7.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Cmd7.Location = New System.Drawing.Point(248, 8)
+        Me.Cmd7.Name = "Cmd7"
+        Me.Cmd7.Size = New System.Drawing.Size(32, 32)
+        Me.Cmd7.TabIndex = 6
+        Me.Cmd7.Tag = "6"
+        Me.Cmd7.Text = "&7"
+        '
+        'Cmd6
+        '
+        Me.Cmd6.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.Cmd6.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Cmd6.Location = New System.Drawing.Point(208, 8)
+        Me.Cmd6.Name = "Cmd6"
+        Me.Cmd6.Size = New System.Drawing.Size(32, 32)
+        Me.Cmd6.TabIndex = 5
+        Me.Cmd6.Tag = "5"
+        Me.Cmd6.Text = "&6"
+        '
+        'Cmd5
+        '
+        Me.Cmd5.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.Cmd5.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Cmd5.Location = New System.Drawing.Point(168, 8)
+        Me.Cmd5.Name = "Cmd5"
+        Me.Cmd5.Size = New System.Drawing.Size(32, 32)
+        Me.Cmd5.TabIndex = 4
+        Me.Cmd5.Tag = "4"
+        Me.Cmd5.Text = "&5"
+        '
+        'Cmd4
+        '
+        Me.Cmd4.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.Cmd4.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Cmd4.Location = New System.Drawing.Point(128, 8)
+        Me.Cmd4.Name = "Cmd4"
+        Me.Cmd4.Size = New System.Drawing.Size(32, 32)
+        Me.Cmd4.TabIndex = 3
+        Me.Cmd4.Tag = "3"
+        Me.Cmd4.Text = "&4"
+        '
+        'Cmd3
+        '
+        Me.Cmd3.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.Cmd3.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Cmd3.Location = New System.Drawing.Point(88, 8)
+        Me.Cmd3.Name = "Cmd3"
+        Me.Cmd3.Size = New System.Drawing.Size(32, 32)
+        Me.Cmd3.TabIndex = 2
+        Me.Cmd3.Tag = "2"
+        Me.Cmd3.Text = "&3"
+        '
+        'Cmd2
+        '
+        Me.Cmd2.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.Cmd2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Cmd2.Location = New System.Drawing.Point(48, 8)
+        Me.Cmd2.Name = "Cmd2"
+        Me.Cmd2.Size = New System.Drawing.Size(32, 32)
+        Me.Cmd2.TabIndex = 1
+        Me.Cmd2.Tag = "1"
+        Me.Cmd2.Text = "&2"
+        '
+        'Cmd1
+        '
+        Me.Cmd1.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.Cmd1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Cmd1.Location = New System.Drawing.Point(8, 8)
+        Me.Cmd1.Name = "Cmd1"
+        Me.Cmd1.Size = New System.Drawing.Size(32, 32)
+        Me.Cmd1.TabIndex = 0
+        Me.Cmd1.Tag = "0"
+        Me.Cmd1.Text = "&1"
+        '
+        'PnlStatus
+        '
+        Me.PnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PnlStatus.Controls.Add(Me.GrpComputer)
+        Me.PnlStatus.Controls.Add(Me.GrpPlayer)
+        Me.PnlStatus.Location = New System.Drawing.Point(308, 8)
+        Me.PnlStatus.Name = "PnlStatus"
+        Me.PnlStatus.Size = New System.Drawing.Size(188, 228)
+        Me.PnlStatus.TabIndex = 2
+        '
+        'GrpComputer
+        '
+        Me.GrpComputer.Controls.Add(Me.LblComputerTime)
+        Me.GrpComputer.Controls.Add(Me.LblComputerLastMove)
+        Me.GrpComputer.Controls.Add(Me.LblComputerScore)
+        Me.GrpComputer.Controls.Add(Me.LblComputerTimeLbl)
+        Me.GrpComputer.Controls.Add(Me.LblComputerLastMoveLbl)
+        Me.GrpComputer.Controls.Add(Me.LblComputerScoreLbl)
+        Me.GrpComputer.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.GrpComputer.Location = New System.Drawing.Point(8, 116)
+        Me.GrpComputer.Name = "GrpComputer"
+        Me.GrpComputer.Size = New System.Drawing.Size(168, 100)
+        Me.GrpComputer.TabIndex = 1
+        Me.GrpComputer.TabStop = False
+        Me.GrpComputer.Text = "Computer (Yellow)"
+        '
+        'LblComputerTime
+        '
+        Me.LblComputerTime.AutoSize = True
+        Me.LblComputerTime.Location = New System.Drawing.Point(104, 72)
+        Me.LblComputerTime.Name = "LblComputerTime"
+        Me.LblComputerTime.Size = New System.Drawing.Size(49, 13)
+        Me.LblComputerTime.TabIndex = 5
+        Me.LblComputerTime.Text = "00:00:00"
+        Me.LblComputerTime.UseMnemonic = False
+        '
+        'LblComputerLastMove
+        '
+        Me.LblComputerLastMove.AutoSize = True
+        Me.LblComputerLastMove.Location = New System.Drawing.Point(104, 48)
+        Me.LblComputerLastMove.Name = "LblComputerLastMove"
+        Me.LblComputerLastMove.Size = New System.Drawing.Size(13, 13)
+        Me.LblComputerLastMove.TabIndex = 3
+        Me.LblComputerLastMove.Text = "0"
+        Me.LblComputerLastMove.UseMnemonic = False
+        '
+        'LblComputerScore
+        '
+        Me.LblComputerScore.AutoSize = True
+        Me.LblComputerScore.Location = New System.Drawing.Point(104, 24)
+        Me.LblComputerScore.Name = "LblComputerScore"
+        Me.LblComputerScore.Size = New System.Drawing.Size(13, 13)
+        Me.LblComputerScore.TabIndex = 1
+        Me.LblComputerScore.Text = "0"
+        Me.LblComputerScore.UseMnemonic = False
+        '
+        'LblComputerTimeLbl
+        '
+        Me.LblComputerTimeLbl.AutoSize = True
+        Me.LblComputerTimeLbl.Location = New System.Drawing.Point(36, 72)
+        Me.LblComputerTimeLbl.Name = "LblComputerTimeLbl"
+        Me.LblComputerTimeLbl.Size = New System.Drawing.Size(33, 13)
+        Me.LblComputerTimeLbl.TabIndex = 4
+        Me.LblComputerTimeLbl.Text = "Time:"
+        Me.LblComputerTimeLbl.UseMnemonic = False
+        '
+        'LblComputerLastMoveLbl
+        '
+        Me.LblComputerLastMoveLbl.AutoSize = True
+        Me.LblComputerLastMoveLbl.Location = New System.Drawing.Point(12, 48)
+        Me.LblComputerLastMoveLbl.Name = "LblComputerLastMoveLbl"
+        Me.LblComputerLastMoveLbl.Size = New System.Drawing.Size(60, 13)
+        Me.LblComputerLastMoveLbl.TabIndex = 2
+        Me.LblComputerLastMoveLbl.Text = "Last Move:"
+        Me.LblComputerLastMoveLbl.UseMnemonic = False
+        '
+        'LblComputerScoreLbl
+        '
+        Me.LblComputerScoreLbl.AutoSize = True
+        Me.LblComputerScoreLbl.Location = New System.Drawing.Point(32, 24)
+        Me.LblComputerScoreLbl.Name = "LblComputerScoreLbl"
+        Me.LblComputerScoreLbl.Size = New System.Drawing.Size(38, 13)
+        Me.LblComputerScoreLbl.TabIndex = 0
+        Me.LblComputerScoreLbl.Text = "Score:"
+        Me.LblComputerScoreLbl.UseMnemonic = False
+        '
+        'GrpPlayer
+        '
+        Me.GrpPlayer.Controls.Add(Me.LblPlayerTime)
+        Me.GrpPlayer.Controls.Add(Me.LblPlayerLastMove)
+        Me.GrpPlayer.Controls.Add(Me.LblPlayerScore)
+        Me.GrpPlayer.Controls.Add(Me.LblPlayerTimeLbl)
+        Me.GrpPlayer.Controls.Add(Me.LblPlayerLastMoveLbl)
+        Me.GrpPlayer.Controls.Add(Me.LblPlayerScoreLbl)
+        Me.GrpPlayer.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.GrpPlayer.Location = New System.Drawing.Point(8, 8)
+        Me.GrpPlayer.Name = "GrpPlayer"
+        Me.GrpPlayer.Size = New System.Drawing.Size(168, 100)
+        Me.GrpPlayer.TabIndex = 0
+        Me.GrpPlayer.TabStop = False
+        Me.GrpPlayer.Text = "Player (Red)"
+        '
+        'LblPlayerTime
+        '
+        Me.LblPlayerTime.AutoSize = True
+        Me.LblPlayerTime.Location = New System.Drawing.Point(104, 72)
+        Me.LblPlayerTime.Name = "LblPlayerTime"
+        Me.LblPlayerTime.Size = New System.Drawing.Size(49, 13)
+        Me.LblPlayerTime.TabIndex = 5
+        Me.LblPlayerTime.Text = "00:00:00"
+        Me.LblPlayerTime.UseMnemonic = False
+        '
+        'LblPlayerLastMove
+        '
+        Me.LblPlayerLastMove.AutoSize = True
+        Me.LblPlayerLastMove.Location = New System.Drawing.Point(104, 48)
+        Me.LblPlayerLastMove.Name = "LblPlayerLastMove"
+        Me.LblPlayerLastMove.Size = New System.Drawing.Size(13, 13)
+        Me.LblPlayerLastMove.TabIndex = 3
+        Me.LblPlayerLastMove.Text = "0"
+        Me.LblPlayerLastMove.UseMnemonic = False
+        '
+        'LblPlayerScore
+        '
+        Me.LblPlayerScore.AutoSize = True
+        Me.LblPlayerScore.Location = New System.Drawing.Point(104, 24)
+        Me.LblPlayerScore.Name = "LblPlayerScore"
+        Me.LblPlayerScore.Size = New System.Drawing.Size(13, 13)
+        Me.LblPlayerScore.TabIndex = 1
+        Me.LblPlayerScore.Text = "0"
+        Me.LblPlayerScore.UseMnemonic = False
+        '
+        'LblPlayerTimeLbl
+        '
+        Me.LblPlayerTimeLbl.AutoSize = True
+        Me.LblPlayerTimeLbl.Location = New System.Drawing.Point(36, 72)
+        Me.LblPlayerTimeLbl.Name = "LblPlayerTimeLbl"
+        Me.LblPlayerTimeLbl.Size = New System.Drawing.Size(33, 13)
+        Me.LblPlayerTimeLbl.TabIndex = 4
+        Me.LblPlayerTimeLbl.Text = "Time:"
+        Me.LblPlayerTimeLbl.UseMnemonic = False
+        '
+        'LblPlayerLastMoveLbl
+        '
+        Me.LblPlayerLastMoveLbl.AutoSize = True
+        Me.LblPlayerLastMoveLbl.Location = New System.Drawing.Point(12, 48)
+        Me.LblPlayerLastMoveLbl.Name = "LblPlayerLastMoveLbl"
+        Me.LblPlayerLastMoveLbl.Size = New System.Drawing.Size(60, 13)
+        Me.LblPlayerLastMoveLbl.TabIndex = 2
+        Me.LblPlayerLastMoveLbl.Text = "Last Move:"
+        Me.LblPlayerLastMoveLbl.UseMnemonic = False
+        '
+        'LblPlayerScoreLbl
+        '
+        Me.LblPlayerScoreLbl.AutoSize = True
+        Me.LblPlayerScoreLbl.Location = New System.Drawing.Point(32, 24)
+        Me.LblPlayerScoreLbl.Name = "LblPlayerScoreLbl"
+        Me.LblPlayerScoreLbl.Size = New System.Drawing.Size(38, 13)
+        Me.LblPlayerScoreLbl.TabIndex = 0
+        Me.LblPlayerScoreLbl.Text = "Score:"
+        Me.LblPlayerScoreLbl.UseMnemonic = False
+        '
+        'TxtStatus
+        '
+        Me.TxtStatus.BackColor = System.Drawing.Color.Black
+        Me.TxtStatus.Font = New System.Drawing.Font("Courier New", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtStatus.ForeColor = System.Drawing.Color.Lime
+        Me.TxtStatus.Location = New System.Drawing.Point(308, 244)
+        Me.TxtStatus.Multiline = True
+        Me.TxtStatus.Name = "TxtStatus"
+        Me.TxtStatus.ReadOnly = True
+        Me.TxtStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TxtStatus.Size = New System.Drawing.Size(188, 76)
+        Me.TxtStatus.TabIndex = 3
+        Me.TxtStatus.TabStop = False
+        '
+        'FormMain
+        '
+        Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
+        Me.ClientSize = New System.Drawing.Size(504, 327)
+        Me.Controls.Add(Me.TxtStatus)
+        Me.Controls.Add(Me.PnlStatus)
+        Me.Controls.Add(Me.PnlButtons)
+        Me.Controls.Add(Me.PnlPawns)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
+        Me.Menu = Me.MnuMain
+        Me.Name = "FormMain"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Four Up"
+        Me.PnlPawns.ResumeLayout(False)
+        Me.PnlButtons.ResumeLayout(False)
+        Me.PnlStatus.ResumeLayout(False)
+        Me.GrpComputer.ResumeLayout(False)
+        Me.GrpComputer.PerformLayout()
+        Me.GrpPlayer.ResumeLayout(False)
+        Me.GrpPlayer.PerformLayout()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-	End Sub
+    End Sub
 
 #End Region
 
-	Private PlayerTime, ComputerTime As Single
+    Private PlayerTime, ComputerTime As Single
 	Public WithEvents Connect4Game As New Game(6, 5)         ' Our game board
 	Private GameBusy As Boolean = False                 ' All UI input and AI play will be disabled if this is true
 

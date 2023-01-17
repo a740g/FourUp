@@ -7,9 +7,9 @@
     <ProjectGuid>{23CEAC5D-E871-46E7-9827-8B4B76B755F5}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>4Play.ico</ApplicationIcon>
+    <ApplicationIcon>FourUp.ico</ApplicationIcon>
     <AssemblyKeyContainerName />
-    <AssemblyName>4 Play</AssemblyName>
+    <AssemblyName>Four Up</AssemblyName>
     <AssemblyOriginatorKeyFile />
     <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
     <DefaultClientScript>VBScript</DefaultClientScript>
@@ -20,8 +20,8 @@
     <OptionCompare>Binary</OptionCompare>
     <OptionExplicit>On</OptionExplicit>
     <OptionStrict>On</OptionStrict>
-    <RootNamespace>FourPlay</RootNamespace>
-    <StartupObject>FourPlay.My.MyApplication</StartupObject>
+    <RootNamespace>FourUp</RootNamespace>
+    <StartupObject>FourUp.My.MyApplication</StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <MyType>WindowsForms</MyType>
@@ -29,6 +29,8 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>0.0</OldToolsVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -43,8 +45,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
@@ -152,7 +152,7 @@
     <Compile Include="SplashScreen.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Content Include="4Play.ico" />
+    <Content Include="FourUp.ico" />
     <Content Include="screenshot.png" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
@@ -180,9 +180,7 @@
     </None>
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>

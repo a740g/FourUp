@@ -1,5 +1,5 @@
-﻿' 4Play: Classic Connect 4 game
-' Copyright (c) Samuel Gomes, 2021
+﻿' Fout Up: Classic Connect 4 game
+' Copyright (c) Samuel Gomes, 2023
 
 ' This class implements the game board and legal play logic
 
