@@ -7,7 +7,7 @@
     <ProjectGuid>{23CEAC5D-E871-46E7-9827-8B4B76B755F5}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>FourUp.ico</ApplicationIcon>
+    <ApplicationIcon>Four Up.ico</ApplicationIcon>
     <AssemblyKeyContainerName />
     <AssemblyName>Four Up</AssemblyName>
     <AssemblyOriginatorKeyFile />
@@ -152,7 +152,7 @@
     <Compile Include="SplashScreen.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Content Include="FourUp.ico" />
+    <Content Include="Four Up.ico" />
     <Content Include="screenshot.png" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
