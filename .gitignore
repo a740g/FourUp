@@ -338,3 +338,20 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+# Visual Studio Code cache/options directory
+.vscode/
+
+# InForm backup files
+*.bas-backup
+*.frm-backup
+
+# Executables
+*.exe
+*.dll
+*.dylib
+*.so
+
+# macOS stuff
+.DS_Store
+*.command
