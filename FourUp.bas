@@ -1507,7 +1507,7 @@ SUB __UI_Click (id AS LONG)
             MessageBox "Four Up: Classic Connect 4 game\n\nCopyright (c) 2024 Samuel Gomes\n\nhttps://github.com/a740g/", Caption(FourUp) + " - About", MsgBox_Information
 
         CASE GameMenuUndo
-            IF NOT GameBusy THEN
+            IF NOT GameBusy AND GameGetPlayer = GAME_BOARD_PLAYER_O AND GameGetMoves > 1 THEN
                 GameBusy = TRUE
                 GameUndoMove ' undo AI move
                 GameUndoMove ' undo player move
