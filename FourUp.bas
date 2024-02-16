@@ -107,8 +107,6 @@ DIM SHARED HelpMenuGiveMeAHint AS LONG
 DIM SHARED AS SINGLE PlayerTime, ComputerTime ' these keep track of the time
 DIM SHARED GameBusy AS _BYTE ' all UI input and AI play will be disabled if this is true
 
-_ALLOWFULLSCREEN OFF
-
 ': External modules: ---------------------------------------------------------------
 '$INCLUDE:'./include/InForm/InFormCommon.bi'
 '$INCLUDE:'FourUpEngine.bi'

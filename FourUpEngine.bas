@@ -374,23 +374,18 @@ $IF FOURUPENGINE_BAS = UNDEFINED THEN
 
     ' Helper function to evaluate a line (row, column, or diagonal)
     ' Returns a positive score if the line has more player's pieces, negative if opponent's, and 0 otherwise
-    FUNCTION GameBoardEvaluateLine& (player AS _UNSIGNED _BYTE, a AS _UNSIGNED _BYTE, b AS _UNSIGNED _BYTE, c AS _UNSIGNED _BYTE, d AS _UNSIGNED _BYTE)
+    FUNCTION GameBoardEvaluateLine& (player AS _UNSIGNED _BYTE, opponent AS _UNSIGNED _BYTE, a AS _UNSIGNED _BYTE, b AS _UNSIGNED _BYTE, c AS _UNSIGNED _BYTE, d AS _UNSIGNED _BYTE)
         DIM AS LONG playerCount, opponentCount
 
         IF player = a THEN playerCount = 1
         IF player = b THEN playerCount = playerCount + 1
         IF player = c THEN playerCount = playerCount + 1
         IF player = d THEN playerCount = playerCount + 1
-        ' Bump the score if we have connect 3s
-        IF (a = b AND a = c) OR (d = c AND d = b) THEN playerCount = playerCount * playerCount * playerCount
 
-        DIM opponent AS _UNSIGNED _BYTE: opponent = GameGetOpponent(player)
         IF opponent = a THEN opponentCount = 1
         IF opponent = b THEN opponentCount = opponentCount + 1
         IF opponent = c THEN opponentCount = opponentCount + 1
         IF opponent = d THEN opponentCount = opponentCount + 1
-        ' Bump the score if we have connect 3s
-        IF (a = b AND a = c) OR (d = c AND d = b) THEN opponentCount = opponentCount * opponentCount * opponentCount
 
         GameBoardEvaluateLine = playerCount - opponentCount
     END FUNCTION
@@ -402,32 +397,33 @@ $IF FOURUPENGINE_BAS = UNDEFINED THEN
         SHARED GameBoard() AS _UNSIGNED _BYTE
 
         DIM AS LONG x, y, score
+        DIM opponent AS _UNSIGNED _BYTE: opponent = GameGetOpponent(player)
 
         ' Check horizontally (-)
         FOR y = 0 TO Game.boardMaxY
             FOR x = 0 TO Game.boardMaxX - 3
-                score = score + GameBoardEvaluateLine(player, GameBoard(x, y), GameBoard(x + 1, y), GameBoard(x + 2, y), GameBoard(x + 3, y))
+                score = score + GameBoardEvaluateLine(player, opponent, GameBoard(x, y), GameBoard(x + 1, y), GameBoard(x + 2, y), GameBoard(x + 3, y))
             NEXT x
         NEXT y
 
         ' Check vertically (|)
         FOR x = 0 TO Game.boardMaxX
             FOR y = 0 TO Game.boardMaxY - 3
-                score = score + GameBoardEvaluateLine(player, GameBoard(x, y), GameBoard(x, y + 1), GameBoard(x, y + 2), GameBoard(x, y + 3))
+                score = score + GameBoardEvaluateLine(player, opponent, GameBoard(x, y), GameBoard(x, y + 1), GameBoard(x, y + 2), GameBoard(x, y + 3))
             NEXT y
         NEXT x
 
         ' Check diagonally (/)
         FOR y = 0 TO Game.boardMaxY - 3
             FOR x = 0 TO Game.boardMaxX - 3
-                score = score + GameBoardEvaluateLine(player, GameBoard(x, y), GameBoard(x + 1, y + 1), GameBoard(x + 2, y + 2), GameBoard(x + 3, y + 3))
+                score = score + GameBoardEvaluateLine(player, opponent, GameBoard(x, y), GameBoard(x + 1, y + 1), GameBoard(x + 2, y + 2), GameBoard(x + 3, y + 3))
             NEXT x
         NEXT y
 
         ' Check diagonally (\)
         FOR y = 0 TO Game.boardMaxY - 3
             FOR x = Game.boardMaxX TO 3 STEP -1
-                score = score + GameBoardEvaluateLine(player, GameBoard(x, y), GameBoard(x - 1, y + 1), GameBoard(x - 2, y + 2), GameBoard(x - 3, y + 3))
+                score = score + GameBoardEvaluateLine(player, opponent, GameBoard(x, y), GameBoard(x - 1, y + 1), GameBoard(x - 2, y + 2), GameBoard(x - 3, y + 3))
             NEXT x
         NEXT y
 
@@ -490,7 +486,10 @@ $IF FOURUPENGINE_BAS = UNDEFINED THEN
         DIM opponent AS _UNSIGNED _BYTE: opponent = GameGetOpponent(player)
 
         ' Quickly check winning and loosing positions to avoid costly Negamax search
-        DIM x AS LONG: FOR x = 0 TO Game.boardMaxX
+        DIM x AS LONG
+
+        ' Winning positions first
+        FOR x = 0 TO Game.boardMaxX
             IF GameMakeMoveInternal(x, player) THEN
                 IF GameGetWinner(FALSE) = player THEN
                     GameUndoMoveInternal x
@@ -501,7 +500,10 @@ $IF FOURUPENGINE_BAS = UNDEFINED THEN
 
                 GameUndoMoveInternal x
             END IF
+        NEXT x
 
+        ' Next check loosing positions
+        FOR x = 0 TO Game.boardMaxX
             IF GameMakeMoveInternal(x, opponent) THEN
                 IF GameGetWinner(FALSE) = opponent THEN
                     GameUndoMoveInternal x
@@ -514,6 +516,7 @@ $IF FOURUPENGINE_BAS = UNDEFINED THEN
             END IF
         NEXT x
 
+        ' Now do a Negamax search
         DIM AS _UNSIGNED _BYTE move, bestMove
         DIM bestScore AS LONG: bestScore = -GAME_SOLVER_INFINITY
 
