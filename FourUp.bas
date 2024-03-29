@@ -1363,9 +1363,9 @@ END SUB
 
 ' Exits the game after checking with the user
 SUB OnExit
-    IF NOT GameBoardIsFull AND GameGetWinner(FALSE) = GAME_BOARD_PLAYER_NONE AND GameGetMoves > 0 THEN
+    IF NOT GameBoardIsFull AND GameGetWinner(False) = GAME_BOARD_PLAYER_NONE AND GameGetMoves > 0 THEN
         IF MessageBox("A game is in progress.\nAre you sure you want to quit now?", Caption(FourUp), MsgBox_YesNo OR MsgBox_Question) = MsgBox_No THEN
-            IF __UI_UnloadSignal THEN __UI_UnloadSignal = FALSE
+            IF __UI_UnloadSignal THEN __UI_UnloadSignal = False
             EXIT SUB
         END IF
     END IF
@@ -1375,7 +1375,7 @@ END SUB
 
 ' Starts a new game. If a game is active then it checks with the user before resetting everything
 SUB OnNewGame
-    IF NOT GameBoardIsFull AND GameGetWinner(FALSE) = GAME_BOARD_PLAYER_NONE AND GameGetMoves > 0 THEN
+    IF NOT GameBoardIsFull AND GameGetWinner(False) = GAME_BOARD_PLAYER_NONE AND GameGetMoves > 0 THEN
         IF MessageBox("A game is in progress.\nAre you sure you want to end this game?", Caption(FourUp), MsgBox_YesNo OR MsgBox_Question) = MsgBox_No THEN
             EXIT SUB
         END IF
@@ -1396,7 +1396,7 @@ SUB OnButtonClick (id AS LONG)
     IF GameBusy OR GameGetPlayer = GAME_BOARD_PLAYER_X THEN EXIT SUB
 
     ' Set the busy flag to true until the player finishes playing
-    GameBusy = TRUE
+    GameBusy = True
 
     DIM i AS _UNSIGNED _BYTE
     SELECT CASE id
@@ -1415,7 +1415,7 @@ SUB OnButtonClick (id AS LONG)
         Caption(PlayerLastMoveLB) = LTRIM$(STR$(i + 1))
 
         ' Check if the player won
-        DIM winner AS _UNSIGNED _BYTE: winner = GameGetWinner(TRUE)
+        DIM winner AS _UNSIGNED _BYTE: winner = GameGetWinner(True)
 
         ' We call DrawBoard here to draw the winning positions
         DrawGameBoard
@@ -1438,7 +1438,7 @@ SUB OnButtonClick (id AS LONG)
             Caption(ComputerLastMoveLB) = LTRIM$(STR$(i + 1))
 
             ' Check if the computer won
-            winner = GameGetWinner(TRUE)
+            winner = GameGetWinner(True)
 
             ' We call DrawBoard here to draw the winning positions
             DrawGameBoard
@@ -1458,7 +1458,7 @@ SUB OnButtonClick (id AS LONG)
         END IF
     END IF
 
-    GameBusy = FALSE
+    GameBusy = False
 END SUB
 
 ': Event procedures: ---------------------------------------------------------------
@@ -1508,10 +1508,10 @@ SUB __UI_Click (id AS LONG)
 
         CASE GameMenuUndo
             IF NOT GameBusy AND GameGetPlayer = GAME_BOARD_PLAYER_O AND GameGetMoves > 1 THEN
-                GameBusy = TRUE
+                GameBusy = True
                 GameUndoMove ' undo AI move
                 GameUndoMove ' undo player move
-                GameBusy = FALSE
+                GameBusy = False
             END IF
 
         CASE PlayerScoreLB
@@ -1686,9 +1686,9 @@ SUB __UI_Click (id AS LONG)
 
         CASE HelpMenuGiveMeAHint
             IF NOT GameBusy THEN
-                GameBusy = TRUE
+                GameBusy = True
                 MessageBox "Try column" + STR$(GameSolverGetBestMove(GameGetPlayer) + 1) + ".", Caption(FourUp) + " - Hint", MsgBox_Information
-                GameBusy = FALSE
+                GameBusy = False
             END IF
 
     END SELECT
