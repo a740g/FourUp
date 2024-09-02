@@ -117,42 +117,42 @@ DIM SHARED GameBusy AS _BYTE ' all UI input and AI play will be disabled if this
 
 ': Custom procedures: --------------------------------------------------------------
 ' Draws a filled circle
-' Adapted from the QB64-PE forums. Not sure who to credit
 ' cx, cy - circle center x, y
 ' r - circle radius
 ' c - color
 SUB DrawFilledCircle (cx AS LONG, cy AS LONG, r AS LONG, c AS _UNSIGNED LONG)
     $CHECKING:OFF
-    DIM AS LONG radius, radiusError, x, y
 
-    radius = ABS(r)
-    radiusError = -radius
-    x = radius ' Y = 0
-
-    IF radius = 0 THEN
+    IF r <= 0 THEN
         PSET (cx, cy), c
         EXIT SUB
     END IF
 
+    DIM e AS LONG: e = -r
+    DIM x AS LONG: x = r
+    DIM y AS LONG
+
     LINE (cx - x, cy)-(cx + x, cy), c, BF
 
-    WHILE x > y
-        radiusError = radiusError + y * 2 + 1
+    DO WHILE x > y
+        e = e + y * 2 + 1
 
-        IF radiusError >= 0 THEN
+        IF e >= 0 THEN
             IF x <> y + 1 THEN
                 LINE (cx - y, cy - x)-(cx + y, cy - x), c, BF
                 LINE (cx - y, cy + x)-(cx + y, cy + x), c, BF
             END IF
+
             x = x - 1
-            radiusError = radiusError - x * 2
+            e = e - x * 2
         END IF
 
         y = y + 1
 
         LINE (cx - x, cy - y)-(cx + x, cy - y), c, BF
         LINE (cx - x, cy + y)-(cx + x, cy + y), c, BF
-    WEND
+    LOOP
+
     $CHECKING:ON
 END SUB
 
