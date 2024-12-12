@@ -21,8 +21,8 @@ $VERSIONINFO:OriginalFilename='FourUp.exe'
 $VERSIONINFO:ProductName='Four Up'
 $VERSIONINFO:Web='https://github.com/a740g'
 $VERSIONINFO:Comments='https://github.com/a740g'
-$VERSIONINFO:FILEVERSION#=8,0,0,0
-$VERSIONINFO:PRODUCTVERSION#=8,0,0,0
+$VERSIONINFO:FILEVERSION#=8,0,1,0
+$VERSIONINFO:PRODUCTVERSION#=8,0,1,0
 
 ': Controls' IDs: ------------------------------------------------------------------
 DIM SHARED GameMenuExit AS LONG
