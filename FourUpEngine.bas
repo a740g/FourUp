@@ -1,6 +1,6 @@
 '-----------------------------------------------------------------------------------------------------------------------
 ' Four Up: Classic Connect 4 game
-' Copyright (c) 2024 Samuel Gomes
+' Copyright (c) 2025 Samuel Gomes
 '-----------------------------------------------------------------------------------------------------------------------
 
 $INCLUDEONCE
@@ -30,14 +30,14 @@ $INCLUDEONCE
 
 '    IF Game.player = GAME_BOARD_PLAYER_X THEN
 '        IF NOT GamePlayMove(GameSolverGetBestMove(Game.player)) THEN
-'            ERROR ERROR_INTERNAL_ERROR
+'            ERROR _ERR_INTERNAL_ERROR
 '            EXIT DO
 '        END IF
 '    END IF
 
 '    GameBoardDebugPrint
 
-'    DIM winner AS _UNSIGNED _BYTE: winner = GameGetWinner(TRUE)
+'    DIM winner AS _UNSIGNED _BYTE: winner = GameGetWinner(_TRUE)
 'LOOP WHILE GAME_BOARD_PLAYER_NONE = winner AND NOT GameBoardIsFull
 
 'GameBoardDebugPrint
@@ -83,7 +83,7 @@ $INCLUDEONCE
 '                    COLOR 15, 0
 
 '                CASE ELSE
-'                    ERROR ERROR_INTERNAL_ERROR
+'                    ERROR _ERR_INTERNAL_ERROR
 '            END SELECT
 '        NEXT x
 
@@ -100,7 +100,7 @@ SUB GameReset
     SHARED Game AS GameType
     SHARED GameBoard() AS _UNSIGNED _BYTE
 
-    Game.moveHistory = EMPTY_STRING
+    Game.moveHistory = _STR_EMPTY
     Game.moves = 0
     REDIM GameBoard(0 TO Game.boardMaxX, 0 TO Game.boardMaxY) AS _UNSIGNED _BYTE
 
@@ -114,7 +114,7 @@ FUNCTION GameGetEngineLog$
 
     IF LEN(Game.engineLog) > 0 THEN
         GameGetEngineLog = Game.engineLog
-        Game.engineLog = EMPTY_STRING
+        Game.engineLog = _STR_EMPTY
     END IF
 END FUNCTION
 
@@ -192,7 +192,7 @@ FUNCTION GameBoardIsFull%%
         IF GameBoard(x, Game.boardMaxY) = GAME_BOARD_PLAYER_NONE THEN EXIT FUNCTION ' the board is not full
     NEXT x
 
-    GameBoardIsFull = TRUE ' the board is full
+    GameBoardIsFull = _TRUE ' the board is full
 END FUNCTION
 
 
@@ -292,7 +292,7 @@ FUNCTION GameMakeMoveInternal%% (x AS _UNSIGNED _BYTE, player AS _UNSIGNED _BYTE
         DIM y AS LONG: FOR y = 0 TO Game.boardMaxY
             IF GameBoard(x, y) = GAME_BOARD_PLAYER_NONE THEN
                 GameBoard(x, y) = player
-                GameMakeMoveInternal = TRUE
+                GameMakeMoveInternal = _TRUE
                 EXIT FUNCTION
             END IF
         NEXT y
@@ -312,7 +312,7 @@ SUB GameUndoMoveInternal (x AS _UNSIGNED _BYTE)
         END IF
     NEXT y
 
-    ERROR ERROR_INTERNAL_ERROR ' game logic screwed?
+    ERROR _ERR_INTERNAL_ERROR ' game logic screwed?
 END SUB
 
 
@@ -329,7 +329,7 @@ FUNCTION GamePlayMove (x AS _UNSIGNED _BYTE)
         ' Switch the player
         Game.player = GameGetOpponent(Game.player)
 
-        GamePlayMove = TRUE
+        GamePlayMove = _TRUE
     END IF
 END FUNCTION
 
@@ -366,7 +366,7 @@ FUNCTION GameGetOpponent~%% (player AS _UNSIGNED _BYTE)
         ' 1 + 129 - 129 = 1
         GameGetOpponent = 1 + GAME_BOARD_PLAYER_X - player
     ELSE
-        ERROR ERROR_INTERNAL_ERROR
+        ERROR _ERR_INTERNAL_ERROR
     END IF
 END FUNCTION
 
@@ -435,7 +435,7 @@ FUNCTION GameSolverNegamaxAlphaBeta& (depth AS _UNSIGNED _BYTE, alpha AS LONG, b
     SHARED Game AS GameType
 
     ' Terminal condition: Get the winner if any and return an appropriate value
-    DIM winner AS _UNSIGNED _BYTE: winner = GameGetWinner(FALSE)
+    DIM winner AS _UNSIGNED _BYTE: winner = GameGetWinner(_FALSE)
     IF winner <> GAME_BOARD_PLAYER_NONE THEN
         IF winner = player THEN
             GameSolverNegamaxAlphaBeta = GAME_SOLVER_INFINITY
@@ -490,7 +490,7 @@ FUNCTION GameSolverGetBestMove~%% (player AS _UNSIGNED _BYTE)
     ' Winning positions first
     FOR x = 0 TO Game.boardMaxX
         IF GameMakeMoveInternal(x, player) THEN
-            IF GameGetWinner(FALSE) = player THEN
+            IF GameGetWinner(_FALSE) = player THEN
                 GameUndoMoveInternal x
                 GameSolverGetBestMove = x
                 Game.engineLog = "Winning move:" + STR$(x + 1)
@@ -504,7 +504,7 @@ FUNCTION GameSolverGetBestMove~%% (player AS _UNSIGNED _BYTE)
     ' Next check loosing positions
     FOR x = 0 TO Game.boardMaxX
         IF GameMakeMoveInternal(x, opponent) THEN
-            IF GameGetWinner(FALSE) = opponent THEN
+            IF GameGetWinner(_FALSE) = opponent THEN
                 GameUndoMoveInternal x
                 GameSolverGetBestMove = x
                 Game.engineLog = "Defending move:" + STR$(x + 1)

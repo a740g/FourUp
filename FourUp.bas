@@ -1,10 +1,8 @@
 '-----------------------------------------------------------------------------------------------------------------------
 ' Four Up: Classic Connect 4 game
-' Copyright (c) 2024 Samuel Gomes
+' Copyright (c) 2025 Samuel Gomes
 
 ' This program uses InForm GUI engine v1.5.3 for QB64-PE
-' Fellippe Heitor, (2016 - 2022) - @FellippeHeitor
-' Samuel Gomes, (2023 - 2024) - @a740g
 ' https://github.com/a740g/InForm-PE
 '-----------------------------------------------------------------------------------------------------------------------
 
@@ -15,14 +13,14 @@ $COLOR:32
 $VERSIONINFO:CompanyName='Samuel Gomes'
 $VERSIONINFO:FileDescription='Four Up executable'
 $VERSIONINFO:InternalName='FourUp'
-$VERSIONINFO:LegalCopyright='Copyright (c) 2024 Samuel Gomes'
+$VERSIONINFO:LegalCopyright='Copyright (c) 2025 Samuel Gomes'
 $VERSIONINFO:LegalTrademarks='All product names, trademarks and registered trademarks are property of their respective owners'
 $VERSIONINFO:OriginalFilename='FourUp.exe'
 $VERSIONINFO:ProductName='Four Up'
 $VERSIONINFO:Web='https://github.com/a740g'
 $VERSIONINFO:Comments='https://github.com/a740g'
-$VERSIONINFO:FILEVERSION#=8,0,1,0
-$VERSIONINFO:PRODUCTVERSION#=8,0,1,0
+$VERSIONINFO:FILEVERSION#=8,0,2,0
+$VERSIONINFO:PRODUCTVERSION#=8,0,2,0
 
 ': Controls' IDs: ------------------------------------------------------------------
 DIM SHARED GameMenuExit AS LONG
@@ -1407,7 +1405,7 @@ SUB OnButtonClick (id AS LONG)
         CASE BT5: i = 4
         CASE BT6: i = 5
         CASE BT7: i = 6
-        CASE ELSE: ERROR ERROR_INTERNAL_ERROR
+        CASE ELSE: ERROR _ERR_INTERNAL_ERROR
     END SELECT
 
     ' Player's move
@@ -1454,7 +1452,7 @@ SUB OnButtonClick (id AS LONG)
                 OnNewGame
             END IF
         ELSE
-            ERROR ERROR_INTERNAL_ERROR
+            ERROR _ERR_INTERNAL_ERROR
         END IF
     END IF
 

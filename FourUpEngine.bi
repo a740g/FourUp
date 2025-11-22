@@ -1,21 +1,13 @@
 '-----------------------------------------------------------------------------------------------------------------------
 ' Four Up: Classic Connect 4 game
-' Copyright (c) 2024 Samuel Gomes
+' Copyright (c) 2025 Samuel Gomes
 '-----------------------------------------------------------------------------------------------------------------------
 
-$INCLUDEONCE
-
-' InForm defines TRUE & FALSE. So we'll wrap this to avoid warnings
-$IF INFORMCOMMON_BI = UNDEFINED THEN
-    CONST FALSE%% = 0%%, TRUE%% = NOT FALSE
+$IF VERSION < 4.2.0 THEN
+    $ERROR 'This requires the latest version of QB64-PE from https://github.com/QB64-Phoenix-Edition/QB64pe/releases/latest'
 $END IF
 
-CONST EMPTY_STRING = ""
-
-CONST ERROR_ILLEGAL_FUNCTION_CALL~%% = 5~%%
-CONST ERROR_CANNOT_CONTINUE~%% = 17~%%
-CONST ERROR_INTERNAL_ERROR~%% = 51~%%
-CONST ERROR_FEATURE_UNAVAILABLE~%% = 73~%%
+$INCLUDEONCE
 
 CONST GAME_SOLVER_INFINITY& = 2147483647&
 CONST GAME_SOLVER_DEFAULT_DEPTH~%% = 6~%%
